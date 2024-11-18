@@ -1,0 +1,90 @@
+// Personalizzazione di Botstrap utilizando i sorgenti.
+@mixin bsBanner($file) {
+  /*!
+   * Bootstrap #{$file} v5.3.3 (https://getbootstrap.com/)
+   * Copyright 2011-2024 The Bootstrap Authors
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   *
+   * LollO Customized
+   */
+}
+
+@import '../scss/functions';
+
+@import '../scss/functions';
+@import '../scss/variables';
+
+$custom-theme-colors: (
+  'indigo': $indigo,
+  'indigo-200': $indigo-200,
+  'indigo-300': $indigo-300,
+  'indigo-400': $indigo-400,
+  'teal': $teal,
+  'teal-200': $teal-200,
+  'teal-300': $teal-300,
+  'teal-400': $teal-400,
+  'orange': $orange,
+  'orange-100': $orange-100,
+  'orange-200': $orange-200,
+  'orange-300': $orange-300,
+  'orange-400': $orange-400,
+
+  'gray-100': $gray-100,
+  'gray-200': $gray-200,
+  'gray-300': $gray-300,
+  'gray-400': $gray-400,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+$custom-font-sizes: (
+  7: $font-size-base * 0.75,
+  8: $font-size-base * 0.5,
+  9: $font-size-base * 0.25,
+  bigtitle: $font-size-base * 4,
+);
+
+$font-sizes: map-merge($font-sizes, $custom-font-sizes);
+
+$custom-position-values: (
+  25: 25%,
+  75: 75%,
+);
+
+$position-values: map-merge($position-values, $custom-position-values);
+
+@import '../scss/bootstrap.scss';
+
+body {
+  font-family: 'Circular', sans-serif;
+  font-weight: 100;
+}
+
+#mobileNavbarPlayer > div {
+  display: inline-block;
+}
+#mobileNavbarPlayer > div:not(:first-child) {
+  width: 30px;
+}
+
+#mobileNavbarButtons {
+  div {
+    width: 100px;
+    height: 90px;
+  }
+}
+
+#navbarDeskTopLeftBlock {
+}
+
+#navbarDeskTopRightBlock {
+  div:not(:nth-of-type(4)) {
+    width: 25px;
+    height: 25px;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
+}

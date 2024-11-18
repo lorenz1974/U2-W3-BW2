@@ -57,16 +57,35 @@ $position-values: map-merge($position-values, $custom-position-values);
 
 body {
   font-family: 'Circular', sans-serif;
+  font-weight: 100;
 }
 
-#mobileNavbarPlayer div {
+#mobileNavbarPlayer > div {
   display: inline-block;
 }
-#mobileNavbarPlayer div:not(:first-child) {
+#mobileNavbarPlayer > div:not(:first-child) {
   width: 30px;
 }
 
-#mobileNavbarButtons div {
-  width: 100px;
-  height: 90px;
+#mobileNavbarButtons {
+  div {
+    width: 100px;
+    height: 90px;
+  }
+}
+
+#navbarDeskTopLeftBlock {
+}
+
+#navbarDeskTopRightBlock {
+  div:not(:nth-of-type(4)) {
+    width: 25px;
+    height: 25px;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+
+    margin: auto;
+  }
 }

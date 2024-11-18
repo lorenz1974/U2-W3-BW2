@@ -1,0 +1,34 @@
+VERO
+- Player
+- La pagina dell'album
+- La pagina dell'artista
+- Una pagina di ricerca
+
+
+FAKE
+- Playlist
+- Impostazioni
+- Notifiche
+- Preferiti
+- Cronologia
+
+FUNZIONI
+- Fetch (classe)
+
+- Genera elenco playlists
+- Genera colonna amici
+- Genera album preferiti
+- Genera album
+
+COLONNA SINISTRA
+- Andrea
+
+COLONNA CENTRALE
+- Niccolò
+- Antonio
+
+COLONNA SINISTRA
+- Leonardo
+
+NAVBAR
+- Lorenzo

@@ -27,7 +27,7 @@ COLONNA CENTRALE
 - Niccolò
 - Antonio
 
-COLONNA SINISTRA
+COLONNA DESTRA
 - Leonardo
 
 NAVBAR

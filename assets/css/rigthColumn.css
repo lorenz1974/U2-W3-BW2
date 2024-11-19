@@ -1,0 +1,12 @@
+#serchInput{
+    background-color: black;
+    border: solid 1px wheat;
+    padding: 0.5em;
+    width: 90%;
+    margin: 1em;
+    color: white
+}
+
+main p{
+    font-size: xx-small
+}

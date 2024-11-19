@@ -17,12 +17,19 @@
 
   <link href="./assets/css/circular-font.css" rel="stylesheet">
   <link href="./assets/css/custom-bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/centralColumn.css">
 
 </head>
 
 <body>
   <header>
-    <!-- Insert here your header. -->
+     <!-- p per la barra di ricerca -->
+     <p id="serchMusic">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+      </svg>
+      <input type="text" placeholder="Vuoi cercare qualche altro brano?">
+    </p>
   </header>
 
   <main>
@@ -217,6 +224,26 @@
       <!-- PRIMA CAR -->
 
     </section> <!-- playListsSection -->
+
+    <section id="playListsSearch" class="m-4"> <!-- playlist di ricerca -->
+
+      <article class="d-flex">
+        <div class="articolo" style="background-color: #E13300;">
+          <p>
+            Podcast
+          </p>
+          <img src="./assets/imgs/search/image-2.jpg" alt="">
+        </div>
+
+        <div class="articolo" style="background-color: #1E3264;">
+          <p>
+            Create per te
+          </p>
+          <img src="./assets/imgs/search/image-33.jpg" alt="">
+        </div>
+      </article>
+
+    </section>
 
   </main>
 

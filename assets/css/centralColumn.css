@@ -1,0 +1,30 @@
+#serchMusic{
+    text-align: center;
+    margin: 1em;
+}
+
+#serchMusic input{
+    width: 60%;
+    padding: 0.5em;
+}
+
+.articolo{
+    width: 50%;
+    margin: 1em;
+    border-radius: 10px;
+}
+
+.articolo p{
+    margin: 0;
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    font-size: x-large;
+}
+
+.articolo img{
+    height: 5em;
+    border-radius: 10px;
+    transform: rotate(32deg);
+    translate: 230px;
+    box-shadow: #000000 5px 5px 1.4em;
+}

@@ -3,17 +3,17 @@ body {
   font-weight: 200;
   font-size: 0.9rem;
 }
-body #header {
+body #topColumn {
   height: 350px;
 }
-body #header ul li a,
-body #header ul li span {
+body #topColumn ul li a,
+body #topColumn ul li span {
   font-weight: 600;
 }
-body #header ul li img {
+body #topColumn ul li img {
   width: 27px;
   height: 27px;
 }
-body #header .dots {
+body #topColumn .dots {
   font-size: 1.6rem;
 }/*# sourceMappingURL=leftColumn.css.map */

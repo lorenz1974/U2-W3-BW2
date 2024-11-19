@@ -31,7 +31,7 @@
       <section class="d-none d-md-block">
         <!-- barra con bottoni e utente -->
         <div
-          class="d-flex justify-content-between align-items-center mt-2 mb-3"
+          class="d-flex justify-content-between align-items-center mt-2 mb-1 ms-2 me-2"
         >
           <!-- div con bottoni -->
           <div class="d-flex justify-content-start align-content-center">
@@ -101,9 +101,12 @@
           </div>
         </div>
       </section>
+
       <section id="albumInfo">
         <div class="row">
-          <div class="col-12 col-md-5 p-4 text-center position-relative mb-1">
+          <div
+            class="col-12 col-md-5 p-4 pb-md-0 text-center position-relative mb-1"
+          >
             <!-- freccia e copertina album -->
             <!-- va aggiunto uno sfondo al div capire se è fattibile usare il tool di Stefano -->
             <button class="border-0 bg-transparent d-md-none">
@@ -125,7 +128,7 @@
             <!-- copertina -->
             <img id="albumCover" src="./assets/imgs/main/image-11.jpg" alt="" />
           </div>
-          <div class="col-12 col-md-7 p-md-4">
+          <div class="col-12 col-md-7 p-md-4 pb-md-0">
             <!-- info album -->
             <div class="ps-4 ps-md-0">
               <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-5">ALBUM</p>
@@ -154,7 +157,8 @@
           </div>
         </div>
       </section>
-      <section>
+
+      <section id="icone" class="container mb-3">
         <!-- icone mobile -->
         <div
           class="container mt-4 d-flex justify-content-between align-content-center position-relative d-md-none"
@@ -249,18 +253,16 @@
           </div>
         </div>
         <!-- icone desktop -->
-        <div
-          class="container mt-4 d-md-flex justify-content-between align-content-center position-relative d-none"
-        >
+        <div class="mt-4 d-md-block d-none">
           <!-- play -->
-          <div class="position-absolute" style="top: -40px; left: -100px">
+          <div class="d-inline-block">
             <button
-              class="d-inline-block rounded-circle p-2 border-0 bg-success"
+              class="d-inline-block rounded-circle p-1 mb-2 border-0 bg-success mt-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
+                width="35"
+                height="35"
                 fill="currentColor"
                 class="bi bi-play-fill rounded-circle"
                 viewBox="0 0 16 16"
@@ -271,14 +273,14 @@
               </svg>
             </button>
           </div>
-          <div class="position-absolute" style="top: -25px; left: -20px">
+          <div class="d-inline-block ms-3">
             <!-- cuore -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
               height="30"
               fill="currentColor"
-              class="bi bi-heart d-inline-block me-4"
+              class="bi bi-heart me-4"
               viewBox="0 0 16 16"
             >
               <path
@@ -286,7 +288,7 @@
               />
             </svg>
           </div>
-          <div class="position-absolute" style="top: -25px; left: 35px">
+          <div class="d-inline-block">
             <!-- download -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +304,7 @@
               />
             </svg>
           </div>
-          <div class="position-absolute" style="top: -25px; left: 85px">
+          <div class="d-inline-block">
             <!-- puntini -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -319,9 +321,63 @@
           </div>
         </div>
       </section>
-      <section id="songs">
+
+      <section class="container d-none d-md-block" id="songHeading">
         <!-- brani  -->
-        <div class=""></div>
+        <!-- intestazione desktop -->
+        <div class="row g-0 d-none d-md-flex ms-2 me-2 mb-0">
+          <div class="col col-1">
+            <p class="mb-0">#</p>
+          </div>
+
+          <div class="col col-6">
+            <p class="mb-0">TITOLO</p>
+          </div>
+
+          <div class="col-3 text-end">
+            <p class="mb-0">RIPRODUZIONI</p>
+          </div>
+
+          <div class="col col-2 text-end mb-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-clock"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"
+              />
+              <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"
+              />
+            </svg>
+          </div>
+        </div>
+        <hr class="mt-1" />
+      </section>
+
+      <section id="songList" class="container">
+        <div class="row g-0 d-none d-md-flex ms-2 me-2 mb-0">
+          <div class="col col-1">
+            <p id="songNumber" class="mt-2 mb-0">num</p>
+          </div>
+
+          <div class="col col-6 d-flex flex-column align-content-center justify-content-center">
+            <p id="songNameList" class="mb-0">Titolo</p>
+            <p id="artistNameList">Artista</p>
+          </div>
+
+          <div class="col-3 text-end">
+            <p id="playedCounter" class="mb-0 mt-2">num riproduzioni</p>
+          </div>
+
+          <div class="col col-2 text-end mb-0">
+           <p id="songDurationList" class="mb-0 mt-2">durata</p>
+          </div>
+        </div>
       </section>
     </main>
 

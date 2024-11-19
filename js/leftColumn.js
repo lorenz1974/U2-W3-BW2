@@ -49,6 +49,12 @@ const myLibrary = [
   116670,
 ]
 
+const myPlaylists = [{}, {}]
+
+// const list = document.getElementById('playlists-list')
+// myPlaylists.forEach((playlist) => {
+//   const newPlaylist = document.createElement('li')
+
 //
 // ***********************************************************************
 //

@@ -1,26 +1,82 @@
-// ***********************************************************************//
+// ***********************************************************************
+//
 // FUNCTIONS DEFINITIONS
 //
 // ***********************************************************************
 //
 
-const playFunction = (songId) => {
+// Recipera le informazioni relative ad un atraccia e le memorizza in currentTrackData
+const restriveTrackInfo = async (trackId) => {
+    currentTrackData = await fetchFunction(apiBaseUrl + 'track/' + trackId);
+    _D(2, currentTrackData, `trackId: ${trackId}`)
+
+    trackId !== 99710032 ? currentTrack = new Audio(currentTrackData.preview) : null;
+
+    // Se la tracck che sto per riprodurre è diversa da quella che sto già riproducendo
+    // Aggiorno i dati della traccia nel player
+    document.getElementById('mobileTrackTitle').innerHTML = currentTrackData.title;
+    document.getElementById('desktopTrackTitle').innerHTML = currentTrackData.title;
+    document.getElementById('desktopTrackArtist').innerHTML = currentTrackData.artist.name;
+    document.getElementById('desktopTrackImage').src = currentTrackData.album.cover_medium;
+}
+
+
+// Manda in funzione il player con le informazioni della traccia passata come parametro
+// Se le informazioni della traccia ono già presenti nell'aray globale, non le recupera di nuovo
+const playFunction = async (trackId) => {
+    _D(1, `trackId: ${trackId}`)
+
+    if (currentTrackData === undefined || currentTrackData.id !== trackId) {
+        await restriveTrackInfo(trackId)
+    }
+
     if (isPlaying) {
         document.getElementById('playControl').classList.remove('d-none');
         document.getElementById('pauseControl').classList.add('d-none');
+
         isPlaying = false;
         _D(1, `isPlaying : ${isPlaying}`)
 
-        currentSong.pause();
+        currentTrack.pause();
+
     } else {
         document.getElementById('playControl').classList.add('d-none');
         document.getElementById('pauseControl').classList.remove('d-none');
         isPlaying = true;
         _D(1, `isPlaying : ${isPlaying}`)
 
-        currentSong.play();
+        lastTrackId = trackId;
+        // Lancio la traccia
+        currentTrack.play();
     }
 }
+
+
+//Aggiorno i dati del player leggendo i dati della traccia corrente
+const updatePlayerBar = () => {
+    const currentTime = currentTrack.currentTime;
+    const duration = currentTrack.duration;
+    _D(2, `currentTime: ${currentTime}`)
+    _D(2, `duration: ${duration}`)
+
+    const currentMinutes = Math.floor(currentTime / 60);
+    const currentSeconds = Math.floor(currentTime % 60);
+    const totalMinutes = Math.floor(duration / 60);
+    const totalSeconds = Math.floor(duration % 60);
+
+    _D(2, `currentMinutes: ${currentMinutes}`)
+    _D(2, `currentSeconds: ${currentSeconds}`)
+    _D(2, `totalMinutes: ${totalMinutes}`)
+    _D(2, `totalSeconds: ${totalSeconds}`)
+
+    document.getElementById('playerControlCurrentTime').innerText = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
+    document.getElementById('playerControlDuration').innerText = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
+
+    const progress = (currentTime / duration) * 100;
+    progressBarPercent.style.width = `${progress}%`;
+    _D(2, `progress: ${(currentTime / duration) * 100}`)
+}
+
 
 //
 // ***********************************************************************
@@ -30,10 +86,19 @@ const playFunction = (songId) => {
 // ***********************************************************************
 //
 
+const apiBaseUrl = 'https://striveschool-api.herokuapp.com/api/deezer/'
+
+let currentTrackData // Inizializza la variabile che conterrà i dati della traccia corrente recuperati tramite il fetching dell'api
 let shuffleStatus = false;
 let repeatStatus = false;
 let isPlaying = false;
-let currentSong = new Audio('./test/player.mp3');
+let currentTrack = new Audio('./test/player.mp3');
+let lastTrackId = 0;
+
+// https://striveschool-api.herokuapp.com/api/deezer/album/75621062
+// https://striveschool-api.herokuapp.com/api/deezer/artist/412
+// https://striveschool-api.herokuapp.com/api/deezer/track/99710030
+// https://striveschool-api.herokuapp.com/api/deezer/search?q=queen
 
 
 //
@@ -77,7 +142,7 @@ setTimeout(() => {
             _D(1, `volumeValue: ${volumeValue}`)
         }
 
-        currentSong.volume = volumeValue;
+        currentTrack.volume = volumeValue;
     });
 
 
@@ -102,18 +167,35 @@ setTimeout(() => {
             repeatControl.classList.remove('active');
             repeatStatus = false;
             _D(1, `repeatStatus: ${repeatControl}`)
+
+            currentTrack.loop = true;
         } else {
             repeatControl.classList.add('active');
             repeatStatus = true;
             _D(1, `repeatStatus: ${repeatControl}`)
+
+            currentTrack.loop = true;
         }
     });
 
     // Evento sul PLAY
     const playControlContainer = document.getElementById('playControlContainer');
     playControlContainer.addEventListener('click', () => {
-        playFunction()
+        playFunction(99710032)
     });
+
+
+    // Evento scatenato dall'aggiornamento del controllo audio
+    currentTrack.addEventListener("timeupdate", () => {
+        updatePlayer()
+    });
+
+
+    // Al caricamento della pagina popolo il player con la prima traccia ma non la lancio
+    restriveTrackInfo(99710032)
+    playFunction()
+    updatePlayerBar()
+
 
 }, 500);
 

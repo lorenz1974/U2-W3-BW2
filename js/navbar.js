@@ -10,14 +10,19 @@ const restriveTrackInfo = async (trackId) => {
     currentTrackData = await fetchFunction(apiBaseUrl + 'track/' + trackId);
     _D(2, currentTrackData, `trackId: ${trackId}`)
 
-    trackId !== 99710032 ? currentTrack = new Audio(currentTrackData.preview) : null;
-
     // Se la tracck che sto per riprodurre è diversa da quella che sto già riproducendo
     // Aggiorno i dati della traccia nel player
     document.getElementById('mobileTrackTitle').innerHTML = currentTrackData.title;
     document.getElementById('desktopTrackTitle').innerHTML = currentTrackData.title;
     document.getElementById('desktopTrackArtist').innerHTML = currentTrackData.artist.name;
     document.getElementById('desktopTrackImage').src = currentTrackData.album.cover_medium;
+
+
+    // Modifica l'album nella home page
+    document.getElementById('albumHome').innerHTML = currentTrackData.album.title;
+    document.getElementById('songTitleHome').innerHTML = currentTrackData.title;
+    document.getElementById('artistHome').innerHTML = currentTrackData.artist.name;
+    document.getElementById('imgSongHome').src = currentTrackData.album.cover_medium;
 }
 
 
@@ -29,6 +34,9 @@ const playFunction = async (trackId) => {
     if (currentTrackData === undefined || currentTrackData.id !== trackId) {
         await restriveTrackInfo(trackId)
     }
+
+    // Se la traccia che sto per riprodurre è diversa da quella che sto già riproducendo
+    trackId !== 99710032 ? currentTrack = new Audio(currentTrackData.preview) : null;
 
     if (isPlaying) {
         document.getElementById('playControl').classList.remove('d-none');
@@ -56,25 +64,25 @@ const playFunction = async (trackId) => {
 const updatePlayerBar = () => {
     const currentTime = currentTrack.currentTime;
     const duration = currentTrack.duration;
-    _D(2, `currentTime: ${currentTime}`)
-    _D(2, `duration: ${duration}`)
+    _D(3, `currentTime: ${currentTime}`)
+    _D(3, `duration: ${duration}`)
 
     const currentMinutes = Math.floor(currentTime / 60);
     const currentSeconds = Math.floor(currentTime % 60);
     const totalMinutes = Math.floor(duration / 60);
     const totalSeconds = Math.floor(duration % 60);
 
-    _D(2, `currentMinutes: ${currentMinutes}`)
-    _D(2, `currentSeconds: ${currentSeconds}`)
-    _D(2, `totalMinutes: ${totalMinutes}`)
-    _D(2, `totalSeconds: ${totalSeconds}`)
+    _D(3, `currentMinutes: ${currentMinutes}`)
+    _D(3, `currentSeconds: ${currentSeconds}`)
+    _D(3, `totalMinutes: ${totalMinutes}`)
+    _D(3, `totalSeconds: ${totalSeconds}`)
 
     document.getElementById('playerControlCurrentTime').innerText = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
     document.getElementById('playerControlDuration').innerText = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
 
     const progress = (currentTime / duration) * 100;
     progressBarPercent.style.width = `${progress}%`;
-    _D(2, `progress: ${(currentTime / duration) * 100}`)
+    _D(3, `progress: ${(currentTime / duration) * 100}`)
 }
 
 
@@ -113,7 +121,7 @@ let lastTrackId = 0;
 
 setTimeout(() => {
 
-    // COntrollo del volume
+    // Controllo del volume
     const volumeControl = document.getElementById('volumeControl');
     volumeControl.addEventListener("input", () => {
         const volumeValue = volumeControl.value;
@@ -160,19 +168,20 @@ setTimeout(() => {
         }
     })
 
-    // Evento sullo Repeat
+
+    // Evento sul Repeat
     const repeatControl = document.getElementById('repeatControl');
     repeatControl.addEventListener('click', () => {
         if (repeatControl.classList.contains('active')) {
             repeatControl.classList.remove('active');
             repeatStatus = false;
-            _D(1, `repeatStatus: ${repeatControl}`)
+            _D(1, `repeatStatus: ${repeatStatus}`)
 
             currentTrack.loop = true;
         } else {
             repeatControl.classList.add('active');
             repeatStatus = true;
-            _D(1, `repeatStatus: ${repeatControl}`)
+            _D(1, `repeatStatus: ${repeatStatus}`)
 
             currentTrack.loop = true;
         }
@@ -184,10 +193,15 @@ setTimeout(() => {
         playFunction(99710032)
     });
 
+    // Evento sul bottone con il testo 'Play'
+    const playButton = document.querySelector('button.btn-success');
+    playButton.addEventListener('click', () => {
+        playFunction(99710032);
+    });
 
     // Evento scatenato dall'aggiornamento del controllo audio
     currentTrack.addEventListener("timeupdate", () => {
-        updatePlayer()
+        updatePlayerBar()
     });
 
 

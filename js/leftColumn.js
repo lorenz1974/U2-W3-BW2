@@ -21,9 +21,9 @@ const research = function (usingURL) {
         throw new Error('Errore nel recupero informazioni')
       }
     })
-    .then((target) => {
+    .then((queryArray) => {
       // qui avrò ottenuto le informazioni da poter girare alla colonna centrale per visualizzazione
-      console.log('RISULTATI', target)
+      console.log('RISULTATI', queryArray)
     })
     .catch((err) => console.log('errore', err))
 }
@@ -54,10 +54,13 @@ const SEARCH_URL = 'https://striveschool-api.herokuapp.com/api/deezer/search?q='
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-  console.log('QUERYINPUT', queryInput.value) // Stampa il valore dell'input nella console
-  usingURL = SEARCH_URL + queryInput.value
+  console.log('QUERYINPUT', queryInput.value) // stampo il valore dell'input nella console
+  const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
+  const usingURL = SEARCH_URL + encodedQuery
   console.log('usingURL', usingURL)
   research(usingURL)
+  //   ed a ricerca avvenuta con successo resetto il campo di ricerca
+  queryInput.value = ''
 })
 
 document.addEventListener('DOMContentLoaded', async () => {

@@ -103,7 +103,7 @@
       </section>
       <section id="albumInfo">
         <div class="row">
-          <div class="col-12 col-md-3 p-4 text-center position-relative mb-1">
+          <div class="col-12 col-md-5 p-4 text-center position-relative mb-1">
             <!-- freccia e copertina album -->
             <!-- va aggiunto uno sfondo al div capire se è fattibile usare il tool di Stefano -->
             <button class="border-0 bg-transparent d-md-none">
@@ -113,7 +113,7 @@
                 height="40"
                 fill="currentColor"
                 class="bi bi-arrow-lef me-3 position-absolute"
-                style="left: 10px; top: 25px"
+                style="left: 20px; top: 25px"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -125,11 +125,11 @@
             <!-- copertina -->
             <img id="albumCover" src="./assets/imgs/main/image-11.jpg" alt="" />
           </div>
-          <div class="col-12 col-md-9 p-4 position-relative">
+          <div class="col-12 col-md-7 p-md-4">
             <!-- info album -->
-            <div class="position-absolute bottom-0 start-0">
+            <div class="ps-4 ps-md-0">
               <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-5">ALBUM</p>
-              <h1 id="albumName" class="pb-2">Nome Album</h1>
+              <h1 id="albumName" class="pb-2 pb-md-5">Nome Album</h1>
               <img
                 id="artistPic"
                 src="./assets/imgs/main/image-14.jpg"
@@ -137,7 +137,9 @@
                 class="img-fluid rounded-circle d-inline-block me-2"
                 style="width: 30px"
               />
-              <h6 id="artistName" class="d-inline-block mb-3">Nome artista</h6>
+              <h6 id="artistName" class="d-inline-block mb-3 mb-md-4 mt-md-5">
+                Nome artista
+              </h6>
               <p class="fw-semibold mb-4">
                 Album ·
                 <span id="albumYear" class="fw-semibold"> anno album</span> ·
@@ -151,10 +153,12 @@
             </div>
           </div>
         </div>
+      </section>
+      <section>
+        <!-- icone mobile -->
         <div
-          class="container mt-4 d-flex justify-content-between align-content-center position-relative"
+          class="container mt-4 d-flex justify-content-between align-content-center position-relative d-md-none"
         >
-          <!-- icone -->
           <div>
             <!-- cuore -->
             <svg
@@ -242,6 +246,76 @@
                 </svg>
               </button>
             </div>
+          </div>
+        </div>
+        <!-- icone desktop -->
+        <div
+          class="container mt-4 d-md-flex justify-content-between align-content-center position-relative d-none"
+        >
+          <!-- play -->
+          <div class="position-absolute" style="top: -40px; left: -100px">
+            <button
+              class="d-inline-block rounded-circle p-2 border-0 bg-success"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-play-fill rounded-circle"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="position-absolute" style="top: -25px; left: -20px">
+            <!-- cuore -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              class="bi bi-heart d-inline-block me-4"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+              />
+            </svg>
+          </div>
+          <div class="position-absolute" style="top: -25px; left: 35px">
+            <!-- download -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              class="bi bi-arrow-down-circle d-inline-block me-4"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"
+              />
+            </svg>
+          </div>
+          <div class="position-absolute" style="top: -25px; left: 85px">
+            <!-- puntini -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              class="bi bi-three-dots"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
+              />
+            </svg>
           </div>
         </div>
       </section>

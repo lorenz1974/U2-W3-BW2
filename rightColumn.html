@@ -35,7 +35,7 @@
 
     <main>
         <section width="100%" height="100%" style="min-height: 100vh;" class="bg-black">
-                    <div class="text-light justify-content-between p-3" id="introduction">
+                    <div class="text-light justify-content-between p-3" id="introduction" style="font-size: smaller;">
                         <p>
                             Vuoi vedere i tuoi amici o aggiungerne altri?
                         </p>
@@ -185,7 +185,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 
         <script>
             const closeserchFriends = document.getElementById('closeserchFriends')
@@ -209,6 +210,7 @@
             closeButton.addEventListener('click', function() {
                 finestra.style.display = 'none'
                 introduction.style.display = 'flex'
+                serchFriends.style.display = 'none'
             });
 
             aggiungiAmici.addEventListener('click', function() {

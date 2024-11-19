@@ -1,19 +1,41 @@
+// // importo "functions.scss"
+// @import '../scss/functions';
+// // importo "_variables.scss"
+// @import '../scss/variables';
+
+// // ho accesso alle definizioni dei colori di bootstrap e alla varibile "$theme-colors" che li raggruppa
+
+// // creo il mio nuovo colore
+// $spotify: #1ed760;
+
+// // inserisco in una nostra versione di "$theme-colors"
+// $new-theme-colors: (
+//   'spotify': $spotify,
+// );
+// // sovrappongo $new-theme-colors sull'originale $theme-colors dove andrà ad aggiungersi anche il mio colore $darkest
+// $theme-colors: map-merge($theme-colors, $new-theme-colors);
+
+// // importo il bootstrap.scss originale nel quale sarà presente anche il nuovo colore che serve a me
+// @import '../scss/bootstrap.scss';
+
 body {
   font-family: 'Circular', sans-serif;
   font-weight: 200;
   font-size: 0.9rem;
 
-  header {
-    z-index: 1;
+  #topColumn {
+    height: 350px;
 
-    ul li a,
-    ul li span {
-      font-weight: 600;
-    }
+    ul li {
+      a,
+      span {
+        font-weight: 600;
+      }
 
-    ul li img {
-      width: 27px;
-      height: 27px;
+      img {
+        width: 27px;
+        height: 27px;
+      }
     }
 
     .dots {
@@ -21,9 +43,3 @@ body {
     }
   }
 }
-
-// main {
-//   margin-top: 350px;
-//   height: calc(100vh - 350px);
-//   overflow-y: auto;
-// }

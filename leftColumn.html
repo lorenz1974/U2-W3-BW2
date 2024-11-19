@@ -21,173 +21,187 @@
     <link href="./assets/css/circular-font.css" rel="stylesheet" />
     <link href="./assets/css/leftColumn.css" rel="stylesheet" />
   </head>
-  <body class="bg-black">
-    <header
-      class="mx-3 border-bottom border-1 border-secondary border-opacity-50 bg-black w-100 fixed-top"
-    >
-      <div>
-        <div class="dots m-2 fw-semibold">...</div>
+  <body>
+    <main class="bg-black">
+      <div
+        id="topColumn"
+        class="border-bottom border-1 border-secondary border-opacity-50 bg-black"
+      >
+        <div>
+          <div class="dots m-2 ps-3 fw-semibold">...</div>
+          <ul class="pt-2 pb-1 ps-4 list-unstyled">
+            <li class="d-flex pb-2">
+              <img src="./assets/icons/home.png" />
+              <a
+                href="./index.html"
+                class="ps-3 text-light link-underline link-underline-opacity-0 pt-1"
+              >
+                Home</a
+              >
+            </li>
+            <li class="d-flex pb-2">
+              <form id="columnForm" class="d-flex" role="search">
+                <button class="btn p-0" type="submit">
+                  <img src="./assets/icons/lens.png" />
+                </button>
+                <input
+                  id="query"
+                  class="form-control me-2 ps-3 bg-black border-0"
+                  type="search"
+                  placeholder="Cerca"
+                  aria-label="Search"
+                  required
+                />
+              </form>
+            </li>
+            <li class="d-flex pb-2">
+              <img src="./assets/icons/library.png" />
+              <span class="ps-3 pt-1 text-secondary-emphasis">
+                La tua libreria</span
+              >
+            </li>
+          </ul>
+          <ul class="pb-3 ps-4 pt-1 list-unstyled">
+            <li class="d-flex my-3">
+              <img src="./assets/icons/add.png" />
+              <span class="ps-3 pt-1 text-secondary-emphasis">
+                Crea playlist</span
+              >
+            </li>
+            <li class="d-flex my-3">
+              <img src="./assets/icons/heart.png" />
+              <span class="ps-3 pt-1 text-secondary-emphasis">
+                Brani che ti piacciono</span
+              >
+            </li>
+            <li class="d-flex my-3">
+              <img src="./assets/icons/episode.png" />
+              <span class="ps-3 pt-1 text-secondary-emphasis">
+                I tuoi episodi</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
 
-        <ul class="m-1 pt-2 pb-1 list-unstyled">
-          <li class="d-flex pb-3">
-            <img src="./assets/icons/home.png" />
-            <a
-              href="./index.html"
-              class="ps-3 text-light link-underline link-underline-opacity-0 pt-1"
-            >
-              Home</a
-            >
+      <!-- elenco playlist -->
+      <div id="bottomColumn" class="overflow-y-scroll bg-black ps-4">
+        <ul class="my-3 list-unstyled">
+          <li>
+            <p class="text-body-secondary">
+              early stage emily syndome (sett-ott 2022)
+            </p>
           </li>
-          <li class="d-flex pb-3">
-            <img src="./assets/icons/lens.png" />
-            <span class="ps-3 pt-1 text-secondary-emphasis"> Cerca</span>
+          <li>
+            <p class="text-body-secondary">Be The Young</p>
           </li>
-          <li class="d-flex pb-3">
-            <img src="./assets/icons/library.png" />
-            <span class="ps-3 pt-1 text-secondary-emphasis">
-              La tua libreria</span
-            >
+          <li>
+            <p class="text-body-secondary">"..." cit. Kimiko (lug-ago 2022)</p>
           </li>
-        </ul>
-        <ul class="m-1 mb-3 list-unstyled">
-          <li class="d-flex my-3">
-            <img src="./assets/icons/add.png" />
-            <span class="ps-3 pt-1 text-secondary-emphasis">
-              Crea playlist</span
-            >
+          <li>
+            <p class="text-body-secondary">saggio vibes</p>
           </li>
-          <li class="d-flex my-3">
-            <img src="./assets/icons/heart.png" />
-            <span class="ps-3 pt-1 text-secondary-emphasis">
-              Brani che ti piacciono</span
-            >
+          <li>
+            <p class="text-body-secondary">prova</p>
           </li>
-          <li class="d-flex my-3">
-            <img src="./assets/icons/episode.png" />
-            <span class="ps-3 pt-1 text-secondary-emphasis">
-              I tuoi episodi</span
-            >
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">prova</p>
+          </li>
+          <li>
+            <p class="text-body-secondary">ultima prova</p>
           </li>
         </ul>
       </div>
-    </header>
-
-    <main>
-      <ul class="m-3 ps-1 list-unstyled">
-        <li>
-          <p class="text-body-secondary">
-            early stage emily syndome (sett-ott 2022)
-          </p>
-        </li>
-        <li>
-          <p class="text-body-secondary">Be The Young</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">"..." cit. Kimiko (lug-ago 2022)</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">saggio vibes</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-        <li>
-          <p class="text-body-secondary">prova</p>
-        </li>
-      </ul>
     </main>
 
     <!-- You can also include Popper and our JS separately. If you don’t plan to use dropdowns, popovers, or tooltips, -->
@@ -201,6 +215,7 @@
 
     <!-- Some Tools Script -->
     <script src="https://tech-mentor.it/tools/jsTools.js"></script>
+    <script src="./js/leftColumn.js"></script>
 
     <!-- Insert you scripts here. -->
     <!-- <script src="./myScript.js"></script> -->

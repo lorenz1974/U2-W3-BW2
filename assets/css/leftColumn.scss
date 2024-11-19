@@ -26,14 +26,16 @@ body {
   #topColumn {
     height: 350px;
 
-    ul li a,
-    ul li span {
-      font-weight: 600;
-    }
+    ul li {
+      a,
+      span {
+        font-weight: 600;
+      }
 
-    ul li img {
-      width: 27px;
-      height: 27px;
+      img {
+        width: 27px;
+        height: 27px;
+      }
     }
 
     .dots {

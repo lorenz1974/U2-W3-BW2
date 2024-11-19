@@ -44,6 +44,11 @@ const form = document.getElementById('columnForm')
 // metto l'URL all'interno di una costante per poter essere più facilmente utilizzato
 const SEARCH_URL = 'https://striveschool-api.herokuapp.com/api/deezer/search?q='
 
+const myLibrary = [
+  726319, 1236002, 119282, 1316047, 1318764, 113578, 59853992, 401032, 9884672,
+  116670,
+]
+
 //
 // ***********************************************************************
 //

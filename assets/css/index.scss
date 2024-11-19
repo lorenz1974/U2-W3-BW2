@@ -1,0 +1,10 @@
+body {
+  overflow-x: auto;
+}
+#leftColumn,
+#centerColumn,
+#rightColumn {
+  height: 99vh;
+  overflow-y: scroll;
+  height: calc(99vh - 72px);
+}

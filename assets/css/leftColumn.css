@@ -1,0 +1,19 @@
+body {
+  font-family: "Circular", sans-serif;
+  font-weight: 200;
+  font-size: 0.9rem;
+}
+body #topColumn {
+  height: 350px;
+}
+body #topColumn ul li a,
+body #topColumn ul li span {
+  font-weight: 600;
+}
+body #topColumn ul li img {
+  width: 27px;
+  height: 27px;
+}
+body #topColumn .dots {
+  font-size: 1.6rem;
+}/*# sourceMappingURL=leftColumn.css.map */

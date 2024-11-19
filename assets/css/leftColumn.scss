@@ -1,0 +1,25 @@
+body {
+  font-family: 'Circular', sans-serif;
+  font-weight: 200;
+  font-size: 0.9rem;
+
+  #topColumn {
+    height: 350px;
+
+    ul li {
+      a,
+      span {
+        font-weight: 600;
+      }
+
+      img {
+        width: 27px;
+        height: 27px;
+      }
+    }
+
+    .dots {
+      font-size: 1.6rem;
+    }
+  }
+}

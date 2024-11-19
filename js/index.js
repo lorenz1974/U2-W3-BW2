@@ -26,17 +26,18 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    const leftColumnHTML = fetchFunction('./leftColumn.html')
-    document.getElementById('leftColumn').innerHTML = (await leftColumnHTML).match(/<main[^>]*>([\s\S]*?)<\/main>/i)[1];
+    const [leftColumnHTML, centralColumnHTML, rightColumnHTML, navbarHTML] = await Promise.all([
+        fetchFunction('./leftColumn.html'),
+        fetchFunction('./centralColumn.html'),
+        fetchFunction('./rightColumn.html'),
+        fetchFunction('./navbar.html')
+    ]);
 
-    const centralColumnHTML = fetchFunction('./centralColumn.html')
-    document.getElementById('centralColumn').innerHTML = (await centralColumnHTML).match(/<main[^>]*>([\s\S]*?)<\/main>/i)[1];
+    document.getElementById('leftColumn').innerHTML = leftColumnHTML.match(/<main[^>]*>([\s\S]*?)<\/main>/i)[1];
+    document.getElementById('centralColumn').innerHTML = centralColumnHTML.match(/<main[^>]*>([\s\S]*?)<\/main>/i)[1];
+    document.getElementById('rightColumn').innerHTML = rightColumnHTML.match(/<main[^>]*>([\s\S]*?)<\/main>/i)[1];
+    document.getElementsByTagName('footer')[0].innerHTML = navbarHTML.match(/<footer[^>]*>([\s\S]*?)<\/footer>/i)[1];
 
-    const rightColumnHTML = fetchFunction('./rightColumn.html')
-    document.getElementById('rightColumn').innerHTML = (await rightColumnHTML).match(/<main[^>]*>([\s\S]*?)<\/main>/i)[1];
-
-    const navbarHTML = fetchFunction('./navbar.html')
-    document.getElementsByTagName('footer')[0].innerHTML = (await navbarHTML).match(/<footer[^>]*>([\s\S]*?)<\/footer>/i)[1];
 
     // TARGET1.addEventListener('click', () => {
     //		  TARGET Clicked

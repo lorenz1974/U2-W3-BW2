@@ -3,76 +3,96 @@
 //
 // ***********************************************************************
 //
+// applicato un ritardo di mezzo secondo a tutte le funzioni (e dichiarazioni di variabile)
+setTimeout(() => {
+  //
+  // ***********************************************************************
+  //
+  // VARIABLE DEFINITIONS
+  //
+  // ***********************************************************************
+  //
+  // Targhettizzo l'informazione inserita nel form per la ricerca
+  const queryInput = document.getElementById('query')
 
-// creo funzione che farà partire una ricerca al avvenuta ricerca nel form
-const research = function (usingURL) {
-  // eseguo una GET direttamente sul singolo elemento che mi interessa e che ho cercato
-  fetch(usingURL, {
-    headers: {
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM3MWM1NDhhZDEyOTAwMTU4NzZjMjIiLCJpYXQiOjE3MzE2NjQ5ODEsImV4cCI6MTczMjg3NDU4MX0.kkM1d_iF6SLAVc1L7ZwMPvV0xh5O2Sby9W7eXVidOZ4',
-      // per poter accedere dobbiamo inserire la nostra KEY generata in fase di sign-in
-    },
+  // Targhettizzo il form per prevenire anche la gestione di default del submit che mi resetterebbe i campi
+  const form = document.getElementById('columnForm')
+
+  //   ed inizializzo l'array fuori dalla funzione di ricerca
+  const queryArray = []
+
+  // metto l'URL all'interno di una costante per poter essere più facilmente utilizzato
+  const SEARCH_URL =
+    'https://striveschool-api.herokuapp.com/api/deezer/search?q='
+
+  // qui gestisco la mia libreria
+  const myLibraryID = [
+    726319, 1236002, 119282, 1316047, 1318764, 113578, 59853992, 401032,
+    9884672, 116670,
+  ]
+
+  //   targhettizzo il link nella colonna sinistra che mi possa condividere l'array di album
+  const libraryLink = document.getElementById('library-link')
+  const myLibrary = []
+  const ALBUM_URL = 'https://striveschool-api.herokuapp.com/api/deezer/album/'
+
+  const populateMyLibrary = async () => {
+    const data = await Promise.all(
+      myLibraryID.map((id) => {
+        let usingURL = ALBUM_URL + id
+        return fetchFunction(usingURL)
+      })
+    )
+    myLibrary.push(...data)
+  }
+
+  libraryLink.addEventListener('click', () => {
+    populateMyLibrary().then(() => {
+      console.log('myLibrary:', myLibrary)
+    })
   })
-    .then((response) => {
-      if (response.ok) {
-        return response.json()
-      } else {
-        throw new Error('Errore nel recupero informazioni')
-      }
-    })
-    .then((queryArray) => {
-      // qui avrò ottenuto le informazioni da poter girare alla colonna centrale per visualizzazione
-      console.log('RISULTATI', queryArray)
-    })
-    .catch((err) => console.log('errore', err))
-}
 
-//
-// ***********************************************************************
-//
-// VARIABLE DEFINITIONS
-//
-// ***********************************************************************
-//
-// Targhettizzo l'informazione inserita nel form per la ricerca
-const queryInput = document.getElementById('query')
+  //   qui gestisco le playlist
+  const myPlaylists = [
+    {
+      name: 'playlist1',
+      tracks: ['1234', '3456', '5678', '7890'],
+    },
+    { name: 'playlist2', tracks: ['abcd', 'efgh', 'ilmn', 'opqr', 'stuv'] },
+  ]
 
-// Targhettizzo il form per prevenire anche la gestione di default del submit che mi resetterebbe i campi
-const form = document.getElementById('columnForm')
+  console.log(myPlaylists)
 
-// metto l'URL all'interno di una costante per poter essere più facilmente utilizzato
-const SEARCH_URL = 'https://striveschool-api.herokuapp.com/api/deezer/search?q='
+  const list = document.getElementById('playlists-list')
+  myPlaylists.forEach((playlist) => {
+    const newLi = document.createElement('li')
+    const newP = document.createElement('p')
+    newP.classList.add('btn', 'p-0', 'text-body-secondary')
+    newP.innerText = playlist.name
+    newLi.appendChild(newP)
+    list.appendChild(newLi)
+  })
 
-const myLibrary = [
-  726319, 1236002, 119282, 1316047, 1318764, 113578, 59853992, 401032, 9884672,
-  116670,
-]
+  //
+  // ***********************************************************************
+  //
+  // MAIN ROUTINE
+  //
+  // ***********************************************************************
+  //
 
-const myPlaylists = [{}, {}]
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    console.log('QUERYINPUT', queryInput.value) // stampo il valore dell'input nella console
+    const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
+    const usingURL = SEARCH_URL + encodedQuery
+    console.log('usingURL', usingURL)
+    fetchFunction(usingURL)
 
-// const list = document.getElementById('playlists-list')
-// myPlaylists.forEach((playlist) => {
-//   const newPlaylist = document.createElement('li')
-
-//
-// ***********************************************************************
-//
-// MAIN ROUTINE
-//
-// ***********************************************************************
-//
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  console.log('QUERYINPUT', queryInput.value) // stampo il valore dell'input nella console
-  const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
-  const usingURL = SEARCH_URL + encodedQuery
-  console.log('usingURL', usingURL)
-  research(usingURL)
-  //   ed a ricerca avvenuta con successo resetto il campo di ricerca
-  queryInput.value = ''
-})
+    //   ed a ricerca avvenuta con successo resetto il campo di ricerca
+    queryInput.value = ''
+  })
+}, 500)
 
 document.addEventListener('DOMContentLoaded', async () => {
   // DOM Loaded

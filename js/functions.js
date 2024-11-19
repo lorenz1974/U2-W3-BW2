@@ -184,7 +184,7 @@ const sendAnAlert = (message, level) => {
 // ***********************************************************************
 //
 
-debugLevel = 3
+debugLevel = 2
 
 
 //

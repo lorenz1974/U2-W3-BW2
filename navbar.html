@@ -21,9 +21,9 @@
 
 </head>
 
-<body class="vh-100 d-flex flex-column">
+<body>
     <header></header>
-    <main class="flex-grow-1"></main>
+    <main></main>
     <footer class="sticky-bottom">
         <nav class="container-fluid">
 
@@ -34,7 +34,7 @@
                     This is the song running...
                 </div>
                 <div id="devicesDiv" class="mx-2 my-auto">
-                    <img width="25px" src="./assets/icons/devidec.png">
+                    <img width="25px" src="./assets/icons/devides.png">
                 </div>
                 <div id="FavouriteDiv" class="mx-2 my-auto fs-5">
                     <i class="fa-regular fa-heart"></i>
@@ -70,7 +70,7 @@
 
             <!-- DESKTOP NAVBAR -->
             <!-- NAV -->
-            <div id="navDeskTop" class="d-flex justify-content-between">
+            <div id="navDeskTop" class="d-md-flex justify-content-between d-none ">
 
                 <!-- left block-->
                 <div id="navbarDeskTopLeftBlock"
@@ -92,24 +92,31 @@
 
                 <!-- central block -->
                 <div id="navbarDeskTopCentralBlock"
-                    class="d-flex justify-content-center align-content-center w-50 border border-1">
+                    class="d-flex justify-content-center align-content-center flex-grow-1 border border-1">
                 </div>
                 <!-- central block -->
 
                 <!-- rigth block -->
                 <div id="navbarDeskTopRightBlock"
                     class="d-flex justify-content-end align-content-center w-25 border border-1">
-                    <div class="d-flex justify-content-center align-content-center"><img src="./assets/icons/mic.png"
-                            alt="Mic thumb"></div>
-                    <div class="d-flex justify-content-center align-content-center"><img src="./assets/icons/rack.png"
-                            alt="Rack thumb"></div>
-                    <div class="d-flex justify-content-center align-content-center"><img src="./assets/icons/volume.png"
-                            alt="Volume thumb"></div>
-
-                    <div id="volumeBar" class="d-block text-center my-auto border-1 rounded rounded-1">----------------
+                    <div class="d-flex justify-content-center align-content-center h-100">
+                        <img src="./assets/icons/mic.png" alt="Mic thumb">
+                    </div>
+                    <div class="d-flex justify-content-center align-content-center h-100">
+                        <img src="./assets/icons/rack.png" alt="Rack thumb">
+                    </div>
+                    <div class="d-flex justify-content-center align-content-center text-secondary h-100">
+                        <i class="fa-solid fa-volume-xmark d-none p-0 my-auto"></i>
+                        <i class="fa-solid fa-volume-off d-none p-0  my-auto"></i>
+                        <i class="fa-solid fa-volume-low d-none p-0  my-auto"></i>
+                        <i class="fa-solid fa-volume-high p-0  my-auto"></i>
                     </div>
 
-                    <div class="d-flex justify-content-center align-content-center"><img
+                    <div id="volumeBar" class="d-flex h-100 text-secondary">
+                        <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1">
+                    </div>
+
+                    <div class="d-flex justify-content-center align-content-center h-100"><img
                             src="./assets/icons/fullscreen.png" alt="Full screen thumb"></div>
                 </div>
                 <!-- central block -->

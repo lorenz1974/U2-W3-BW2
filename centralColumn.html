@@ -23,53 +23,76 @@
 
 <body>
   <header>
-     <!-- p per la barra di ricerca -->
-     <p id="serchMusic">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-      </svg>
-      <input type="text" placeholder="Vuoi cercare qualche altro brano?">
-    </p>
+     <!-- barra con bottoni e utente -->
+     <div
+     class="d-flex justify-content-between align-items-center mt-2 mb-3"
+   >
+     <!-- div con bottoni -->
+     <div class="d-flex justify-content-start align-content-center">
+       <button
+         class="d-inline-block rounded-circle border-0 me-3 ps-1"
+         style="background-color: #000000"
+       >
+         <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width="20"
+           fill="currentColor"
+           class="bi bi-chevron-left rounded-circle mb-1"
+           viewBox="0 0 16 16"
+         >
+           <path
+             fill-rule="evenodd"
+             d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
+           />
+         </svg>
+       </button>
+       <!-- freccia destra -->
+       <button
+         class="d-inline-block rounded-circle border-0 me-3 pe-1"
+         style="background-color: #000000"
+       >
+         <svg
+           xmlns="http://www.w3.org/2000/svg"
+           width="20"
+           fill="currentColor"
+           class="bi bi-chevron-left rounded-circle mb-1"
+           viewBox="0 0 16 16"
+         >
+           <path
+             fill-rule="evenodd"
+             d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+           />
+         </svg>
+       </button>
+     </div>
+<!-- div con utente -->
+     <div>
+       <div class="dropdown">
+         <a
+           class="btn rounded-pill btn-dark dropdown-toggle ps-0 pt-0 pb-0"
+           href="#"
+           role="button"
+           data-bs-toggle="dropdown"
+           aria-expanded="false"
+         >
+         <img src="./assets/imgs/main/image-1.jpg" alt="" class="img-fluid rounded-circle" style="width: 30px;">
+           Utente
+         </a>
+
+         <ul class="dropdown-menu">
+           <li><a class="dropdown-item" href="#">Action</a></li>
+           <li><a class="dropdown-item" href="#">Another action</a></li>
+           <li>
+             <a class="dropdown-item" href="#">Something else here</a>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </div>
   </header>
 
   <main>
     <section class="d-none d-md-block">
-      <div class="mt-2 ms-0 me-0">
-        <div>
-          <div class="d-flex justify-content-between">
-            <div class="d-flex">
-              <div class="rounded-circle p-1 me-2" style="background-color: black;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" fill="currentColor"
-                  class="bi bi-chevron-left" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
-                </svg>
-              </div>
-              <div class="rounded-circle p-1" style="background-color: black;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" fill="currentColor"
-                  class="bi bi-chevron-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
-                </svg>
-              </div>
-            </div>
-            <div class="dropdown d-flex">
-              <button
-                class="border-0 btn btn-secondary dropdown-toggle rounded-pill text-white fs-6 ps-0 pt-1 pb-1 pe-5 w-25"
-                type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: black;">
-                <img class="img-fluid rounded-circle m-0 p-0" src="./assets/imgs/search/image-10.jpg" alt=""
-                  style="width: 40%;">
-                Gruppo 4
-              </button>
-              <ul class="dropdown-menu" style="background-color: black;">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="card mb-3 mt-2 border-0 d-none d-md-block"
         style="background: rgb(0,0,0); background: linear-gradient(33deg, rgba(0,0,0,1) 0%, rgba(74,72,72,1) 100%);">
         <div class="row g-0">
@@ -225,7 +248,11 @@
 
     </section> <!-- playListsSection -->
 
-    <section id="playListsSearch" class="m-4"> <!-- playlist di ricerca -->
+    <section id="playListsSearch" class="p-4 bg-black d-block d-md-none"> <!-- playlist di ricerca -->
+
+      <h3 class="text-center p-3">
+        Soglia tutto
+      </h3>
 
       <article class="d-flex">
         <div class="articolo" style="background-color: #E13300;">
@@ -240,6 +267,70 @@
             Create per te
           </p>
           <img src="./assets/imgs/search/image-33.jpg" alt="">
+        </div>
+      </article>
+
+      <article class="d-flex">
+        <div class="articolo" style="background-color: #E8115C;">
+          <p>
+            Nuove uscite
+          </p>
+          <img src="./assets/imgs/search/image-26.jpg" alt="">
+        </div>
+
+        <div class="articolo" style="background-color: #16890B;">
+          <p>
+            Pop
+          </p>
+          <img src="./assets/imgs/search/image-47.jpg" alt="">
+        </div>
+      </article>
+
+      <article class="d-flex">
+        <div class="articolo" style="background-color: #BC5800;">
+          <p>
+            Hip Hop
+          </p>
+          <img src="./assets/imgs/search/image-49.jpg" alt="">
+        </div>
+
+        <div class="articolo" style="background-color: #D84000;">
+          <p>
+            Dance/Elettronica
+          </p>
+          <img src="./assets/imgs/search/image-25.jpeg" alt="">
+        </div>
+      </article>
+
+      <article class="d-flex">
+        <div class="articolo" style="background-color: #E1118B;">
+          <p>
+            Latina
+          </p>
+          <img src="./assets/imgs/search/image-5.jpg" alt="">
+        </div>
+
+        <div class="articolo" style="background-color: #8C67AC;">
+          <p>
+            Classifiche
+          </p>
+          <img src="./assets/imgs/search/image-14.jpg" alt="">
+        </div>
+      </article>
+
+      <article class="d-flex">
+        <div class="articolo" style="background-color: #ee22229f;">
+          <p>
+            Gym
+          </p>
+          <img src="./assets/imgs/search/image-8.jpg" alt="">
+        </div>
+
+        <div class="articolo" style="background-color: #09043b;">
+          <p>
+            Focus
+          </p>
+          <img src="./assets/imgs/search/image-23.jpg" alt="">
         </div>
       </article>
 

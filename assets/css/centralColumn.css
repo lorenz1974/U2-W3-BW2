@@ -4,14 +4,15 @@
 }
 
 #serchMusic input{
-    width: 60%;
+    width: 0%;
     padding: 0.5em;
 }
 
-.articolo{
-    width: 50%;
+.articolo {
+    overflow: hidden;
     margin: 1em;
     border-radius: 10px;
+    width: 50%;
 }
 
 .articolo p{
@@ -25,6 +26,8 @@
     height: 5em;
     border-radius: 10px;
     transform: rotate(32deg);
-    translate: 230px;
     box-shadow: #000000 5px 5px 1.4em;
+    position: relative;
+    left: 77%;
 }
+

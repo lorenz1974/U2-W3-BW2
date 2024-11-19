@@ -12,91 +12,68 @@
     />
 
     <!-- If you want to use BS Icons... -->
-    <!-- <link rel="stylesheet" href="https: //cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
-    <!-- ... if you prefer Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+
+    <!-- Insert you stylesheet, if any. -->
+    <link href="./assets/css/circular-font.css" rel="stylesheet" />
+    <link href="./assets/css/leftColumn.css" rel="stylesheet" />
   </head>
   <body class="bg-black">
     <header
-      class="m-2 border-bottom border-1 border-secondary border-opacity-50"
+      class="mx-3 border-bottom border-1 border-secondary border-opacity-50 bg-black w-100 fixed-top"
     >
       <div>
-        <button
-          class="dropdown-toggle fs-1 bg-transparent border-0"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          ...
-        </button>
-        <ul class="dropdown-menu bg-dark">
-          <li class="d-flex">
-            <a class="dropdown-item py-0" href="#">File</a>
-            <span class="me-4">></span>
-          </li>
-          <li class="d-flex">
-            <a class="dropdown-item py-0" href="#">Modifica</a>
-            <span class="me-4">></span>
-          </li>
-          <li class="d-flex">
-            <a class="dropdown-item py-0" href="#">Visualizza</a>
-            <span class="me-4">></span>
-          </li>
-          <li class="d-flex">
-            <a class="dropdown-item py-0" href="#">Riproduzione</a>
-            <span class="me-4">></span>
-          </li>
-          <li class="d-flex">
-            <a class="dropdown-item py-0" href="#">Assistenza</a>
-            <span class="me-4">></span>
-          </li>
-        </ul>
-        <ul class="m-1 mb-5 list-unstyled">
-          <li>
-            <i class="bi bi-house-door-fill fst-normal fs-3">
-              <a
-                href="./index.html"
-                class="fs-6 ps-2 text-light link-underline link-underline-opacity-0"
-              >
-                Home</a
-              ></i
+        <div class="dots m-2 fw-semibold">...</div>
+
+        <ul class="m-1 pt-2 pb-1 list-unstyled">
+          <li class="d-flex pb-3">
+            <img src="./assets/icons/home.png" />
+            <a
+              href="./index.html"
+              class="ps-3 text-light link-underline link-underline-opacity-0 pt-1"
+            >
+              Home</a
             >
           </li>
-          <li>
-            <i class="bi bi-search fst-normal fs-3">
-              <span class="fs-6 ps-2"> Cerca</span></i
-            >
+          <li class="d-flex pb-3">
+            <img src="./assets/icons/lens.png" />
+            <span class="ps-3 pt-1 text-secondary-emphasis"> Cerca</span>
           </li>
-          <li>
-            <i class="bi bi-collection fst-normal fs-3">
-              <span class="fs-6 ps-2"> La tua libreria</span></i
+          <li class="d-flex pb-3">
+            <img src="./assets/icons/library.png" />
+            <span class="ps-3 pt-1 text-secondary-emphasis">
+              La tua libreria</span
             >
           </li>
         </ul>
         <ul class="m-1 mb-3 list-unstyled">
-          <li class="my-3">
-            <img src="./assets/imgs/add icon.png" style="width: 25px" />
-            <span class="fs-6 ps-2"> Crea playlist</span>
+          <li class="d-flex my-3">
+            <img src="./assets/icons/add.png" />
+            <span class="ps-3 pt-1 text-secondary-emphasis">
+              Crea playlist</span
+            >
           </li>
-          <li class="my-3">
-            <img src="./assets/imgs/heart icon.png" style="width: 25px" />
-            <span class="fs-6 ps-2"> Brani che ti piacciono</span>
+          <li class="d-flex my-3">
+            <img src="./assets/icons/heart.png" />
+            <span class="ps-3 pt-1 text-secondary-emphasis">
+              Brani che ti piacciono</span
+            >
           </li>
-          <li class="my-3">
-            <img src="./assets/imgs/episode icon.png" style="width: 25px" />
-            <span class="fs-6 ps-2"> I tuoi episodi</span>
+          <li class="d-flex my-3">
+            <img src="./assets/icons/episode.png" />
+            <span class="ps-3 pt-1 text-secondary-emphasis">
+              I tuoi episodi</span
+            >
           </li>
         </ul>
       </div>
     </header>
 
     <main>
-      <ul class="m-2 mt-3 ps-1 list-unstyled">
+      <ul class="m-3 ps-1 list-unstyled">
         <li>
           <p class="text-body-secondary">
             early stage emily syndome (sett-ott 2022)

@@ -13642,4 +13642,21 @@ body {
   max-width: 100%;
   max-height: 100%;
   margin: auto;
+}
+
+#playerControls .active {
+  color: greenyellow;
+}
+#playerControls #playControlContainer {
+  height: 30px;
+  width: 30px;
+}
+
+#playerControlProgressBar {
+  height: 10px;
+}
+
+#progressBarPercent {
+  height: 100%;
+  background-color: #fd7e14;
 }/*# sourceMappingURL=navbar.css.map */

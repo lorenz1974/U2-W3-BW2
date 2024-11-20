@@ -5,7 +5,7 @@
 //
 
 const drawOurPlaylists = () => {
-  let playlistCardsHTML = "";
+  let playlistCardsHTML = ''
   playlistsArray
     .filter((playlist) => playlist.playlistSpotify === false)
     .forEach((playlist) => {
@@ -26,29 +26,31 @@ const drawOurPlaylists = () => {
           </div>
         </div>
       </div>
-      `;
-    });
-  document.getElementById("ourPlayListsSection").innerHTML = playlistCardsHTML;
-};
-
-
+      `
+    })
+  document.getElementById('ourPlayListsSection').innerHTML = playlistCardsHTML
+}
 
 const drawPlaylistCards = async () => {
   // Filtra le playlist per quelle che hanno playlistSpotify === true
-  const spotifyPlaylists = playlistsArray.filter(playlist => playlist.playlistSpotify === true);
+  const spotifyPlaylists = playlistsArray.filter(
+    (playlist) => playlist.playlistSpotify === true
+  )
 
-  let playlistCardsMobileHTML = "";
+  let playlistCardsMobileHTML = ''
 
   for (const playlist of spotifyPlaylists) {
-    const randomIndex = Math.floor(Math.random() * playlist.playlistTracks.length);
-    const trackId = playlist.playlistTracks[randomIndex];
-    _W(trackId);
+    const randomIndex = Math.floor(
+      Math.random() * playlist.playlistTracks.length
+    )
+    const trackId = playlist.playlistTracks[randomIndex]
+    _W(trackId)
 
     try {
       const trackData = await fetchFunction(
-        "https://striveschool-api.herokuapp.com/api/deezer/track/" + trackId
-      );
-      const imgeSrc = trackData.album.cover;
+        'https://striveschool-api.herokuapp.com/api/deezer/track/' + trackId
+      )
+      const imgeSrc = trackData.album.cover
 
       playlistCardsMobileHTML += `
         <div class="col">
@@ -86,7 +88,7 @@ const drawPlaylistCards = async () => {
                 >
                   <div class="d-flex justify-content-start align-content-center">
                     <!-- CUORE -->
-                    <div class="text-success">
+                    <div class="text-spotify">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="25"
@@ -146,15 +148,15 @@ const drawPlaylistCards = async () => {
               </div>
           </div>
         </div>
-      `;
+      `
     } catch (error) {
-      _W(1, `Errore durante il fetch dei dati: ${error}`);
+      _W(1, `Errore durante il fetch dei dati: ${error}`)
     }
   }
 
-  document.getElementById("spotifyPlayListsSection").innerHTML += playlistCardsMobileHTML;
-};
-
+  document.getElementById('spotifyPlayListsSection').innerHTML +=
+    playlistCardsMobileHTML
+}
 
 //
 // ***********************************************************************
@@ -163,10 +165,6 @@ const drawPlaylistCards = async () => {
 //
 // ***********************************************************************
 //
-
-
-
-
 
 //
 // ***********************************************************************
@@ -177,36 +175,33 @@ const drawPlaylistCards = async () => {
 //
 
 document.addEventListener('DOMContentLoaded', () => {
-    const searchButton = document.getElementById('searchSfogliaTutto');
-    const playListsSearch = document.getElementById('playListsSearch');
-    const bigHeader = document.getElementById('bigHeader');
-    const ultraBigSection = document.getElementById('ultraBigSection');
-    const closeButton = document.getElementById('closeButton');
+  const searchButton = document.getElementById('searchSfogliaTutto')
+  const playListsSearch = document.getElementById('playListsSearch')
+  const bigHeader = document.getElementById('bigHeader')
+  const ultraBigSection = document.getElementById('ultraBigSection')
+  const closeButton = document.getElementById('closeButton')
 
-    playListsSearch.style.display = 'none';
+  playListsSearch.style.display = 'none'
 
-    searchButton.addEventListener('click', function(event) {
-        
-        event.preventDefault();
+  searchButton.addEventListener('click', function (event) {
+    event.preventDefault()
 
-        playListsSearch.style.display = 'block';
-        bigHeader.style.display = 'none';
-        ultraBigSection.style.display = 'none';
-    });
+    playListsSearch.style.display = 'block'
+    bigHeader.style.display = 'none'
+    ultraBigSection.style.display = 'none'
+  })
 
-    closeButton.addEventListener("click", function () {
-
-        playListsSearch.style.display = 'none';
-        bigHeader.style.display = 'block';
-        ultraBigSection.style.display = 'block';
-    })
-});
+  closeButton.addEventListener('click', function () {
+    playListsSearch.style.display = 'none'
+    bigHeader.style.display = 'block'
+    ultraBigSection.style.display = 'block'
+  })
+})
 setTimeout(async () => {
-
   try {
     drawOurPlaylists()
     await drawPlaylistCards()
   } catch (error) {
-    _W(1, `Errore durante il fetch dei dati: ${error}`);
+    _W(1, `Errore durante il fetch dei dati: ${error}`)
   }
-}, 500);
+}, 500)

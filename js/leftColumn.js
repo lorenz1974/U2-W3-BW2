@@ -47,30 +47,32 @@ setTimeout(() => {
   }
 
   libraryLink.addEventListener('click', () => {
-    populateMyLibrary().then(() => {
-      console.log('myLibrary:', myLibrary)
-    })
+    if (myLibrary.length === 0) {
+      populateMyLibrary().then(() => {
+        console.log('myLibrary:', myLibrary)
+      })
+    } else {
+      return myLibrary
+    }
   })
 
   //   qui gestisco le playlist
-  const myPlaylists = [
-    {
-      name: 'playlist1',
-      tracks: ['1234', '3456', '5678', '7890'],
-    },
-    { name: 'playlist2', tracks: ['abcd', 'efgh', 'ilmn', 'opqr', 'stuv'] },
-  ]
 
-  console.log(myPlaylists)
+  const playlistArray = []
 
   const list = document.getElementById('playlists-list')
-  myPlaylists.forEach((playlist) => {
-    const newLi = document.createElement('li')
-    const newP = document.createElement('p')
-    newP.classList.add('btn', 'p-0', 'text-body-secondary')
-    newP.innerText = playlist.name
-    newLi.appendChild(newP)
-    list.appendChild(newLi)
+  playlistsArray.forEach((playlist) => {
+    if (playlist.playlistSpotify === false) {
+      const newLi = document.createElement('li')
+      const newP = document.createElement('p')
+      newP.classList.add('btn', 'p-0', 'text-body-secondary', 'fw-normal')
+
+      newP.innerText = playlist.playlistName
+
+      //   newP.addEventListener('click', () => {})
+      newLi.appendChild(newP)
+      list.appendChild(newLi)
+    }
   })
 
   //
@@ -87,7 +89,10 @@ setTimeout(() => {
     const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
     const usingURL = SEARCH_URL + encodedQuery
     console.log('usingURL', usingURL)
-    fetchFunction(usingURL)
+    fetchFunction(usingURL).then((result) => {
+      queryArray.push(...result.data)
+      console.log('queryArray:', queryArray)
+    })
 
     //   ed a ricerca avvenuta con successo resetto il campo di ricerca
     queryInput.value = ''

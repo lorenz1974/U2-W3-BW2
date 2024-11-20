@@ -75,7 +75,7 @@ body {
 
 #playerControls {
   .active {
-    color: greenyellow;
+    color: #1ed760;
   }
 
   #playControlContainer {
@@ -86,8 +86,26 @@ body {
 
 #playerControlProgressBar {
   height: 10px;
+  border: 1px solid white;
 }
 #progressBarPercent {
   height: 100%;
-  background-color: $orange;
+  background-color: #1ed760;
+}
+
+#mobileTrackTitleContainer {
+  width: 10rem;
+  overflow: hidden;
+  div {
+    animation: stage_animation 10s linear infinite;
+  }
+}
+
+@keyframes stage_animation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }

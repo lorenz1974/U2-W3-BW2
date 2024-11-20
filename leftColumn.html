@@ -45,7 +45,7 @@
                 </button>
                 <input
                   id="query"
-                  class="form-control me-2 ps-3 bg-black border-0"
+                  class="form-control me-2 ps-3 pt-2 bg-black border-0"
                   type="search"
                   placeholder="Cerca"
                   aria-label="Search"
@@ -53,14 +53,14 @@
                 />
               </form>
             </li>
-            <li id="library-link" class="btn d-flex ps-0 pb-2">
+            <li id="library-link" class="btn d-flex ps-0 pt-0 pb-2">
               <img src="./assets/icons/library.png" />
-              <span class="ps-3 pt-1 text-secondary-emphasis">
+              <span class="ps-3 pt-2 text-secondary-emphasis">
                 La tua libreria</span
               >
             </li>
           </ul>
-          <ul class="mb-3 ps-4 pt-1 list-unstyled">
+          <ul class="mb-4 ps-4 pt-1 list-unstyled">
             <li class="d-flex my-3">
               <img src="./assets/icons/add.png" />
               <span class="ps-3 pt-1 text-secondary-emphasis">
@@ -85,15 +85,7 @@
 
       <!-- elenco playlist -->
       <div id="bottomColumn" class="overflow-y-scroll bg-black ps-4 h-100">
-        <ul id="playlists-list" class="my-3 list-unstyled">
-          <li>
-            <p class="btn p-0 text-body-secondary">prova</p>
-          </li>
-
-          <li>
-            <p class="text-body-secondary">ultima prova</p>
-          </li>
-        </ul>
+        <ul id="playlists-list" class="pt-3 my-3 list-unstyled"></ul>
       </div>
     </main>
 
@@ -109,6 +101,7 @@
     <!-- Some Tools Script -->
     <script src="https://tech-mentor.it/tools/jsTools.js"></script>
     <script src="./js/leftColumn.js"></script>
+    <script src="./js/playlists.js"></script>
 
     <!-- Insert you scripts here. -->
     <!-- <script src="./myScript.js"></script> -->

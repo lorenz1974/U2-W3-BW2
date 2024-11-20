@@ -1,1 +1,12 @@
-/*# sourceMappingURL=rightColumn.css.map */
+article p{
+    font-size: x-small;
+}
+
+article h3{
+    font-size: small;
+}
+
+#finestra{
+    width: 100%;
+    transition: width 0.3s;
+}

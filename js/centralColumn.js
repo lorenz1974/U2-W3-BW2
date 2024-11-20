@@ -180,13 +180,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchButton = document.getElementById("searchMobile");
   const formSearch = document.getElementById("formSearch");
   const closeButton = document.getElementById("closeButton");
+  const playListsSearch = document.getElementById("playListsSearch");
+  const ultraBigSection = document.getElementById("ultraBigSection");
 
   searchButton.addEventListener("click", function () {
-    formSearch.style.display = "flex"; // Utilizza "flex" invece di "d-flex"
+    formSearch.style.display = "flex";
+    playListsSearch.style.display = "block";
+    ultraBigSection.style.display = "none";
   });
 
   closeButton.addEventListener("click", function () {
     formSearch.style.display = "none";
+    ultraBigSection.style.display = "block";
+    playListsSearch.style.display = "none";
   });
 }, 500);
 });

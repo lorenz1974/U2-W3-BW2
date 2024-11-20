@@ -21,7 +21,8 @@
 // ***********************************************************************
 //
 
-setTimeout(() => {
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
     const closeserchFriends = document.getElementById("closeserchFriends")
     const serchFriends = document.getElementById("serchFriends")
     const aggiungiAmici = document.getElementById("aggiungiAmici")
@@ -53,3 +54,4 @@ setTimeout(() => {
     serchFriends.style.display = "none"
   })
 }, 500)
+});

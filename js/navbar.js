@@ -74,7 +74,15 @@ const updatePlayerBar = () => {
     _D(2, `progress: ${progress}`);
 };
 
-
+const playItAgainSam = async (trackId) => {
+    try {
+        await restriveTrackInfo(trackId);
+        playFunction();
+        updatePlayerBar();
+    } catch (error) {
+        console.error("Errore durante l'esecuzione delle funzioni:", error);
+    }
+}
 //
 // ***********************************************************************
 //
@@ -84,6 +92,7 @@ const updatePlayerBar = () => {
 //
 
 const apiBaseUrl = 'https://striveschool-api.herokuapp.com/api/deezer/'
+const autoPlay = false;
 
 let currentTrackData // Inizializza la variabile che conterrà i dati della traccia corrente recuperati tramite il fetching dell'api
 let shuffleStatus = false;
@@ -108,7 +117,7 @@ let lastTrackId = 0;
 
 //document.addEventListener('DOMContentLoaded', () => {
 
-setTimeout(() => {
+setTimeout(async () => {
 
     // COntrollo del volume
     const volumeControl = document.getElementById('volumeControl');
@@ -165,7 +174,7 @@ setTimeout(() => {
             repeatStatus = false;
             _D(1, `repeatStatus: ${repeatControl}`)
 
-            currentTrack.loop = true;
+            currentTrack.loop = false;
         } else {
             repeatControl.classList.add('active');
             repeatStatus = true;
@@ -196,9 +205,7 @@ setTimeout(() => {
 
 
     // Al caricamento della pagina popolo il player con la prima traccia ma non la lancio
-    restriveTrackInfo(99710032)
-    playFunction()
-    updatePlayerBar()
+    await playItAgainSam(99710032);
 
 
 }, 500);

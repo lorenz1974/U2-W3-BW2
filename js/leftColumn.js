@@ -31,6 +31,8 @@ setTimeout(() => {
     9884672, 116670,
   ]
 
+  const switchTitle = document.getElementById('switchTitle')
+
   //   targhettizzo il link nella colonna sinistra che mi possa condividere l'array di album
   const libraryLink = document.getElementById('library-link')
   const libraryArray = []
@@ -49,6 +51,7 @@ setTimeout(() => {
   }
 
   libraryLink.addEventListener('click', () => {
+    switchTitle.innerText = 'La tua libreria'
     populateMyLibrary().then(() => {
       console.log('libraryArray:', libraryArray)
     })
@@ -74,7 +77,14 @@ setTimeout(() => {
     if (playlist.playlistSpotify === false) {
       const newLi = document.createElement('li')
       const newP = document.createElement('p')
-      newP.classList.add('btn', 'p-0', 'text-body-secondary', 'fw-normal')
+      newP.classList.add(
+        'btn',
+        'p-0',
+        'me-2',
+        'text-body-secondary',
+        'fw-normal',
+        'text-truncate'
+      )
       newP.innerText = playlist.playlistName
       newP.addEventListener('click', () => {
         populateMyPlaylist(playlist.playlistTracks).then(() => {

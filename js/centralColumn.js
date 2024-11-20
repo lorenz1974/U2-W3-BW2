@@ -148,11 +148,6 @@ playlistsArray.forEach((playlist) => {
   if (playlist.playlistSpotify === true) {
     const playlistCardMobile = document.createElement("div");
     playlistCardMobile.className = "col";
-    const randomIndex = Math.floor(Math.random(playlist.length));
-    const trackId = playlist[randomIndex].id;
-    const imageSrc = fetchFunction(
-      "https://striveschool-api.herokuapp.com/api/deezer/track/" + trackId
-    );
     playlistCardMobile.innerHTML = `
          <div
           class="card mb-3 border-0"

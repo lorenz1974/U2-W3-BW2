@@ -176,30 +176,21 @@ const drawPlaylistCards = async () => {
 //
 
 document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(async () => {
   const searchButton = document.getElementById("searchMobile");
   const formSearch = document.getElementById("formSearch");
-  const playListsSearch = document.getElementById("playListsSearch");
-  const bigHeader = document.getElementById("bigHeader");
-  const ultraBigSection = document.getElementById("ultraBigSection");
   const closeButton = document.getElementById("closeButton");
 
-  playListsSearch.style.display = "none";
-
-  searchButton.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    formSearch.classList.add("d-flex");
-    playListsSearch.style.display = "block";
-    bigHeader.style.display = "none";
-    ultraBigSection.style.display = "none";
+  searchButton.addEventListener("click", function () {
+    formSearch.style.display = "flex"; // Utilizza "flex" invece di "d-flex"
   });
 
   closeButton.addEventListener("click", function () {
-    playListsSearch.style.display = "none";
-    bigHeader.style.display = "block";
-    ultraBigSection.style.display = "block";
+    formSearch.style.display = "none";
   });
+}, 500);
 });
+
 setTimeout(async () => {
   try {
     drawOurPlaylists();

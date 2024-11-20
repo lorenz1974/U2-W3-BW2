@@ -22,12 +22,16 @@
 
 <body>
   <main>
+
     <div class="mx-3">
+
       <!-- barra con bottoni e utente -->
       <div class="d-none d-md-flex justify-content-between align-items-center mt-2 mb-3">
 
         <!-- div con bottoni -->
         <div class="d-flex justify-content-start align-content-center">
+
+          <!-- freccia sinistra -->
           <button class="d-inline-block rounded-circle border-0 me-3 ps-1" style="background-color: #000000">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor"
               class="bi bi-chevron-left rounded-circle mb-1" viewBox="0 0 16 16">
@@ -35,6 +39,7 @@
                 d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
             </svg>
           </button>
+
           <!-- freccia destra -->
           <button class="d-inline-block rounded-circle border-0 me-3 pe-1" style="background-color: #000000">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor"
@@ -43,9 +48,9 @@
                 d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
             </svg>
           </button>
-        </div>
-        <!-- div con utente -->
+        </div> <!-- div con bottoni -->
 
+        <!-- div con utente dropdown -->
         <div class="dropdown">
           <a class="btn rounded-pill btn-dark dropdown-toggle ps-0 pt-0 pb-0" href="#" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,7 +67,7 @@
           </ul>
         </div>
 
-      </div>
+      </div><!-- barra con bottoni e utente -->
 
       <div class="card mb-3 mt-2 border-0 d-none d-md-block d-none d-md-block" style="
             background: rgb(0, 0, 0);
@@ -78,14 +83,15 @@
           </div>
           <div class="col-8 d-flex flex-column">
             <div class="card-body flex-grow-2">
-              <p id="albumHome" class="mb-1">ALBUM</p>
+              <p id="albumHome" class="mb-1">...</p>
               <h2 id="songTitleHome" class="card-title fs-1">
-                VIOLA (feat. Salmo)
+                ...
               </h2>
-              <p id="artistHome" class="card-text">Fedez, Salmo</p>
+              <p id="artistHome" class="card-text">...</p>
             </div>
             <div class="d-flex justify-content-start gap-2 mb-2">
-              <button class="btn btn-success ps-4 pe-4 rounded-pill text-black" type="button">
+              <button id="buttonPlaySongCardHome" class="btn btn-success ps-4 pe-4 rounded-pill text-black"
+                type="button">
                 Play
               </button>
               <button class="btn ps-4 pe-4 rounded-pill text-white" type="button" style="background-color: black">
@@ -138,7 +144,8 @@
 
       <div id="ourPlayListsSection" class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-4 align-items-stretch "></div>
       <div id="spotifyPlayListsSection" class="row row-cols-1 row-cols-md-2 g-4 align-items-stretch mt-3"></div>
-      <div>
+    </div>
+
   </main>
   <footer>
     <!-- Insert here your footer. -->

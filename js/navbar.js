@@ -20,6 +20,14 @@ const restriveTrackInfo = async (trackId) => {
     document.getElementById('desktopTrackTitle').innerHTML = currentTrackData.title;
     document.getElementById('desktopTrackArtist').innerHTML = currentTrackData.artist.name;
     document.getElementById('desktopTrackImage').src = currentTrackData.album.cover_medium;
+
+    document.getElementById('songTitleHome').innerHTML = currentTrackData.title;
+
+    // Modifica l'album nella home page
+    document.getElementById('albumHome').innerHTML = currentTrackData.album.title;
+    document.getElementById('songTitleHome').innerHTML = currentTrackData.title;
+    document.getElementById('artistHome').innerHTML = currentTrackData.artist.name;
+    document.getElementById('imgSongHome').src = currentTrackData.album.cover_medium;
 }
 
 
@@ -30,17 +38,32 @@ const playFunction = () => {
 
 
     if (isPlaying) {
+        // Controlli desktop
         document.getElementById('playControl').classList.remove('d-none');
         document.getElementById('pauseControl').classList.add('d-none');
-
+        // Controlli mobile
+        document.getElementById('mobilePlayControl').classList.remove('d-none');
+        document.getElementById('mobilePauseControl').classList.add('d-none');
+        // Controlli card
+        document.getElementById('buttonPlaySongCardHome').classList.remove('btn-danger');
+        document.getElementById('buttonPlaySongCardHome').classList.add('btn-success');
+        document.getElementById('buttonPlaySongCardHome').innerHTML = 'Play';
         isPlaying = false;
         _D(1, `isPlaying : ${isPlaying}`)
 
         currentTrack.pause();
 
     } else {
+        // Controlli desktop
         document.getElementById('playControl').classList.add('d-none');
         document.getElementById('pauseControl').classList.remove('d-none');
+        // Controlli mobile
+        document.getElementById('mobilePlayControl').classList.add('d-none');
+        document.getElementById('mobilePauseControl').classList.remove('d-none');
+        // Controlli card
+        document.getElementById('buttonPlaySongCardHome').classList.remove('btn-success');
+        document.getElementById('buttonPlaySongCardHome').classList.add('btn-danger');
+        document.getElementById('buttonPlaySongCardHome').innerHTML = 'Stop';
         isPlaying = true;
         _D(1, `isPlaying : ${isPlaying}`)
 
@@ -185,10 +208,14 @@ setTimeout(async () => {
     });
 
     // Evento sul PLAY
-    const playControlContainer = document.getElementById('playControlContainer');
-    playControlContainer.addEventListener('click', () => {
-        playFunction(99710032)
-    });
+
+    ['playControlContainer',
+        'mobilePlayControlContainer', 'buttonPlaySongCardHome'].forEach
+        ((element) => {
+            document.getElementById(element).addEventListener('click', async () => {
+                await playFunction(99710032)
+            })
+        });
 
     // Aggiunge il controllo sulla progress bar
     const playerControlProgressBar = document.getElementById('playerControlProgressBar');

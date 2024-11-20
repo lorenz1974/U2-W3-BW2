@@ -47,9 +47,13 @@ setTimeout(() => {
   }
 
   libraryLink.addEventListener('click', () => {
-    populateMyLibrary().then(() => {
-      console.log('myLibrary:', myLibrary)
-    })
+    if (myLibrary.length === 0) {
+      populateMyLibrary().then(() => {
+        console.log('myLibrary:', myLibrary)
+      })
+    } else {
+      return myLibrary
+    }
   })
 
   //   qui gestisco le playlist
@@ -87,7 +91,10 @@ setTimeout(() => {
     const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
     const usingURL = SEARCH_URL + encodedQuery
     console.log('usingURL', usingURL)
-    fetchFunction(usingURL)
+    fetchFunction(usingURL).then((result) => {
+      queryArray.push(...result.data)
+      console.log('queryArray:', queryArray)
+    })
 
     //   ed a ricerca avvenuta con successo resetto il campo di ricerca
     queryInput.value = ''

@@ -33,44 +33,57 @@ setTimeout(() => {
 
   //   targhettizzo il link nella colonna sinistra che mi possa condividere l'array di album
   const libraryLink = document.getElementById('library-link')
-  const myLibrary = []
+  const libraryArray = []
   const ALBUM_URL = 'https://striveschool-api.herokuapp.com/api/deezer/album/'
+  const TRACK_URL = 'https://striveschool-api.herokuapp.com/api/deezer/track/'
 
   const populateMyLibrary = async () => {
+    libraryArray.length = 0
     const data = await Promise.all(
       myLibraryID.map((id) => {
         let usingURL = ALBUM_URL + id
         return fetchFunction(usingURL)
       })
     )
-    myLibrary.push(...data)
+    libraryArray.push(...data)
   }
 
   libraryLink.addEventListener('click', () => {
     populateMyLibrary().then(() => {
-      console.log('myLibrary:', myLibrary)
+      console.log('libraryArray:', libraryArray)
     })
   })
 
   //   qui gestisco le playlist
-  const myPlaylists = [
-    {
-      name: 'playlist1',
-      tracks: ['1234', '3456', '5678', '7890'],
-    },
-    { name: 'playlist2', tracks: ['abcd', 'efgh', 'ilmn', 'opqr', 'stuv'] },
-  ]
 
-  console.log(myPlaylists)
+  const populateMyPlaylist = async (list) => {
+    playlistArray.length = 0
+    const data = await Promise.all(
+      list.map((id) => {
+        let usingURL = TRACK_URL + id
+        return fetchFunction(usingURL)
+      })
+    )
+    playlistArray.push(...data)
+  }
+
+  const playlistArray = []
 
   const list = document.getElementById('playlists-list')
-  myPlaylists.forEach((playlist) => {
-    const newLi = document.createElement('li')
-    const newP = document.createElement('p')
-    newP.classList.add('btn', 'p-0', 'text-body-secondary')
-    newP.innerText = playlist.name
-    newLi.appendChild(newP)
-    list.appendChild(newLi)
+  playlistsArray.forEach((playlist) => {
+    if (playlist.playlistSpotify === false) {
+      const newLi = document.createElement('li')
+      const newP = document.createElement('p')
+      newP.classList.add('btn', 'p-0', 'text-body-secondary', 'fw-normal')
+      newP.innerText = playlist.playlistName
+      newP.addEventListener('click', () => {
+        populateMyPlaylist(playlist.playlistTracks).then(() => {
+          console.log('playlistArray:', playlistArray)
+        })
+      })
+      newLi.appendChild(newP)
+      list.appendChild(newLi)
+    }
   })
 
   //
@@ -87,7 +100,10 @@ setTimeout(() => {
     const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
     const usingURL = SEARCH_URL + encodedQuery
     console.log('usingURL', usingURL)
-    fetchFunction(usingURL)
+    fetchFunction(usingURL).then((result) => {
+      queryArray.push(...result.data)
+      console.log('queryArray:', queryArray)
+    })
 
     //   ed a ricerca avvenuta con successo resetto il campo di ricerca
     queryInput.value = ''

@@ -4,6 +4,156 @@
 // ***********************************************************************
 //
 
+const drawOurPlaylists = () => {
+  let playlistCardsHTML = "";
+  playlistsArray
+    .filter((playlist) => playlist.playlistSpotify === false)
+    .forEach((playlist) => {
+      playlistCardsHTML += `
+      <div class="col">
+        <div class="card bg-body-tertiary rounded">
+          <div class="card-body d-flex align-items-center">
+            <img
+              src="${playlist.playlistImg}"
+              class="me-3 rounded"
+              alt="Playlist Cover"
+              style="width: 70px; height: 70px; object-fit: cover;"
+            />
+            <div>
+              <h5 class="card-title mb-0">${playlist.playlistName}</h5>
+              <p class="card-text text-muted">${playlist.playlistTracks.length} brani</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      `;
+    });
+  document.getElementById("ourPlayListsSection").innerHTML = playlistCardsHTML;
+};
+
+
+
+const drawPlaylistCards = async () => {
+  // Filtra le playlist per quelle che hanno playlistSpotify === true
+  const spotifyPlaylists = playlistsArray.filter(playlist => playlist.playlistSpotify === true);
+
+  let playlistCardsMobileHTML = "";
+
+  for (const playlist of spotifyPlaylists) {
+    const randomIndex = Math.floor(Math.random() * playlist.playlistTracks.length);
+    const trackId = playlist.playlistTracks[randomIndex];
+    _W(trackId);
+
+    try {
+      const trackData = await fetchFunction(
+        "https://striveschool-api.herokuapp.com/api/deezer/track/" + trackId
+      );
+      const imgeSrc = trackData.album.cover;
+
+      playlistCardsMobileHTML += `
+        <div class="col">
+          <div
+            class="card mb-3 border-0"
+            style="
+              background: rgb(0, 0, 0);
+              background: linear-gradient(
+                342deg,
+                rgba(0, 0, 0, 1) 38%,
+                rgba(156, 152, 152, 1) 100%
+              );
+            "
+          >
+            <div class="row g-0">
+              <div class="col-4">
+                <img
+                  id="playlistImgHome"
+                  src="${imgeSrc}"
+                  class="img-fluid p-4"
+                  alt="..."
+                />
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <p class="mb-1 text-secondary">Playlist</p>
+                  <h2 id="playListNameHome" class="card-title fs-1">${playlist.playlistName}</h2>
+                </div>
+              </div>
+
+              <div>
+                <!-- card bottom -->
+                <div
+                  class="container d-flex justify-content-between align-items-center mb-3"
+                >
+                  <div class="d-flex justify-content-start align-content-center">
+                    <!-- CUORE -->
+                    <div class="text-success">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        fill="currentColor"
+                        class="bi bi-heart-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                        />
+                      </svg>
+                    </div>
+
+                    <!-- PUNTINI -->
+                    <div class="">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        fill="currentColor"
+                        class="bi bi-three-dots-vertical"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <!-- BRANI E PLAY -->
+                  <div>
+                    <div class="d-inline-block">
+                      <p class="p-0 m-0 me-2 text-nowrap">${playlist.playlistTracks.length} brani</p>
+                    </div>
+
+                    <button
+                      class="d-inline-block rounded-circle p-2 border-0"
+                      style="background-color: #272822"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        fill="currentColor"
+                        class="bi bi-play-fill rounded-circle"
+                        viewBox="0 0 16 16"
+                      >
+                      <path
+                      d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"
+                      />
+                      </svg>
+                    </button>
+                    </div>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
+      `;
+    } catch (error) {
+      _W(1, `Errore durante il fetch dei dati: ${error}`);
+    }
+  }
+
+  document.getElementById("spotifyPlayListsSection").innerHTML += playlistCardsMobileHTML;
+};
 
 
 //
@@ -13,6 +163,8 @@
 //
 // ***********************************************************************
 //
+
+
 
 
 
@@ -49,3 +201,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ultraBigSection.style.display = 'block';
     })
 });
+setTimeout(async () => {
+
+  try {
+    drawOurPlaylists()
+    await drawPlaylistCards()
+  } catch (error) {
+    _W(1, `Errore durante il fetch dei dati: ${error}`);
+  }
+}, 500);

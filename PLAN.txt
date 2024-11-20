@@ -32,3 +32,34 @@ COLONNA DESTRA
 
 NAVBAR
 - Lorenzo
+
+
+-----------
+DESKTOP - HOME PAGE
+- Canzone scelta casa tra una delle presenti nell'array delle playlists
+- Funzione che crea la card della canzone in home page
+
+DESKTOP - BUONASERA
+- 6 playlist random tra quelle nell'array (NO brani che ti piacciono)
+
+DESKTOP - ALTRO CHE TI PIACE
+- Playlist di Spotify (almeno 10)
+
+MOBILE - HOME
+- HOME - Fa riapparire le playlist (comportamento di default)
+- CERCA - Fa apparire la scheda sfoglia tutto
+- LIBRERIA - Apre tutte le playlist
+
+
+------------
+Funzioni:
+
+- Disegna card album - drawAlbum(albumId) -> fetch dati album e disegna card
+- Disegna card track
+- Disegna card 'Buonasera'
+
+- Recupera dati artista
+- Recupera dati album
+
+- Disegna artista
+- Disegna album

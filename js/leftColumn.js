@@ -39,6 +39,31 @@ setTimeout(() => {
   const ALBUM_URL = 'https://striveschool-api.herokuapp.com/api/deezer/album/'
   const TRACK_URL = 'https://striveschool-api.herokuapp.com/api/deezer/track/'
 
+  const drawOurLibrary = (albumsArray) => {
+    let playlistCardsHTML = ''
+    albumsArray.forEach((album) => {
+      playlistCardsHTML += `
+        <div class="col">
+          <div class="card bg-body-tertiary rounded">
+            <div class="card-body d-flex align-items-center">
+              <img
+                src="${album.cover}"
+                class="me-3 rounded"
+                alt="Album Cover"
+                style="width: 70px; height: 70px; object-fit: cover;"
+              />
+              <div>
+                <h5 class="card-title mb-0">${album.artist.name}</h5>
+                <p class="card-text text-muted">${album.title}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+    })
+    document.getElementById('ourPlayListsSection').innerHTML = playlistCardsHTML
+  }
+
   const populateMyLibrary = async () => {
     libraryArray.length = 0
     const data = await Promise.all(
@@ -52,8 +77,10 @@ setTimeout(() => {
 
   libraryLink.addEventListener('click', () => {
     switchTitle.innerText = 'La tua libreria'
+    document.getElementById('ourPlayListsSection').innerHTML = ''
     populateMyLibrary().then(() => {
       console.log('libraryArray:', libraryArray)
+      drawOurLibrary(libraryArray)
     })
   })
 

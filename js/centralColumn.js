@@ -12,16 +12,16 @@ const drawOurPlaylists = () => {
       playlistCardsHTML += `
       <div class="col">
         <div class="card bg-body-tertiary rounded">
-          <div class="card-body d-flex align-items-center">
+          <div class="card-body d-flex align-items-center" style="margin-left: -8px;">
             <img
               src="${playlist.playlistImg}"
-              class="me-3 rounded"
+              class="me-2 rounded"
               alt="Playlist Cover"
-              style="width: 70px; height: 70px; object-fit: cover;"
+              style="width: 60px; height: 60px; object-fit: cover;"
             />
-            <div>
-              <h5 class="card-title mb-0">${playlist.playlistName}</h5>
-              <p class="card-text text-muted">${playlist.playlistTracks.length} brani</p>
+            <div">
+              <h5 class="card-title mb-0" style="font-size:12px">${playlist.playlistName}</h5>
+              <p class="card-text text-muted" style="font-size:10px">${playlist.playlistTracks.length} brani</p>
             </div>
           </div>
         </div>
@@ -31,16 +31,18 @@ const drawOurPlaylists = () => {
   document.getElementById("ourPlayListsSection").innerHTML = playlistCardsHTML;
 };
 
-
-
 const drawPlaylistCards = async () => {
   // Filtra le playlist per quelle che hanno playlistSpotify === true
-  const spotifyPlaylists = playlistsArray.filter(playlist => playlist.playlistSpotify === true);
+  const spotifyPlaylists = playlistsArray.filter(
+    (playlist) => playlist.playlistSpotify === true
+  );
 
   let playlistCardsMobileHTML = "";
 
   for (const playlist of spotifyPlaylists) {
-    const randomIndex = Math.floor(Math.random() * playlist.playlistTracks.length);
+    const randomIndex = Math.floor(
+      Math.random() * playlist.playlistTracks.length
+    );
     const trackId = playlist.playlistTracks[randomIndex];
     _W(trackId);
 
@@ -51,11 +53,12 @@ const drawPlaylistCards = async () => {
       const imgeSrc = trackData.album.cover;
 
       playlistCardsMobileHTML += `
-        <div class="col">
+        <div class="col d-md-none">
           <div
             class="card mb-3 border-0"
-            style="
+            style=" 
               background: rgb(0, 0, 0);
+              height: 220px;
               background: linear-gradient(
                 342deg,
                 rgba(0, 0, 0, 1) 38%,
@@ -152,9 +155,9 @@ const drawPlaylistCards = async () => {
     }
   }
 
-  document.getElementById("spotifyPlayListsSection").innerHTML += playlistCardsMobileHTML;
+  document.getElementById("spotifyPlayListsSection").innerHTML +=
+    playlistCardsMobileHTML;
 };
-
 
 //
 // ***********************************************************************
@@ -164,10 +167,6 @@ const drawPlaylistCards = async () => {
 // ***********************************************************************
 //
 
-
-
-
-
 //
 // ***********************************************************************
 //
@@ -176,36 +175,35 @@ const drawPlaylistCards = async () => {
 // ***********************************************************************
 //
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchButton = document.getElementById('searchSfogliaTutto');
-    const playListsSearch = document.getElementById('playListsSearch');
-    const bigHeader = document.getElementById('bigHeader');
-    const ultraBigSection = document.getElementById('ultraBigSection');
-    const closeButton = document.getElementById('closeButton');
+document.addEventListener("DOMContentLoaded", () => {
+  const searchButton = document.getElementById("searchMobile");
+  const formSearch = document.getElementById("formSearch");
+  const playListsSearch = document.getElementById("playListsSearch");
+  const bigHeader = document.getElementById("bigHeader");
+  const ultraBigSection = document.getElementById("ultraBigSection");
+  const closeButton = document.getElementById("closeButton");
 
-    playListsSearch.style.display = 'none';
+  playListsSearch.style.display = "none";
 
-    searchButton.addEventListener('click', function(event) {
-        
-        event.preventDefault();
+  searchButton.addEventListener("click", function (event) {
+    event.preventDefault();
 
-        playListsSearch.style.display = 'block';
-        bigHeader.style.display = 'none';
-        ultraBigSection.style.display = 'none';
-    });
+    formSearch.classList.add("d-flex");
+    playListsSearch.style.display = "block";
+    bigHeader.style.display = "none";
+    ultraBigSection.style.display = "none";
+  });
 
-    closeButton.addEventListener("click", function () {
-
-        playListsSearch.style.display = 'none';
-        bigHeader.style.display = 'block';
-        ultraBigSection.style.display = 'block';
-    })
+  closeButton.addEventListener("click", function () {
+    playListsSearch.style.display = "none";
+    bigHeader.style.display = "block";
+    ultraBigSection.style.display = "block";
+  });
 });
 setTimeout(async () => {
-
   try {
-    drawOurPlaylists()
-    await drawPlaylistCards()
+    drawOurPlaylists();
+    await drawPlaylistCards();
   } catch (error) {
     _W(1, `Errore durante il fetch dei dati: ${error}`);
   }

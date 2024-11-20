@@ -3,9 +3,13 @@ body {
 }
 
 #leftColumn,
-#centerColumn,
+#centralColumn,
 #rightColumn {
   height: 99vh;
   overflow-y: scroll;
   height: calc(99vh - 72px);
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */
+
+/* #centerColumn {
+  height: calc(100vh - 70.5px);
+} */

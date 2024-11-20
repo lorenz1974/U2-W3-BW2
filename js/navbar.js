@@ -74,7 +74,15 @@ const updatePlayerBar = () => {
     _D(2, `progress: ${progress}`);
 };
 
-
+const playItAgainSam = async (trackId) => {
+    try {
+        await restriveTrackInfo(trackId);
+        playFunction();
+        updatePlayerBar();
+    } catch (error) {
+        console.error("Errore durante l'esecuzione delle funzioni:", error);
+    }
+}
 //
 // ***********************************************************************
 //
@@ -197,13 +205,7 @@ setTimeout(async () => {
 
 
     // Al caricamento della pagina popolo il player con la prima traccia ma non la lancio
-    try {
-        await restriveTrackInfo(99710032);
-        playFunction();
-        updatePlayerBar();
-    } catch (error) {
-        console.error("Errore durante l'esecuzione delle funzioni:", error);
-    }
+    await playItAgainSam(99710032);
 
 
 }, 500);

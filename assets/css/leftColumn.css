@@ -1,19 +1,29 @@
 body {
   font-family: "Circular", sans-serif;
   font-weight: 200;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
-body #topColumn {
-  height: 360px;
+body #topColumn,
+body #bottomColumn {
+  height: 350px;
 }
 body #topColumn ul li a,
-body #topColumn ul li span {
+body #topColumn ul li input,
+body #topColumn ul li span,
+body #topColumn ul li p,
+body #bottomColumn ul li a,
+body #bottomColumn ul li input,
+body #bottomColumn ul li span,
+body #bottomColumn ul li p {
+  font-size: 0.8rem;
   font-weight: 600;
 }
-body #topColumn ul li img {
+body #topColumn ul li img,
+body #bottomColumn ul li img {
   width: 27px;
   height: 27px;
 }
-body #topColumn .dots {
+body #topColumn .dots,
+body #bottomColumn .dots {
   font-size: 1.6rem;
 }/*# sourceMappingURL=leftColumn.css.map */

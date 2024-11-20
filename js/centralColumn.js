@@ -24,24 +24,28 @@
 // ***********************************************************************
 //
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchSfogliaTutto');
+    const playListsSearch = document.getElementById('playListsSearch');
+    const bigHeader = document.getElementById('bigHeader');
+    const ultraBigSection = document.getElementById('ultraBigSection');
+    const closeButton = document.getElementById('closeButton');
 
-    // DOM Loaded
+    playListsSearch.style.display = 'none';
 
+    searchButton.addEventListener('click', function(event) {
+        
+        event.preventDefault();
 
+        playListsSearch.style.display = 'block';
+        bigHeader.style.display = 'none';
+        ultraBigSection.style.display = 'none';
+    });
 
-    // TARGET1.addEventListener('click', () => {
-    //		  TARGET Clicked
-    // })
+    closeButton.addEventListener("click", function () {
 
-    // TARGET2.addEventListener('change', () => {
-    //		  TARGET Changed
-    // })
-
-    // TARGET3.addEventListener('blur', () => {
-    //		  TARGET Blurred
-    // })
-
-
-
-})
+        playListsSearch.style.display = 'none';
+        bigHeader.style.display = 'block';
+        ultraBigSection.style.display = 'block';
+    })
+});

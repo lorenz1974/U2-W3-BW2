@@ -6,6 +6,8 @@ const playlistsArray = [
       2621330942, 81160512, 69865229, 83473950, 81160302, 2066613247,
       2066613177, 81160388, 98763040, 81160468,
     ],
+    playlistImg:
+      "https://www.cucchiaio.it/content/cucchiaio/it/ricette/2021/06/gin-tonic/_jcr_content/header-par/image-single.img.jpg/1624435073277.jpg",
   },
   {
     playlistName: "Queen playlist",
@@ -14,6 +16,8 @@ const playlistsArray = [
       12206946, 12209331, 67503808, 7868649, 12274786, 7179758, 7868650,
       12206933, 7179759, 6820130, 7179764, 7868652, 67503795, 7856457,
     ],
+    playlistImg:
+      "https://www.ondarock.it/images/monografie/queen_1_1342800837.jpg",
   },
   {
     playlistName: "Capodanno playlist",
@@ -22,6 +26,8 @@ const playlistsArray = [
       1584700062, 1584699932, 2036620, 98538214, 1584699772, 1584700052,
       649738942, 1584699962, 1584699832, 1584700012, 1584700042, 1584699752,
     ],
+    playlistImg:
+      "https://www.nutrizionistasantini.it/wp-content/uploads/2023/12/anno-nuovo-sfondo-con-bicchieri-di-champagne-1024x683.jpg",
   },
   {
     playlistName: "Natale playlist",
@@ -30,6 +36,8 @@ const playlistsArray = [
       583177, 2525786021, 46026641, 1768442, 62835702, 135872042, 913873,
       420966182, 2876330482, 531746301, 1590131392,
     ],
+    playlistImg:
+      "https://static.vecteezy.com/ti/vettori-gratis/p1/4804427-buon-natale-saluto-testo-sfondo-design-natale-pino-elemento-con-colorati-ornamenti-natalizi-per-feste-stagione-decorazione-in-sfondo-verde-illustrazione-vettoriale.jpg",
   },
   {
     playlistName: "Sanremo playlist",
@@ -38,6 +46,8 @@ const playlistsArray = [
       774808482, 3003875331, 1575123302, 16739710, 2268734907, 1628347282,
       2438505425, 2274690477,
     ],
+    playlistImg:
+      "https://www.rai.it/cropgd/800x400/dl/img/2024/08/19/1724072652011_sanremo-generico-2_slide.jpg",
   },
   {
     playlistName: "Pippo playlist",
@@ -46,6 +56,8 @@ const playlistsArray = [
       774808483, 3003875334, 1575123307, 16739718, 2268734904, 1628347281,
       2438505423, 2274690479,
     ],
+    playlistImg:
+      "https://static.nexilia.it/indiscreto/2014/08/pippo-franco-che-fico.jpg",
   },
   {
     playlistName: "IslandPop playlist",

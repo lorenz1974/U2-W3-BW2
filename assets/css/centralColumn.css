@@ -1,3 +1,26 @@
+#sectionBigDiv h3{
+    padding-left: 0.5em;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+.album{
+    margin: 0.5em;
+    border: solid 1px #4b4b4b3b;
+    padding: 1em;
+    background-color: #4b4b4b3b;
+}
+
+.album h5{
+    font-size: medium;
+    padding-top: 1em;
+}
+
+.album p{
+    font-size: smaller;
+    padding-top: 1em;
+}
+
 #serchMusic{
     text-align: center;
     margin: 1em;
@@ -30,4 +53,3 @@
     position: relative;
     left: 77%;
 }
-

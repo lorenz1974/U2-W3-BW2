@@ -33,30 +33,39 @@ setTimeout(() => {
 
   //   targhettizzo il link nella colonna sinistra che mi possa condividere l'array di album
   const libraryLink = document.getElementById('library-link')
-  const myLibrary = []
+  const libraryArray = []
   const ALBUM_URL = 'https://striveschool-api.herokuapp.com/api/deezer/album/'
+  const TRACK_URL = 'https://striveschool-api.herokuapp.com/api/deezer/track/'
 
   const populateMyLibrary = async () => {
+    libraryArray.length = 0
     const data = await Promise.all(
       myLibraryID.map((id) => {
         let usingURL = ALBUM_URL + id
         return fetchFunction(usingURL)
       })
     )
-    myLibrary.push(...data)
+    libraryArray.push(...data)
   }
 
   libraryLink.addEventListener('click', () => {
-    if (myLibrary.length === 0) {
-      populateMyLibrary().then(() => {
-        console.log('myLibrary:', myLibrary)
-      })
-    } else {
-      return myLibrary
-    }
+    populateMyLibrary().then(() => {
+      console.log('libraryArray:', libraryArray)
+    })
   })
 
   //   qui gestisco le playlist
+
+  const populateMyPlaylist = async (list) => {
+    playlistArray.length = 0
+    const data = await Promise.all(
+      list.map((id) => {
+        let usingURL = TRACK_URL + id
+        return fetchFunction(usingURL)
+      })
+    )
+    playlistArray.push(...data)
+  }
 
   const playlistArray = []
 
@@ -66,10 +75,12 @@ setTimeout(() => {
       const newLi = document.createElement('li')
       const newP = document.createElement('p')
       newP.classList.add('btn', 'p-0', 'text-body-secondary', 'fw-normal')
-
       newP.innerText = playlist.playlistName
-
-      //   newP.addEventListener('click', () => {})
+      newP.addEventListener('click', () => {
+        populateMyPlaylist(playlist.playlistTracks).then(() => {
+          console.log('playlistArray:', playlistArray)
+        })
+      })
       newLi.appendChild(newP)
       list.appendChild(newLi)
     }

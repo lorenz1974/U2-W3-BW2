@@ -232,7 +232,7 @@ const drawPlaylist = (playListTarget) => {
               style="top: -20px; bottom: 5px; right: -10px"
             >
               <button
-                class="d-inline-block rounded-circle p-3 border-0 bg-success"
+                class="d-inline-block rounded-circle p-3 border-0 bg-spotify"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -255,13 +255,13 @@ const drawPlaylist = (playListTarget) => {
           <!-- play -->
           <div class="d-inline-block">
             <button
-              class="d-inline-block rounded-circle p-1 mb-2 border-0 bg-success mt-0"
+              class="d-inline-block rounded-circle p-2 mb-2 border-0 bg-spotify mt-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                fill="currentColor"
+                width="32"
+                height="32"
+                fill="black"
                 class="bi bi-play-fill rounded-circle"
                 viewBox="0 0 16 16"
               >

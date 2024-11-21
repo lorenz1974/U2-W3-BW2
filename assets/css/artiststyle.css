@@ -1,9 +1,18 @@
-.my-body {background-image: linear-gradient(to bottom, #000000, #212020);}
+.my-body {
+  background-image: linear-gradient(to bottom, #000000, #212020);
+}
 .my-div {
-    height: 400px;
-    background-image: url(/assets/imgs/search/image-10.jpg);
-    background-size: cover;
-    background-position: center 30%;
-  }
+  height: 400px;
+  background-image: url(/assets/imgs/search/image-10.jpg);
+  background-size: cover;
+  background-position: center 30%;
+}
 
-.my-img {width: 50px; height: 50px}
+.my-img {
+  width: 50px;
+  height: 50px;
+}
+
+#verifiedLogo {
+  height: 20px;
+}

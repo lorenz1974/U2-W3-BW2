@@ -2,7 +2,7 @@ const drawAlbum = async (targetObject) => {
   try {
     const albumData = await fetchFunction(
       `https://striveschool-api.herokuapp.com/api/deezer/album/${targetObject}`
-    );
+    )
 
     let albumHTML = `
         <section class="d-none d-md-block">
@@ -78,7 +78,7 @@ const drawAlbum = async (targetObject) => {
           </div>
         </div>
       </section>
-            `;
+            `
 
     albumHTML += `
             <section id="albumInfo">
@@ -107,38 +107,45 @@ const drawAlbum = async (targetObject) => {
                             </a>
                         </button>
                         <!-- copertina -->
-                        <img id="albumCover" src="${albumData.cover_medium
-      }" alt="" />
+                        <img id="albumCover" src="${
+                          albumData.cover_medium
+                        }" alt="" />
                     </div>
                     <div class="col-12 col-md-7 p-md-4 pb-md-0">
                         <!-- info album -->
                         <div class="ps-4 ps-md-0">
                             <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">ALBUM</p>
-                            <h1 id="albumName" class="pb-2 pb-md-5">${albumData.title
-      }</h1>
+                            <h1 id="albumName" class="pb-2 pb-md-5">${
+                              albumData.title
+                            }</h1>
                             <img
                                 id="artistPic"
-                                src="${albumData.contributors[0].picture_medium
-      }"
+                                src="${
+                                  albumData.contributors[0].picture_medium
+                                }"
                                 alt=""
                                 class="img-fluid rounded-circle d-inline-block me-2"
                                 style="width: 30px"
                             />
-                            <h6 id="artistName-${albumData.contributors[0].id
-      }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
+                            <h6 id="artistName-${
+                              albumData.contributors[0].id
+                            }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
                                 ${albumData.contributors[0].name}
                             </h6>
                             <p class="fw-semibold mb-4">
                                 Anno di uscita:
                                 <span id="albumYear" class="fw-semibold">${albumData.release_date.slice(
-        0,
-        4
-      )}</span> ·
+                                  0,
+                                  4
+                                )}</span> ·
                                 <span class="d-none d-md-inline-block" id="numberOfSongs"
-                                > Numero tracce: ${albumData.nb_tracks
-      } · </span>
+                                > Numero tracce: ${
+                                  albumData.nb_tracks
+                                } · </span>
                                 <span class="d-none d-md-inline-block" id="duration"
-                                > Durata: ${formatDuration(albumData.duration)} Minuti</span>
+                                > Durata: ${formatDuration(
+                                  albumData.duration
+                                )} Minuti</span>
                             </p>
                         </div>
                     </div>
@@ -146,7 +153,7 @@ const drawAlbum = async (targetObject) => {
       </section >
 
       <section id="songList" class="container mt-4">
-      `;
+      `
 
     albumHTML += `
               <section id="icone" class="container mb-3">
@@ -248,13 +255,13 @@ const drawAlbum = async (targetObject) => {
           <!-- play -->
           <div class="d-inline-block">
             <button
-              class="d-inline-block rounded-circle p-1 mb-2 border-0 bg-success mt-0"
+              class="d-inline-block rounded-circle p-2 mb-2 border-0 bg-spotify mt-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                fill="currentColor"
+                width="32"
+                height="32"
+                fill="black"
                 class="bi bi-play-fill rounded-circle"
                 viewBox="0 0 16 16"
               >
@@ -349,7 +356,7 @@ const drawAlbum = async (targetObject) => {
         </div>
         <hr class="mt-1" />
       </section>
-        `;
+        `
 
     albumData.tracks.data.forEach((track, index) => {
       trackHTML = `
@@ -361,17 +368,22 @@ const drawAlbum = async (targetObject) => {
                 <div
                     class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
                 >
-                    <p id="songNameList" class="mb-0 fw-bold">${track.title_short
-        }</p>
+                    <p id="songNameList" class="mb-0 fw-bold">${
+                      track.title_short
+                    }</p>
                     <p id="artistNameList" class="fs-7">${track.artist.name}</p>
                 </div>
 
                 <div class="col-3 text-end d-none d-md-block">
-                    <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString('it-IT')}</p>
+                    <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString(
+                      'it-IT'
+                    )}</p>
                 </div>
 
                 <div class="col col-2 text-end mb-0 d-none d-md-block">
-                    <p id="songDurationList" class="mb-0 mt-2">${formatDuration(track.duration)}</p>
+                    <p id="songDurationList" class="mb-0 mt-2">${formatDuration(
+                      track.duration
+                    )}</p>
                 </div>
                 <div class="col col-2 text-end mb-0 mt-2 d-md-none">
                     <svg
@@ -388,16 +400,16 @@ const drawAlbum = async (targetObject) => {
                     </svg>
                 </div>
                 </div>
-                `;
-      albumHTML += trackHTML;
-    });
+                `
+      albumHTML += trackHTML
+    })
 
     albumHTML += `
             </section>
-            `;
+            `
 
-    document.getElementById("centralColumn").innerHTML = albumHTML;
+    document.getElementById('centralColumn').innerHTML = albumHTML
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

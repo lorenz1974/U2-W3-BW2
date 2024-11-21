@@ -5,57 +5,57 @@
 //
 
 const drawOurPlaylists = () => {
-  let playlistCardsHTML = "";
+  let playlistCardsHTML = ''
   playlistsArray
     .filter((playlist) => playlist.playlistSpotify === false)
     .forEach((playlist) => {
       playlistCardsHTML += `
-      <div class="col g-2">
-        <div class="card bg-body-tertiary rounded">
-          <div class="card-body d-flex align-items-center" style="margin-left: -8px;">
+      <div class="col g-3">
+        <div class="card bg-body-tertiary rounded border-0">
+          <div class="card-body p-0 d-flex align-items-center" style="margin-left: -8px;">
             <img
               src="${playlist.playlistImg}"
-              class="me-2 rounded"
+              class="m-0 mx-2 rounded"
               alt="Playlist Cover"
               style="width: 70px; height: 70px; object-fit: cover;"
             />
-            <div>
-              <h5 class="card-title mb-1" id="playList-${playlist.playlistName.replace(
-                " ",
-                ""
+            <div class="ps-2">
+              <h5 class="card-title mb-1 " id="playList-${playlist.playlistName.replace(
+                ' ',
+                ''
               )}" style="font-size:15px;">${playlist.playlistName}</h5>
-              <p class="card-text text-muted" style="font-size:12px">${
+              <p class="card-text text-muted fs-7" style="font-size:12px">${
                 playlist.playlistTracks.length
               } brani</p>
             </div>
           </div>
         </div>
       </div>
-      `;
-    });
-  document.getElementById("ourPlayListsSection").innerHTML = playlistCardsHTML;
-};
+      `
+    })
+  document.getElementById('ourPlayListsSection').innerHTML = playlistCardsHTML
+}
 
 const drawPlaylistCards = async () => {
   // Filtra le playlist per quelle che hanno playlistSpotify === true
   const spotifyPlaylists = playlistsArray.filter(
     (playlist) => playlist.playlistSpotify === true
-  );
+  )
 
-  let playlistCardsMobileHTML = "";
+  let playlistCardsMobileHTML = ''
 
   for (const playlist of spotifyPlaylists) {
     const randomIndex = Math.floor(
       Math.random() * playlist.playlistTracks.length
-    );
-    const trackId = playlist.playlistTracks[randomIndex];
-    _W(trackId);
+    )
+    const trackId = playlist.playlistTracks[randomIndex]
+    _W(trackId)
 
     try {
       const trackData = await fetchFunction(
-        "https://striveschool-api.herokuapp.com/api/deezer/track/" + trackId
-      );
-      const imgeSrc = trackData.album.cover;
+        'https://striveschool-api.herokuapp.com/api/deezer/track/' + trackId
+      )
+      const imgeSrc = trackData.album.cover
 
       playlistCardsMobileHTML += `
         <div class="col d-md-none">
@@ -82,7 +82,7 @@ const drawPlaylistCards = async () => {
               <div class="col-8">
                 <div class="card-body">
                   <p class="mb-1 text-secondary">Playlist</p>
-                  <h2 id="playList-${playlist.playlistName.replace(" ", "")}"
+                  <h2 id="playList-${playlist.playlistName.replace(' ', '')}"
 
                   class="card-title fs-1">
                     ${playlist.playlistName}
@@ -141,20 +141,20 @@ const drawPlaylistCards = async () => {
                       class="d-inline-block rounded-circle ps-3 pe-3 pt-2 pb-2 border-0"
 
                       id="playPlayListPlay-${playlist.playlistName.replace(
-                        " ",
-                        ""
+                        ' ',
+                        ''
                       )}"
 
                       style="background-color: #272822"
                     >
 
                         <i id="playListPlayControl-${playlist.playlistName.replace(
-                          " ",
-                          ""
+                          ' ',
+                          ''
                         )}" class="fa-solid fa-play my-auto"></i>
                         <i id="playListPauseControl-${playlist.playlistName.replace(
-                          " ",
-                          ""
+                          ' ',
+                          ''
                         )}" class="fa-solid fa-pause d-none my-auto"></i>
 
                     </button>
@@ -164,15 +164,15 @@ const drawPlaylistCards = async () => {
               </div>
           </div>
         </div>
-      `;
+      `
     } catch (error) {
-      _W(1, `Errore durante il fetch dei dati: ${error}`);
+      _W(1, `Errore durante il fetch dei dati: ${error}`)
     }
   }
 
-  document.getElementById("spotifyPlayListsSection").innerHTML +=
-    playlistCardsMobileHTML;
-};
+  document.getElementById('spotifyPlayListsSection').innerHTML +=
+    playlistCardsMobileHTML
+}
 
 //
 // ***********************************************************************
@@ -190,33 +190,33 @@ const drawPlaylistCards = async () => {
 // ***********************************************************************
 //
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   setTimeout(async () => {
-    const searchButton = document.getElementById("searchMobile");
-    const formSearch = document.getElementById("formSearch");
-    const closeButton = document.getElementById("closeButton");
-    const playListsSearch = document.getElementById("playListsSearch");
-    const ultraBigSection = document.getElementById("ultraBigSection");
+    const searchButton = document.getElementById('searchMobile')
+    const formSearch = document.getElementById('formSearch')
+    const closeButton = document.getElementById('closeButton')
+    const playListsSearch = document.getElementById('playListsSearch')
+    const ultraBigSection = document.getElementById('ultraBigSection')
 
-    searchButton.addEventListener("click", function () {
-      formSearch.style.display = "flex";
-      playListsSearch.style.display = "block";
-      ultraBigSection.style.display = "none";
-    });
+    searchButton.addEventListener('click', function () {
+      formSearch.style.display = 'flex'
+      playListsSearch.style.display = 'block'
+      ultraBigSection.style.display = 'none'
+    })
 
-    closeButton.addEventListener("click", function () {
-      formSearch.style.display = "none";
-      ultraBigSection.style.display = "block";
-      playListsSearch.style.display = "none";
-    });
-  }, 500);
-});
+    closeButton.addEventListener('click', function () {
+      formSearch.style.display = 'none'
+      ultraBigSection.style.display = 'block'
+      playListsSearch.style.display = 'none'
+    })
+  }, 500)
+})
 
 setTimeout(async () => {
-  drawOurPlaylists();
+  drawOurPlaylists()
   try {
-    await drawPlaylistCards();
+    await drawPlaylistCards()
   } catch (error) {
-    _W(1, `Errore durante il fetch dei dati: ${error}`);
+    _W(1, `Errore durante il fetch dei dati: ${error}`)
   }
-}, 500);
+}, 500)

@@ -197,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ultraBigSection.style.display = 'block'
   })
 })
+
 setTimeout(async () => {
   drawOurPlaylists()
   try {

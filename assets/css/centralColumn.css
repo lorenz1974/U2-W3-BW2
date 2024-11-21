@@ -1,3 +1,11 @@
+#formSearch {
+    display: none;
+}
+
+#playListsSearch {
+    display: none;
+}
+
 #sectionBigDiv h3{
     padding-left: 0.5em;
     padding-top: 1em;
@@ -32,11 +40,12 @@
 }
 
 .articolo {
+    margin: 10px;
     overflow: hidden;
     margin: 1em;
     border-radius: 10px;
     width: 50%;
-}
+  }
 
 .articolo p{
     margin: 0;

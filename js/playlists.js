@@ -53,8 +53,7 @@ const playlistsArray = [
     playlistName: "Pippo playlist",
     playlistSpotify: false,
     playlistTracks: [
-      774808483, 3003875334, 1575123307, 16739718, 2268734904, 1628347281,
-      2438505423, 2274690479,
+      2613255112, 486239682
     ],
     playlistImg:
       "https://static.nexilia.it/indiscreto/2014/08/pippo-franco-che-fico.jpg",

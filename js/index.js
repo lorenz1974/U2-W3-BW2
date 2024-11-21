@@ -7,15 +7,26 @@
 const populateMyPlaylist = async (list) => {
     _W(`populateMyPlaylist - list: `, list)
     playlistsMegaArray.length = 0
-    const data = await Promise.all(
-        list.map((id) => {
-            let usingURL = TRACK_URL + id
-            return fetchFunction(usingURL)
-        })
-    )
-    playlistsMegaArray.push(...data)
 
-    _D(3, playlistsMegaArray,)
+    list.forEach(async (id) => {
+        try {
+            playlistsMegaArray.push(
+                await fetchFunction(TRACK_URL + id)
+            )
+        } catch (error) {
+            _W(error)
+        }
+    })
+
+    _D(1, playlistsMegaArray,)
+    // const data = await Promise.all(
+    //     list.map((id) => {
+    //         let usingURL = TRACK_URL + id
+    //         return fetchFunction(usingURL)
+    //     })
+    // )
+    // playlistsMegaArray.push(...data)
+
 }
 
 

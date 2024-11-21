@@ -44,17 +44,17 @@ setTimeout(() => {
     albumsArray.forEach((album) => {
       playlistCardsHTML += `
         <div class="col">
-          <div class="card bg-body-tertiary rounded">
+          <div id="album-${album.id}" class="card bg-body-tertiary rounded">
             <div class="card-body d-flex align-items-center">
-              <img
+              <img id="albumImage-${album.id}"
                 src="${album.cover}"
                 class="me-3 rounded"
                 alt="Album Cover"
                 style="width: 70px; height: 70px; object-fit: cover;"
               />
               <div>
-                <h5 class="card-title mb-0">${album.artist.name}</h5>
-                <p class="card-text text-muted">${album.title}</p>
+                <h5 id="albumTitle-${album.id}" class="card-title mb-0">${album.artist.name}</h5>
+                <p id="albumText-${album.id}" class="card-text text-muted">${album.title}</p>
               </div>
             </div>
           </div>

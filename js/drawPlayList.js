@@ -1,8 +1,7 @@
 const drawPlaylist = async (playlist) => {
   console.log("drawPlaylist con parametro:", playlist);
-
   try {
-    const albumData = await fetchFunction(
+    const playlistData = await fetchFunction(
       `https://striveschool-api.herokuapp.com/api/deezer/album/${playlist}`
     );
 
@@ -116,22 +115,20 @@ const drawPlaylist = async (playlist) => {
                         <div class="ps-4 ps-md-0">
                             <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">ALBUM</p>
                             <h1 id="albumName" class="pb-2 pb-md-5">${
-                              libraryArray.title
+                              playlistsMegaArray[0].title
                             }</h1>
                             <img
                                 id="artistPic"
-                                src="${
-                                  // in teoria qui immagine random
-                                  albumData.contributors[0].picture_medium
-                                }"
+                                src="
+                                "
                                 alt=""
                                 class="img-fluid rounded-circle d-inline-block me-2"
                                 style="width: 30px"
                             />
                             <h6 id="artistName-${
-                              libraryArray[0].name
+                              playlistsMegaArray[0].name
                             }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
-                                ${libraryArray[0].name}
+                                ${playlistsMegaArray[0].name}
                             </h6>
                             <p class="fw-semibold mb-4">
                                 Anno di uscita:
@@ -140,7 +137,7 @@ const drawPlaylist = async (playlist) => {
                                 > Numero tracce: · </span>
                                 <span class="d-none d-md-inline-block" id="duration"
                                 > Durata: ${Math.ceil(
-                                  libraryArray[0].duration / 60
+                                  playlistsMegaArray[0].duration / 60
                                 )} Minuti</span>
                             </p>
                         </div>
@@ -354,7 +351,7 @@ const drawPlaylist = async (playlist) => {
       </section>
         `;
 
-    libraryArray[0].tracks.data.forEach((track, index) => {
+    playlistsMegaArray[0].tracks.data.forEach((track, index) => {
       trackHTML = `
             <div class="row g-0 ms-2 me-2 mb-0">
                 <div class="col col-1 d-none d-md-block">

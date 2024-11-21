@@ -1,11 +1,11 @@
-const drawPlaylist = async (playlist) => {
-  console.log("drawPlaylist con parametro:", playlist);
-  try {
-    const playlistData = await fetchFunction(
-      `https://striveschool-api.herokuapp.com/api/deezer/album/${playlist}`
-    );
+const drawPlaylist = (playListTarget) => {
+  _W("drawPlaylist")
+  _W(JSON.stringify(playlistsMegaArray))
 
-    let playlistHTML = `
+  const playListDuration = playlistsMegaArray.reduce((acc, track) => acc + track.duration, 0);
+  const playListname = playlistsArray.filter((playlist) => playlist.playlistName.replace(' ', '') === playListTarget)[0].playlistName;
+
+  let playlistHTML = `
         <section class="d-none d-md-block">
         <!-- barra con bottoni e utente -->
         <div
@@ -81,7 +81,7 @@ const drawPlaylist = async (playlist) => {
       </section>
             `;
 
-    playlistHTML += `
+  playlistHTML += `
             <section id="albumInfo">
                 <div class="row">
                     <div
@@ -108,37 +108,34 @@ const drawPlaylist = async (playlist) => {
                             </a>
                         </button>
                         <!-- copertina -->
-                        <img id="albumCover" src="" alt="" />
+                        <img
+                          id="albumCover"
+                          src="${playlistsMegaArray[0].album.cover_medium}"
+                          alt="${playlistsMegaArray[0].album.title}"
+                         />
                     </div>
                     <div class="col-12 col-md-7 p-md-4 pb-md-0">
                         <!-- info album -->
                         <div class="ps-4 ps-md-0">
-                            <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">ALBUM</p>
-                            <h1 id="albumName" class="pb-2 pb-md-5">${
-                              playlistsMegaArray[0].title
-                            }</h1>
+                            <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">Play List</p>
+                            <h1 id="albumName" class="pb-2 pb-md-5">${playListname}</h1>
                             <img
                                 id="artistPic"
-                                src="
-                                "
-                                alt=""
+                                src="${playlistsMegaArray[0].contributors[0].picture_small}"
+                                alt="${playlistsMegaArray[0].contributors[0].name}"
                                 class="img-fluid rounded-circle d-inline-block me-2"
                                 style="width: 30px"
                             />
-                            <h6 id="artistName-${
-                              playlistsMegaArray[0].name
-                            }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
-                                ${playlistsMegaArray[0].name}
+                            <h6 id="artistName-vari" class="d-inline-block mb-3 mb-md-4 mt-md-5">
+                                Vari artisti...
                             </h6>
                             <p class="fw-semibold mb-4">
-                                Anno di uscita:
-                                <span id="albumYear" class="fw-semibold"></span> ·
-                                <span class="d-none d-md-inline-block" id="numberOfSongs"
-                                > Numero tracce: · </span>
-                                <span class="d-none d-md-inline-block" id="duration"
-                                > Durata: ${Math.ceil(
-                                  playlistsMegaArray[0].duration / 60
-                                )} Minuti</span>
+                                <span class="d-none d-md-inline-block" id="numberOfSongs">
+                                  Numero tracce: ${playlistsMegaArray.length}
+                                </span> ·
+                                <span class="d-none d-md-inline-block" id="duration">
+                                  Durata: ${formatDuration(playListDuration)}
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -148,7 +145,8 @@ const drawPlaylist = async (playlist) => {
       <section id="songList" class="container mt-4">
       `;
 
-    playlistHTML += `
+
+  playlistHTML += `
               <section id="icone" class="container mb-3">
         <!-- icone mobile -->
         <div
@@ -351,8 +349,9 @@ const drawPlaylist = async (playlist) => {
       </section>
         `;
 
-    playlistsMegaArray[0].tracks.data.forEach((track, index) => {
-      trackHTML = `
+  playlistsMegaArray.forEach((track, index) => {
+
+    trackHTML = `
             <div class="row g-0 ms-2 me-2 mb-0">
                 <div class="col col-1 d-none d-md-block">
                     <p id="songNumber" class="mt-2 mb-0">${index + 1}</p>
@@ -361,20 +360,17 @@ const drawPlaylist = async (playlist) => {
                 <div
                     class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
                 >
-                    <p id="songNameList" class="mb-0 fw-bold">${
-                      track.title_short
-                    }</p>
-                    <p id="artistNameList" class="fs-7">${track.artist.name}</p>
+                    <p id="songNameList" class="mb-0 fw-bold">${track.title_short
+      }</p>
+                    <p id="artistNameList-${track.artist.id}" class="fs-7">${track.artist.name}</p>
                 </div>
 
                 <div class="col-3 text-end d-none d-md-block">
-                    <p id="playedCounter" class="mb-0 mt-2">${track.id}</p>
+                    <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString('it-IT')}</p>
                 </div>
 
                 <div class="col col-2 text-end mb-0 d-none d-md-block">
-                    <p id="songDurationList" class="mb-0 mt-2">${
-                      track.duration
-                    }</p>
+                    <p id="songDurationList" class="mb-0 mt-2">${formatDuration(track.duration)}</p>
                 </div>
                 <div class="col col-2 text-end mb-0 mt-2 d-md-none">
                     <svg
@@ -392,15 +388,13 @@ const drawPlaylist = async (playlist) => {
                 </div>
                 </div>
                 `;
-      playlistHTML += trackHTML;
-    });
+    playlistHTML += trackHTML;
+  });
 
-    playlistHTML += `
+  playlistHTML += `
             </section>
             `;
 
-    document.getElementById("centralColumn").innerHTML = playlistHTML;
-  } catch (error) {
-    console.log(error);
-  }
+  document.getElementById("centralColumn").innerHTML = playlistHTML;
+
 };

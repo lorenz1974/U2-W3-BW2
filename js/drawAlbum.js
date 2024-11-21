@@ -107,45 +107,38 @@ const drawAlbum = async (targetObject) => {
                             </a>
                         </button>
                         <!-- copertina -->
-                        <img id="albumCover" src="${
-                          albumData.cover_medium
-                        }" alt="" />
+                        <img id="albumCover" src="${albumData.cover_medium
+      }" alt="" />
                     </div>
                     <div class="col-12 col-md-7 p-md-4 pb-md-0">
                         <!-- info album -->
                         <div class="ps-4 ps-md-0">
                             <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">ALBUM</p>
-                            <h1 id="albumName" class="pb-2 pb-md-5">${
-                              albumData.title
-                            }</h1>
+                            <h1 id="albumName" class="pb-2 pb-md-5">${albumData.title
+      }</h1>
                             <img
                                 id="artistPic"
-                                src="${
-                                  albumData.contributors[0].picture_medium
-                                }"
+                                src="${albumData.contributors[0].picture_medium
+      }"
                                 alt=""
                                 class="img-fluid rounded-circle d-inline-block me-2"
                                 style="width: 30px"
                             />
-                            <h6 id="artistName-${
-                              albumData.contributors[0].id
-                            }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
+                            <h6 id="artistName-${albumData.contributors[0].id
+      }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
                                 ${albumData.contributors[0].name}
                             </h6>
                             <p class="fw-semibold mb-4">
                                 Anno di uscita:
                                 <span id="albumYear" class="fw-semibold">${albumData.release_date.slice(
-                                  0,
-                                  4
-                                )}</span> ·
+        0,
+        4
+      )}</span> ·
                                 <span class="d-none d-md-inline-block" id="numberOfSongs"
-                                > Numero tracce: ${
-                                  albumData.nb_tracks
-                                } · </span>
+                                > Numero tracce: ${albumData.nb_tracks
+      } · </span>
                                 <span class="d-none d-md-inline-block" id="duration"
-                                > Durata: ${Math.ceil(
-                                  albumData.duration / 60
-                                )} Minuti</span>
+                                > Durata: ${formatDuration(albumData.duration)} Minuti</span>
                             </p>
                         </div>
                     </div>
@@ -368,20 +361,17 @@ const drawAlbum = async (targetObject) => {
                 <div
                     class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
                 >
-                    <p id="songNameList" class="mb-0 fw-bold">${
-                      track.title_short
-                    }</p>
+                    <p id="songNameList" class="mb-0 fw-bold">${track.title_short
+        }</p>
                     <p id="artistNameList" class="fs-7">${track.artist.name}</p>
                 </div>
 
                 <div class="col-3 text-end d-none d-md-block">
-                    <p id="playedCounter" class="mb-0 mt-2">${track.id}</p>
+                    <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString('it-IT')}</p>
                 </div>
 
                 <div class="col col-2 text-end mb-0 d-none d-md-block">
-                    <p id="songDurationList" class="mb-0 mt-2">${
-                      track.duration
-                    }</p>
+                    <p id="songDurationList" class="mb-0 mt-2">${formatDuration(track.duration)}</p>
                 </div>
                 <div class="col col-2 text-end mb-0 mt-2 d-md-none">
                     <svg

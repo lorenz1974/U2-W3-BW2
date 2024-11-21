@@ -10,22 +10,36 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-
-    <!-- If you want to use BS Icons... -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /> -->
-    <!-- ... if you prefer Font Awesome -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Central column Home</title>
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
 
-    <link href="./assets/css/circular-font.css" rel="stylesheet" />
-    <link href="./assets/css/custom-bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/centralColumn.css" />
-  </head>
+      <!-- If you want to use BS Icons... -->
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /> -->
+      <!-- ... if you prefer Font Awesome -->
+      <link
+     
+      rel="stylesheet"
+     
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous"
+     
+      referrerpolicy="no-referrer"
+   
+    />
+
+      <link href="./assets/css/circular-font.css" rel="stylesheet" />
+      <link href="./assets/css/custom-bootstrap.css" rel="stylesheet" />
+      <link rel="stylesheet" href="./assets/css/centralColumn.css" />
+    </head>
 
   <body>
     <main>
@@ -93,7 +107,44 @@
             </button>
           </div>
           <!-- div con bottoni -->
+            <!-- freccia destra -->
+            <button
+              class="d-inline-block rounded-circle border-0 me-3 pe-1"
+              style="background-color: #000000"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                fill="currentColor"
+                class="bi bi-chevron-left rounded-circle mb-1"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                />
+              </svg>
+            </button>
+          </div>
+          <!-- div con bottoni -->
 
+          <!-- div con utente dropdown -->
+          <div class="dropdown">
+            <a
+              class="btn rounded-pill btn-dark dropdown-toggle ps-0 pt-0 pb-0"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="./assets/imgs/main/image-1.jpg"
+                alt=""
+                class="img-fluid rounded-circle"
+                style="width: 30px"
+              />
+              Utente
+            </a>
           <!-- div con utente dropdown -->
           <div class="dropdown">
             <a
@@ -122,9 +173,21 @@
           </div>
         </div>
         <!-- barra con bottoni e utente -->
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- barra con bottoni e utente -->
 
-        <div
+          <div
+         
           class="card mb-3 mt-2 border-0 d-none d-md-block d-none d-md-block"
+         
           style="
             background: rgb(0, 0, 0);
             background: linear-gradient(
@@ -187,7 +250,7 @@
 
         <div class="row">
           <div class="col d-flex">
-            <h3>Buonasera</h3>
+            <h3 id="switchTitle">Buonasera</h3>
           </div>
           <div class="col d-md-none text-end">
             <svg
@@ -235,11 +298,11 @@
           </div>
         </div>
 
-        <!--musica e podcast  -->
-        <div class="mt-4 d-md-none">
-          <p class="d-inline-block me-5">Musica</p>
-          <p class="d-inline-block">Podcast e show</p>
-        </div>
+          <!--musica e podcast  -->
+          <div class="mt-4 d-md-none">
+            <p class="d-inline-block me-5">Musica</p>
+            <p class="d-inline-block">Podcast e show</p>
+          </div>
 
         <div
           id="ourPlayListsSection"
@@ -322,18 +385,22 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- You can also include Popper and our JS separately. If you don’t plan to use dropdowns, popovers, or tooltips, -->
-    <!-- save some kilobytes by not including Popper. -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> -->
+      <!-- You can also include Popper and our JS separately. If you don’t plan to use dropdowns, popovers, or tooltips, -->
+      <!-- save some kilobytes by not including Popper. -->
+      <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> -->
 
-    <!-- Some Tools Script -->
-    <script src="https://tech-mentor.it/tools/jsTools.js"></script>
-    <script src="./js/playlists.js"></script>
-    <script src="./js/functions.js"></script>
-    <script src="./js/centralColumn.js"></script>
+      <!-- Some Tools Script -->
+      <script src="https://tech-mentor.it/tools/jsTools.js"></script>
+      <script src="./js/playlists.js"></script>
+      <script src="./js/functions.js"></script>
+      <script src="./js/centralColumn.js"></script>
 
     <!-- Insert you scripts here. -->
     <!-- <script src="./myScript.js"></script> -->
   </body>
+    <!-- Insert you scripts here. -->
+    <!-- <script src="./myScript.js"></script> -->
+  </body>
 </html>
+

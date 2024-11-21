@@ -5,7 +5,7 @@
 //
 
 const drawOurPlaylists = () => {
-  let playlistCardsHTML = ''
+  let playlistCardsHTML = "";
   playlistsArray
     .filter((playlist) => playlist.playlistSpotify === false)
     .forEach((playlist) => {
@@ -20,37 +20,42 @@ const drawOurPlaylists = () => {
               style="width: 70px; height: 70px; object-fit: cover;"
             />
             <div>
-              <h5 class="card-title mb-0" id="playList-${playlist.playlistName.replace(' ', '')}">${playlist.playlistName}</h5>
-              <p class="card-text text-muted">${playlist.playlistTracks.length} brani</p>
+              <h5 class="card-title mb-0" id="playList-${playlist.playlistName.replace(
+                " ",
+                ""
+              )}">${playlist.playlistName}</h5>
+              <p class="card-text text-muted">${
+                playlist.playlistTracks.length
+              } brani</p>
             </div>
           </div>
         </div>
       </div>
-      `
-    })
-  document.getElementById('ourPlayListsSection').innerHTML = playlistCardsHTML
-}
+      `;
+    });
+  document.getElementById("ourPlayListsSection").innerHTML = playlistCardsHTML;
+};
 
 const drawPlaylistCards = async () => {
   // Filtra le playlist per quelle che hanno playlistSpotify === true
   const spotifyPlaylists = playlistsArray.filter(
     (playlist) => playlist.playlistSpotify === true
-  )
+  );
 
-  let playlistCardsMobileHTML = ''
+  let playlistCardsMobileHTML = "";
 
   for (const playlist of spotifyPlaylists) {
     const randomIndex = Math.floor(
       Math.random() * playlist.playlistTracks.length
-    )
-    const trackId = playlist.playlistTracks[randomIndex]
-    _W(trackId)
+    );
+    const trackId = playlist.playlistTracks[randomIndex];
+    _W(trackId);
 
     try {
       const trackData = await fetchFunction(
-        'https://striveschool-api.herokuapp.com/api/deezer/track/' + trackId
-      )
-      const imgeSrc = trackData.album.cover
+        "https://striveschool-api.herokuapp.com/api/deezer/track/" + trackId
+      );
+      const imgeSrc = trackData.album.cover;
 
       playlistCardsMobileHTML += `
         <div class="col">
@@ -77,7 +82,7 @@ const drawPlaylistCards = async () => {
               <div class="col-8">
                 <div class="card-body">
                   <p class="mb-1 text-secondary">Playlist</p>
-                  <h2 id="playList-${playlist.playlistName.replace(' ', '')}"
+                  <h2 id="playList-${playlist.playlistName.replace(" ", "")}"
 
                   class="card-title fs-1">
                     ${playlist.playlistName}
@@ -127,19 +132,30 @@ const drawPlaylistCards = async () => {
                   <!-- BRANI E PLAY -->
                   <div>
                     <div class="d-inline-block">
-                      <p class="p-0 m-0 me-2 text-nowrap">${playlist.playlistTracks.length} brani</p>
+                      <p class="p-0 m-0 me-2 text-nowrap">${
+                        playlist.playlistTracks.length
+                      } brani</p>
                     </div>
 
                     <button
                       class="d-inline-block rounded-circle p-2 border-0"
 
-                      id="playPlayListPlay-${playlist.playlistName.replace(' ', '')}"
+                      id="playPlayListPlay-${playlist.playlistName.replace(
+                        " ",
+                        ""
+                      )}"
 
                       style="background-color: #272822"
                     >
 
-                        <i id="playListPlayControl-${playlist.playlistName.replace(' ', '')}" class="fa-solid fa-play my-auto"></i>
-                        <i id="playListPauseControl-${playlist.playlistName.replace(' ', '')}" class="fa-solid fa-pause d-none my-auto"></i>
+                        <i id="playListPlayControl-${playlist.playlistName.replace(
+                          " ",
+                          ""
+                        )}" class="fa-solid fa-play my-auto"></i>
+                        <i id="playListPauseControl-${playlist.playlistName.replace(
+                          " ",
+                          ""
+                        )}" class="fa-solid fa-pause d-none my-auto"></i>
 
                     </button>
                     </div>
@@ -148,15 +164,15 @@ const drawPlaylistCards = async () => {
               </div>
           </div>
         </div>
-      `
+      `;
     } catch (error) {
-      _W(1, `Errore durante il fetch dei dati: ${error}`)
+      _W(1, `Errore durante il fetch dei dati: ${error}`);
     }
   }
 
-  document.getElementById('spotifyPlayListsSection').innerHTML +=
-    playlistCardsMobileHTML
-}
+  document.getElementById("spotifyPlayListsSection").innerHTML +=
+    playlistCardsMobileHTML;
+};
 
 //
 // ***********************************************************************
@@ -197,10 +213,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 setTimeout(async () => {
-  drawOurPlaylists()
+  drawOurPlaylists();
   try {
-    await drawPlaylistCards()
+    await drawPlaylistCards();
   } catch (error) {
-    _W(1, `Errore durante il fetch dei dati: ${error}`)
+    _W(1, `Errore durante il fetch dei dati: ${error}`);
   }
-}, 500)
+}, 500);

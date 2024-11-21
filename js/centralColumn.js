@@ -184,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
   playListsSearch.style.display = 'none'
 
   searchButton.addEventListener('click', function (event) {
-    event.preventDefault()
 
     playListsSearch.style.display = 'block'
     bigHeader.style.display = 'none'

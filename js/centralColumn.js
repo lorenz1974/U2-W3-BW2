@@ -174,28 +174,27 @@ const drawPlaylistCards = async () => {
 // ***********************************************************************
 //
 
-document.addEventListener('DOMContentLoaded', () => {
-  const searchButton = document.getElementById('searchSfogliaTutto')
-  const playListsSearch = document.getElementById('playListsSearch')
-  const bigHeader = document.getElementById('bigHeader')
-  const ultraBigSection = document.getElementById('ultraBigSection')
-  const closeButton = document.getElementById('closeButton')
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(async () => {
+  const searchButton = document.getElementById("searchMobile");
+  const formSearch = document.getElementById("formSearch");
+  const closeButton = document.getElementById("closeButton");
+  const playListsSearch = document.getElementById("playListsSearch");
+  const ultraBigSection = document.getElementById("ultraBigSection");
 
-  playListsSearch.style.display = 'none'
+  searchButton.addEventListener("click", function () {
+    formSearch.style.display = "flex";
+    playListsSearch.style.display = "block";
+    ultraBigSection.style.display = "none";
+  });
 
-  searchButton.addEventListener('click', function (event) {
-
-    playListsSearch.style.display = 'block'
-    bigHeader.style.display = 'none'
-    ultraBigSection.style.display = 'none'
-  })
-
-  closeButton.addEventListener('click', function () {
-    playListsSearch.style.display = 'none'
-    bigHeader.style.display = 'block'
-    ultraBigSection.style.display = 'block'
-  })
-})
+  closeButton.addEventListener("click", function () {
+    formSearch.style.display = "none";
+    ultraBigSection.style.display = "block";
+    playListsSearch.style.display = "none";
+  });
+}, 500);
+});
 
 setTimeout(async () => {
   drawOurPlaylists()

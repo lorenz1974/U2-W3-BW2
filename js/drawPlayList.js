@@ -1,9 +1,14 @@
 const drawPlaylist = (playListTarget) => {
-  _W("drawPlaylist")
+  _W('drawPlaylist')
   _W(JSON.stringify(playlistsMegaArray))
 
-  const playListDuration = playlistsMegaArray.reduce((acc, track) => acc + track.duration, 0);
-  const playListname = playlistsArray.filter((playlist) => playlist.playlistName.replace(' ', '') === playListTarget)[0].playlistName;
+  const playListDuration = playlistsMegaArray.reduce(
+    (acc, track) => acc + track.duration,
+    0
+  )
+  const playListname = playlistsArray.filter(
+    (playlist) => playlist.playlistName.replace(' ', '') === playListTarget
+  )[0].playlistName
 
   let playlistHTML = `
         <section class="d-none d-md-block">
@@ -79,7 +84,7 @@ const drawPlaylist = (playListTarget) => {
           </div>
         </div>
       </section>
-            `;
+            `
 
   playlistHTML += `
             <section id="albumInfo">
@@ -121,8 +126,13 @@ const drawPlaylist = (playListTarget) => {
                             <h1 id="albumName" class="pb-2 pb-md-5">${playListname}</h1>
                             <img
                                 id="artistPic"
-                                src="${playlistsMegaArray[0].contributors[0].picture_small}"
-                                alt="${playlistsMegaArray[0].contributors[0].name}"
+                                src="${
+                                  playlistsMegaArray[0].contributors[0]
+                                    .picture_small
+                                }"
+                                alt="${
+                                  playlistsMegaArray[0].contributors[0].name
+                                }"
                                 class="img-fluid rounded-circle d-inline-block me-2"
                                 style="width: 30px"
                             />
@@ -143,8 +153,7 @@ const drawPlaylist = (playListTarget) => {
       </section >
 
       <section id="songList" class="container mt-4">
-      `;
-
+      `
 
   playlistHTML += `
               <section id="icone" class="container mb-3">
@@ -347,10 +356,9 @@ const drawPlaylist = (playListTarget) => {
         </div>
         <hr class="mt-1" />
       </section>
-        `;
+        `
 
   playlistsMegaArray.forEach((track, index) => {
-
     trackHTML = `
             <div class="row g-0 ms-2 me-2 mb-0">
                 <div class="col col-1 d-none d-md-block">
@@ -360,17 +368,24 @@ const drawPlaylist = (playListTarget) => {
                 <div
                     class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
                 >
-                    <p id="songNameList" class="mb-0 fw-bold">${track.title_short
-      }</p>
-                    <p id="artistNameList-${track.artist.id}" class="fs-7">${track.artist.name}</p>
+                    <p id="songNameList" class="mb-0 fw-bold">${
+                      track.title_short
+                    }</p>
+                    <p id="artistNameList-${track.artist.id}" class="fs-7">${
+      track.artist.name
+    }</p>
                 </div>
 
                 <div class="col-3 text-end d-none d-md-block">
-                    <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString('it-IT')}</p>
+                    <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString(
+                      'it-IT'
+                    )}</p>
                 </div>
 
                 <div class="col col-2 text-end mb-0 d-none d-md-block">
-                    <p id="songDurationList" class="mb-0 mt-2">${formatDuration(track.duration)}</p>
+                    <p id="songDurationList" class="mb-0 mt-2">${formatDuration(
+                      track.duration
+                    )}</p>
                 </div>
                 <div class="col col-2 text-end mb-0 mt-2 d-md-none">
                     <svg
@@ -387,14 +402,13 @@ const drawPlaylist = (playListTarget) => {
                     </svg>
                 </div>
                 </div>
-                `;
-    playlistHTML += trackHTML;
-  });
+                `
+    playlistHTML += trackHTML
+  })
 
   playlistHTML += `
             </section>
-            `;
+            `
 
-  document.getElementById("centralColumn").innerHTML = playlistHTML;
-
-};
+  document.getElementById('centralColumn').innerHTML = playlistHTML
+}

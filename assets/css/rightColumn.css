@@ -1,1 +1,20 @@
-/*# sourceMappingURL=rightColumn.css.map */
+#finestra{
+    width: 100%;
+    transition: width 0.3s;
+}
+
+#serchFriends{
+    margin: 1em;
+}
+
+#serchFriends input{
+    width: 80%;
+}
+
+article p{
+    font-size: x-small;
+}
+
+article h3{
+    font-size: small;
+}

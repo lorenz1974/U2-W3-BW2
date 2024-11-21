@@ -20,7 +20,7 @@ const drawOurPlaylists = () => {
               style="width: 70px; height: 70px; object-fit: cover;"
             />
             <div>
-              <h5 class="card-title mb-0">${playlist.playlistName}</h5>
+              <h5 class="card-title mb-0" id="playList-${playlist.playlistName.replace(' ', '')}">${playlist.playlistName}</h5>
               <p class="card-text text-muted">${playlist.playlistTracks.length} brani</p>
             </div>
           </div>
@@ -77,7 +77,9 @@ const drawPlaylistCards = async () => {
               <div class="col-8">
                 <div class="card-body">
                   <p class="mb-1 text-secondary">Playlist</p>
-                  <h2 id="playListNameHome" class="card-title fs-1">${playlist.playlistName}</h2>
+                  <h2 id="playListNameHome" id="playList-${playlist.playlistName.replace(' ', '')}" class="card-title fs-1">
+                    ${playlist.playlistName}
+                  </h2>
                 </div>
               </div>
 
@@ -198,8 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 })
 setTimeout(async () => {
+  drawOurPlaylists()
   try {
-    drawOurPlaylists()
     await drawPlaylistCards()
   } catch (error) {
     _W(1, `Errore durante il fetch dei dati: ${error}`)

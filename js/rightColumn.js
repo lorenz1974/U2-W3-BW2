@@ -29,10 +29,6 @@ setTimeout(() => {
     const closeButton = document.getElementById("closeButton")
     const finestra = document.getElementById("finestra")
     const introduction = document.getElementById("introduction")
-    
-  serchFriends.style.display = "none"
-  finestra.style.display = "none"
-  introduction.style.display = "flex"
 
   openButton.addEventListener("click", function () {
     finestra.style.display = "block"

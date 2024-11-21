@@ -179,6 +179,7 @@ const sendAnAlert = (message, level) => {
   document.getElementById('alertMessage').innerHTML = message
   document.getElementById('alertMessage').classList.add(`alert-${level}`)
   document.getElementById('alertMessage').classList.toggle('d-none')
+  document.getElementById('spinner').classList.add('d-none')
 }
 
 // ***********************************************************************

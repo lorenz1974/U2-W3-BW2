@@ -134,7 +134,7 @@ const autoPlay = false;
 let currentTrackData; // Inizializza la variabile che conterrà i dati della traccia corrente recuperati tramite il fetching dell'api
 let shuffleStatus = false;
 let repeatStatus = false;
-let isPlaying = false;
+let isPlaying = true;
 let currentTrack = new Audio("./test/player.mp3");
 let lastTrackId = 0;
 

@@ -6,41 +6,48 @@
 
 const populateMyPlaylist = async (list) => {
   //   _W(`populateMyPlaylist - list: `, list);
-  playlistsMegaArray.length = 0;
 
-  // list.forEach(async (id) => {
-  //     try {
-  //         playlistsMegaArray.push(
-  //             await fetchFunction(TRACK_URL + id)
-  //         )
-  //     } catch (error) {
-  //         _W(error)
-  //     }
-  // })
-
-  // _D(1, playlistsMegaArray,)
-  const data = await Promise.all(
-    list.map((id) => {
-      let usingURL = TRACK_URL + id;
-      return fetchFunction(usingURL);
-    })
-  );
-  playlistsMegaArray.push(...data);
-  console.log(playlistsMegaArray);
+  for (const id of list) {
+    try {
+      playlistsMegaArray.push(
+        await fetchFunction(TRACK_URL + id)
+      );
+    } catch (error) {
+      _W(error);
+    }
+  }
 };
 
 const populateMyLibrary = async () => {
   libraryArray.length = 0;
-  const data = await Promise.all(
-    myLibraryID.map((id) => {
-      let usingURL = ALBUM_URL + id;
-      return fetchFunction(usingURL);
-    })
-  );
-  libraryArray.push(...data);
-
-  _D(3, libraryArray);
+  for (const id of myLibraryID) {
+    try {
+      libraryArray.push(await fetchFunction(ALBUM_URL + id));
+    } catch (error) {
+      _W(error);
+    }
+  }
 };
+
+const pupulateMyQuery = async () => {
+  // Targhettizzo l'informazione inserita nel form per la ricerca
+  const queryInput = document.getElementById('query');
+  const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
+  try {
+    fetchArray = await fetchFunction(SEARCH_URL + encodedQuery);
+    playlistsMegaArray = fetchArray.data;
+    queryInput.value = ''
+  } catch (error) {
+    _W(error);
+  }
+}
+
+const formatDuration = (duration) => {
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`
+}
+
 
 const drawPlaylistsLinks = () => {
   let playListsLiHTML = "";
@@ -50,9 +57,9 @@ const drawPlaylistsLinks = () => {
       playListsLiHTML += `
             <li>
                 <p id="playList-${playlist.playlistName.replace(
-                  " ",
-                  ""
-                )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
+        " ",
+        ""
+      )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
                     ${playlist.playlistName}
                 </p>
             </li>
@@ -95,14 +102,6 @@ const drawOurLibrary = (albumsArray) => {
 // ***********************************************************************
 //
 
-// Targhettizzo l'informazione inserita nel form per la ricerca
-const queryInput = document.getElementById("query");
-
-// Targhettizzo il form per prevenire anche la gestione di default del submit che mi resetterebbe i campi
-const form = document.getElementById("columnForm");
-
-//   ed inizializzo l'array fuori dalla funzione di ricerca
-const queryArray = [];
 
 // metto l'URL all'interno di una costante per poter essere più facilmente utilizzato
 const SEARCH_URL =
@@ -115,10 +114,30 @@ const myLibraryID = [
 ];
 
 //   targhettizzo il link nella colonna sinistra che mi possa condividere l'array di album
+//   ed inizializzo l'array fuori dalla funzione di ricerca
 let libraryArray = [];
 let playlistsMegaArray = [];
+let queryArray = [];
+
+
 const ALBUM_URL = "https://striveschool-api.herokuapp.com/api/deezer/album/";
 const TRACK_URL = "https://striveschool-api.herokuapp.com/api/deezer/track/";
+
+const spinnerHTML = `
+            <div id="alertMessage" class="alert d-none" role="alert">
+                 A simple danger alert—check it out!
+            </div>
+            <div class="container w-100">
+              <div id="spinner" class="row mt-5">
+                    <div class="waitPlaceholder d-flex flex-column" role="status">
+                        <span class="placeholder w-50 mb-3"></span>
+                        <span class="placeholder w-75 mb-3"></span>
+                        <span class="placeholder w-25 mb-3"></span>
+                    </div>
+                </div>
+            </div>
+            `
+
 
 //
 // ***********************************************************************
@@ -150,11 +169,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     /<footer[^>]*>([\s\S]*?)<\/footer>/i
   )[1];
 
+
+  // Targhettizzo il form per prevenire anche la gestione di default del submit che mi resetterebbe i campi
+  const form = document.getElementById("columnForm");
+
+  // Disegna i link nella colonna sinistra
   drawPlaylistsLinks();
 
   document.getElementsByTagName("body")[0].addEventListener(
     "click",
-    (e) => {
+    async (e) => {
       const target = e.target.id;
       _D(3, `event is:`, e);
 
@@ -165,10 +189,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       _D(1, `targetObject is: ${targetObject}`);
 
       switch (targetType) {
-        case "playlist": {
-          drawPlaylist(targetObject);
-          break;
-        }
 
         case "playPlayList":
         case "playListPauseControl":
@@ -202,7 +222,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             (playlist) =>
               playlist.playlistName.replace(" ", "") === targetObject
           )[0].playlistTracks;
-          drawPlaylist(tracksPlaylistArray);
+
+          playlistsMegaArray = [];
+
+          document.getElementById("centralColumn").innerHTML = spinnerHTML;
+
+          try {
+            await populateMyPlaylist(tracksPlaylistArray);
+            drawPlaylist(targetObject);
+
+          } catch (error) {
+            _W(error)
+          }
           break;
         }
 
@@ -221,18 +252,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         case "artist":
-        case "artistName": {
-          drawArtist(targetObject);
-          break;
-        }
+        case "artistName":
+        case "artistNameList":
+          {
+            drawArtist(targetObject);
+            break;
+          }
 
         case "libraryLink": {
           document.getElementById("switchTitle").innerText = "La tua libreria";
-          document.getElementById("ourPlayListsSection").innerHTML = "";
-          populateMyLibrary().then(() => {
-            console.log("libraryArray:", libraryArray);
+          document.getElementById("ourPlayListsSection").innerHTML = spinnerHTML;
+          try {
+            await populateMyLibrary()
             drawOurLibrary(libraryArray);
-          });
+          } catch (error) {
+            _W(error)
+          }
         }
 
         default: {
@@ -243,7 +278,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     true
   );
 
-  // TARGET3.addEventListener('blur', () => {
-  //		  TARGET Blurred
-  // })
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    try {
+      await pupulateMyQuery();
+      drawPlaylist();
+    } catch (error) {
+      _W(error)
+    }
+
+    //   ed a ricerca avvenuta con successo resetto il campo di ricerca
+
+  })
+
 });

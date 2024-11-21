@@ -1,3 +1,4 @@
-const drawPlayList = async (artist) => {
+const drawPlaylist = async (artist) => {
     console.log('drawPlaylist con parametro:', artist)
+
 }

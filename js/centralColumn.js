@@ -10,21 +10,21 @@ const drawOurPlaylists = () => {
     .filter((playlist) => playlist.playlistSpotify === false)
     .forEach((playlist) => {
       playlistCardsHTML += `
-      <div class="col">
+      <div class="col g-2">
         <div class="card bg-body-tertiary rounded">
-          <div class="card-body d-flex align-items-center">
+          <div class="card-body d-flex align-items-center" style="margin-left: -8px;">
             <img
               src="${playlist.playlistImg}"
-              class="me-3 rounded"
+              class="me-2 rounded"
               alt="Playlist Cover"
               style="width: 70px; height: 70px; object-fit: cover;"
             />
             <div>
-              <h5 class="card-title mb-0" id="playList-${playlist.playlistName.replace(
+              <h5 class="card-title mb-1" id="playList-${playlist.playlistName.replace(
                 " ",
                 ""
-              )}">${playlist.playlistName}</h5>
-              <p class="card-text text-muted">${
+              )}" style="font-size:15px;">${playlist.playlistName}</h5>
+              <p class="card-text text-muted" style="font-size:12px">${
                 playlist.playlistTracks.length
               } brani</p>
             </div>
@@ -58,7 +58,7 @@ const drawPlaylistCards = async () => {
       const imgeSrc = trackData.album.cover;
 
       playlistCardsMobileHTML += `
-        <div class="col">
+        <div class="col d-md-none">
           <div
             class="card mb-3 border-0"
             style="
@@ -138,7 +138,7 @@ const drawPlaylistCards = async () => {
                     </div>
 
                     <button
-                      class="d-inline-block rounded-circle p-2 border-0"
+                      class="d-inline-block rounded-circle ps-3 pe-3 pt-2 pb-2 border-0"
 
                       id="playPlayListPlay-${playlist.playlistName.replace(
                         " ",
@@ -192,24 +192,24 @@ const drawPlaylistCards = async () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(async () => {
-  const searchButton = document.getElementById("searchMobile");
-  const formSearch = document.getElementById("formSearch");
-  const closeButton = document.getElementById("closeButton");
-  const playListsSearch = document.getElementById("playListsSearch");
-  const ultraBigSection = document.getElementById("ultraBigSection");
+    const searchButton = document.getElementById("searchMobile");
+    const formSearch = document.getElementById("formSearch");
+    const closeButton = document.getElementById("closeButton");
+    const playListsSearch = document.getElementById("playListsSearch");
+    const ultraBigSection = document.getElementById("ultraBigSection");
 
-  searchButton.addEventListener("click", function () {
-    formSearch.style.display = "flex";
-    playListsSearch.style.display = "block";
-    ultraBigSection.style.display = "none";
-  });
+    searchButton.addEventListener("click", function () {
+      formSearch.style.display = "flex";
+      playListsSearch.style.display = "block";
+      ultraBigSection.style.display = "none";
+    });
 
-  closeButton.addEventListener("click", function () {
-    formSearch.style.display = "none";
-    ultraBigSection.style.display = "block";
-    playListsSearch.style.display = "none";
-  });
-}, 500);
+    closeButton.addEventListener("click", function () {
+      formSearch.style.display = "none";
+      ultraBigSection.style.display = "block";
+      playListsSearch.style.display = "none";
+    });
+  }, 500);
 });
 
 setTimeout(async () => {

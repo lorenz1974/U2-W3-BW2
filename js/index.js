@@ -69,9 +69,9 @@ const drawOurLibrary = (albumsArray) => {
   let playlistCardsHTML = ''
   albumsArray.forEach((album) => {
     playlistCardsHTML += `
-        <div class="col g-2">
-          <div id="album-${album.id}" class="card bg-body-tertiary rounded" style="height:150px;">
-            <div class="card-body d-flex align-items-center">
+        <div class="col g-3">
+          <div id="album-${album.id}" class="card bg-body-tertiary rounded border-0">
+            <div class="card-body d-flex align-items-center p-0 ">
               <img id="albumImage-${album.id}"
                 src="${album.cover}"
                 class="me-3 rounded"
@@ -79,8 +79,8 @@ const drawOurLibrary = (albumsArray) => {
                 style="width: 70px; height: 70px; object-fit: cover;"
               />
               <div>
-                <h5 id="albumTitle-${album.id}" class="card-title mb-0" >${album.artist.name}</h5>
-                <p id="albumText-${album.id}" class="card-text text-muted mt-1" style="font-size: 13px;">${album.title}</p>
+                <h5 id="albumTitle-${album.id}" class="card-title fs-6 mb-0" >${album.artist.name}</h5>
+                <p id="albumText-${album.id}" class="card-text text-muted fs-7 mt-1" style="font-size: 13px;">${album.title}</p>
               </div>
             </div>
           </div>

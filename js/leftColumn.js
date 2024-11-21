@@ -31,11 +31,38 @@ setTimeout(() => {
     9884672, 116670,
   ]
 
+  const switchTitle = document.getElementById('switchTitle')
+
   //   targhettizzo il link nella colonna sinistra che mi possa condividere l'array di album
   const libraryLink = document.getElementById('library-link')
   const libraryArray = []
   const ALBUM_URL = 'https://striveschool-api.herokuapp.com/api/deezer/album/'
   const TRACK_URL = 'https://striveschool-api.herokuapp.com/api/deezer/track/'
+
+  const drawOurLibrary = (albumsArray) => {
+    let playlistCardsHTML = ''
+    albumsArray.forEach((album) => {
+      playlistCardsHTML += `
+        <div class="col">
+          <div id="album-${album.id}" class="card bg-body-tertiary rounded">
+            <div class="card-body d-flex align-items-center">
+              <img id="albumImage-${album.id}"
+                src="${album.cover}"
+                class="me-3 rounded"
+                alt="Album Cover"
+                style="width: 70px; height: 70px; object-fit: cover;"
+              />
+              <div>
+                <h5 id="albumTitle-${album.id}" class="card-title mb-0">${album.artist.name}</h5>
+                <p id="albumText-${album.id}" class="card-text text-muted">${album.title}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+    })
+    document.getElementById('ourPlayListsSection').innerHTML = playlistCardsHTML
+  }
 
   const populateMyLibrary = async () => {
     libraryArray.length = 0
@@ -49,8 +76,11 @@ setTimeout(() => {
   }
 
   libraryLink.addEventListener('click', () => {
+    switchTitle.innerText = 'La tua libreria'
+    document.getElementById('ourPlayListsSection').innerHTML = ''
     populateMyLibrary().then(() => {
       console.log('libraryArray:', libraryArray)
+      drawOurLibrary(libraryArray)
     })
   })
 
@@ -74,7 +104,14 @@ setTimeout(() => {
     if (playlist.playlistSpotify === false) {
       const newLi = document.createElement('li')
       const newP = document.createElement('p')
-      newP.classList.add('btn', 'p-0', 'text-body-secondary', 'fw-normal')
+      newP.classList.add(
+        'btn',
+        'p-0',
+        'me-2',
+        'text-body-secondary',
+        'fw-normal',
+        'text-truncate'
+      )
       newP.innerText = playlist.playlistName
       newP.addEventListener('click', () => {
         populateMyPlaylist(playlist.playlistTracks).then(() => {

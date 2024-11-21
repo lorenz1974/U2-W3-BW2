@@ -135,54 +135,32 @@
               rgba(0, 0, 0, 1) 0%,
               rgba(74, 72, 72, 1) 100%
             );
-          "
-        >
-          <div class="row g-0">
-            <div class="col-5 p-2">
-              <img
-                id="imgSongHome"
-                src="./assets/imgs/placeHolder.gif"
-                style="max-width: 250px"
-                class="img-fluid"
-                alt="..."
-              />
+          ">
+        <div class="row g-0">
+          <div class="col-4 p-2">
+            <img id="imgSongHome" src="./assets/imgs/placeHolder.gif" style="max-width: 250px" class="img-fluid"
+              alt="..." />
+          </div>
+          <div class="col-8 d-flex flex-column">
+            <div class="card-body flex-grow-2">
+              <p id="albumHome" class="mb-1">...</p>
+              <h2 id="songTitleHome" class="card-title fs-1">...</h2>
+              <p id="artistHome" class="card-text">...</p>
             </div>
-            <div class="col-7 d-flex flex-column">
-              <div class="card-body flex-grow-2">
-                <p id="albumHome" class="mb-1">...</p>
-                <h2 id="songTitleHome" class="card-title fs-1">...</h2>
-                <p id="artistHome" class="card-text">...</p>
-              </div>
-              <div class="d-flex justify-content-start gap-2 ms-2 mb-2">
-                <button
-                  id="buttonPlaySongCardHome"
-                  class="btn btn-success rounded-pill text-black"
-                  type="button"
-                  style="width: 80px"
-                >
-                  Play
-                </button>
-                <button
-                  class="btn ps-4 pe-4 rounded-pill text-white"
-                  type="button"
-                  style="background-color: black"
-                >
-                  Save
-                </button>
-                <div class="align-content-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-three-dots"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
-                    />
-                  </svg>
-                </div>
+            <div class="d-flex justify-content-start gap-2 mb-2">
+              <button id="buttonPlaySongCardHome" class="btn btn-spotify ps-4 pe-4 rounded-pill text-black"
+                type="button">
+                Play
+              </button>
+              <button class="btn ps-4 pe-4 rounded-pill text-white" type="button" style="background-color: black">
+                Save
+              </button>
+              <div class="align-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-three-dots" viewBox="0 0 16 16">
+                  <path
+                    d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                </svg>
               </div>
             </div>
           </div>

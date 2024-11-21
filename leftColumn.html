@@ -20,6 +20,7 @@
     <!-- Insert you stylesheet, if any. -->
     <link href="./assets/css/circular-font.css" rel="stylesheet" />
     <link href="./assets/css/leftColumn.css" rel="stylesheet" />
+    <link href="./assets/css/custom-bootstrap.scss" rel="stylesheet" />
   </head>
   <body>
     <main class="bg-black">
@@ -28,8 +29,8 @@
         class="border-bottom border-1 border-secondary border-opacity-50 bg-black"
       >
         <div>
-          <div class="dots m-2 ps-3 fw-semibold">...</div>
-          <ul class="pt-2 pb-1 ps-4 mb-2 list-unstyled">
+          <div class="dots ps-3 fw-semibold">...</div>
+          <ul class="pt-2 pb-1 ps-3 mb-2 list-unstyled">
             <li class="d-flex pb-1">
               <a
                 href="./index.html"
@@ -55,12 +56,12 @@
             </li>
             <li id="library-link" class="btn d-flex ps-0 pt-0 pb-2">
               <img src="./assets/icons/library.png" />
-              <span class="ps-3 pt-2 text-secondary-emphasis">
+              <span class="ps-3 pt-2 text-secondary-emphasis text-truncate">
                 La tua libreria</span
               >
             </li>
           </ul>
-          <ul class="mb-4 ps-4 pt-1 list-unstyled">
+          <ul class="mb-4 ps-3 pt-1 list-unstyled">
             <li class="d-flex my-3">
               <img src="./assets/icons/add.png" />
               <span class="ps-3 pt-1 text-secondary-emphasis">
@@ -69,7 +70,7 @@
             </li>
             <li class="d-flex my-3">
               <img src="./assets/icons/heart.png" />
-              <span class="ps-3 pt-1 text-secondary-emphasis">
+              <span class="px-3 pt-1 text-secondary-emphasis text-truncate">
                 Brani che ti piacciono</span
               >
             </li>
@@ -84,7 +85,7 @@
       </div>
 
       <!-- elenco playlist -->
-      <div id="bottomColumn" class="overflow-y-scroll bg-black ps-4 h-100">
+      <div id="bottomColumn" class="overflow-y-scroll bg-black ps-3 h-100">
         <ul id="playlists-list" class="pt-3 my-3 list-unstyled"></ul>
       </div>
     </main>

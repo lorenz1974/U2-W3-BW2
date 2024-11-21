@@ -19,9 +19,9 @@ const drawOurPlaylists = () => {
               alt="Playlist Cover"
               style="width: 60px; height: 60px; object-fit: cover;"
             />
-            <div">
-              <h5 class="card-title mb-0" style="font-size:12px">${playlist.playlistName}</h5>
-              <p class="card-text text-muted" style="font-size:10px">${playlist.playlistTracks.length} brani</p>
+            <div>
+              <h5 class="card-title mb-0" id="playList-${playlist.playlistName.replace(' ', '')}">${playlist.playlistName}</h5>
+              <p class="card-text text-muted">${playlist.playlistTracks.length} brani</p>
             </div>
           </div>
         </div>
@@ -82,7 +82,11 @@ const drawPlaylistCards = async () => {
               <div class="col-8">
                 <div class="card-body">
                   <p class="mb-1 text-secondary">Playlist</p>
-                  <h2 id="playListNameHome" class="card-title fs-1">${playlist.playlistName}</h2>
+                  <h2 id="playList-${playlist.playlistName.replace(' ', '')}"
+
+                  class="card-title fs-1">
+                    ${playlist.playlistName}
+                  </h2>
                 </div>
               </div>
 
@@ -133,19 +137,15 @@ const drawPlaylistCards = async () => {
 
                     <button
                       class="d-inline-block rounded-circle p-2 border-0"
+
+                      id="playPlayListPlay-${playlist.playlistName.replace(' ', '')}"
+
                       style="background-color: #272822"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="25"
-                        fill="currentColor"
-                        class="bi bi-play-fill rounded-circle"
-                        viewBox="0 0 16 16"
-                      >
-                      <path
-                      d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"
-                      />
-                      </svg>
+
+                        <i id="playListPlayControl-${playlist.playlistName.replace(' ', '')}" class="fa-solid fa-play my-auto"></i>
+                        <i id="playListPauseControl-${playlist.playlistName.replace(' ', '')}" class="fa-solid fa-pause d-none my-auto"></i>
+
                     </button>
                     </div>
                 </div>
@@ -205,9 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 setTimeout(async () => {
+  drawOurPlaylists()
   try {
-    drawOurPlaylists();
-    await drawPlaylistCards();
+    await drawPlaylistCards()
   } catch (error) {
     _W(1, `Errore durante il fetch dei dati: ${error}`)
   }

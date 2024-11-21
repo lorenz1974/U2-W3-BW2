@@ -9,9 +9,7 @@ const populateMyPlaylist = async (list) => {
 
   for (const id of list) {
     try {
-      playlistsMegaArray.push(
-        await fetchFunction(TRACK_URL + id)
-      );
+      playlistsMegaArray.push(await fetchFunction(TRACK_URL + id));
     } catch (error) {
       _W(error);
     }
@@ -31,23 +29,22 @@ const populateMyLibrary = async () => {
 
 const pupulateMyQuery = async () => {
   // Targhettizzo l'informazione inserita nel form per la ricerca
-  const queryInput = document.getElementById('query');
-  const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
+  const queryInput = document.getElementById("query");
+  const encodedQuery = encodeURIComponent(queryInput.value); // codifico la query per includerla nell'URL
   try {
     fetchArray = await fetchFunction(SEARCH_URL + encodedQuery);
     playlistsMegaArray = fetchArray.data;
-    queryInput.value = ''
+    queryInput.value = "";
   } catch (error) {
     _W(error);
   }
-}
+};
 
 const formatDuration = (duration) => {
   const minutes = Math.floor(duration / 60);
   const seconds = duration % 60;
-  return `${minutes}:${seconds.toString().padStart(2, '0')}`
-}
-
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+};
 
 const drawPlaylistsLinks = () => {
   let playListsLiHTML = "";
@@ -57,9 +54,9 @@ const drawPlaylistsLinks = () => {
       playListsLiHTML += `
             <li>
                 <p id="playList-${playlist.playlistName.replace(
-        " ",
-        ""
-      )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
+                  " ",
+                  ""
+                )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
                     ${playlist.playlistName}
                 </p>
             </li>
@@ -73,8 +70,8 @@ const drawOurLibrary = (albumsArray) => {
   let playlistCardsHTML = "";
   albumsArray.forEach((album) => {
     playlistCardsHTML += `
-        <div class="col">
-          <div id="album-${album.id}" class="card bg-body-tertiary rounded">
+        <div class="col g-2">
+          <div id="album-${album.id}" class="card bg-body-tertiary rounded" style="height:150px;">
             <div class="card-body d-flex align-items-center">
               <img id="albumImage-${album.id}"
                 src="${album.cover}"
@@ -83,8 +80,8 @@ const drawOurLibrary = (albumsArray) => {
                 style="width: 70px; height: 70px; object-fit: cover;"
               />
               <div>
-                <h5 id="albumTitle-${album.id}" class="card-title mb-0">${album.artist.name}</h5>
-                <p id="albumText-${album.id}" class="card-text text-muted">${album.title}</p>
+                <h5 id="albumTitle-${album.id}" class="card-title mb-0" >${album.artist.name}</h5>
+                <p id="albumText-${album.id}" class="card-text text-muted mt-1" style="font-size: 13px;">${album.title}</p>
               </div>
             </div>
           </div>
@@ -102,7 +99,6 @@ const drawOurLibrary = (albumsArray) => {
 // ***********************************************************************
 //
 
-
 // metto l'URL all'interno di una costante per poter essere più facilmente utilizzato
 const SEARCH_URL =
   "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
@@ -118,7 +114,6 @@ const myLibraryID = [
 let libraryArray = [];
 let playlistsMegaArray = [];
 let queryArray = [];
-
 
 const ALBUM_URL = "https://striveschool-api.herokuapp.com/api/deezer/album/";
 const TRACK_URL = "https://striveschool-api.herokuapp.com/api/deezer/track/";
@@ -136,8 +131,7 @@ const spinnerHTML = `
                     </div>
                 </div>
             </div>
-            `
-
+            `;
 
 //
 // ***********************************************************************
@@ -169,7 +163,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     /<footer[^>]*>([\s\S]*?)<\/footer>/i
   )[1];
 
-
   // Targhettizzo il form per prevenire anche la gestione di default del submit che mi resetterebbe i campi
   const form = document.getElementById("columnForm");
 
@@ -189,7 +182,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       _D(1, `targetObject is: ${targetObject}`);
 
       switch (targetType) {
-
         case "playPlayList":
         case "playListPauseControl":
         case "playListPlayControl": {
@@ -230,9 +222,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           try {
             await populateMyPlaylist(tracksPlaylistArray);
             drawPlaylist(targetObject);
-
           } catch (error) {
-            _W(error)
+            _W(error);
           }
           break;
         }
@@ -253,20 +244,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         case "artist":
         case "artistName":
-        case "artistNameList":
-          {
-            drawArtist(targetObject);
-            break;
-          }
+        case "artistNameList": {
+          drawArtist(targetObject);
+          break;
+        }
 
         case "libraryLink": {
           document.getElementById("switchTitle").innerText = "La tua libreria";
-          document.getElementById("ourPlayListsSection").innerHTML = spinnerHTML;
+          document.getElementById("ourPlayListsSection").innerHTML =
+            spinnerHTML;
           try {
-            await populateMyLibrary()
+            await populateMyLibrary();
             drawOurLibrary(libraryArray);
           } catch (error) {
-            _W(error)
+            _W(error);
           }
         }
 
@@ -278,18 +269,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     true
   );
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault()
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
     try {
       await pupulateMyQuery();
       drawPlaylist();
     } catch (error) {
-      _W(error)
+      _W(error);
     }
 
     //   ed a ricerca avvenuta con successo resetto il campo di ricerca
-
-  })
-
+  });
 });

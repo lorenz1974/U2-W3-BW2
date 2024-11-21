@@ -1,8 +1,10 @@
 // Funzione principale per disegnare i dettagli dell'artista
-const drawArtists = async (targetObject) => {
+const drawArtist = async (targetObject) => {
   try {
     // Chiamata API per recuperare i dati dell'artista
-    const artistData = await fetchFunction(`https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}`);
+    const artistData = await fetchFunction(
+      `https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}`
+    )
 
     // HTML dinamico per l'artista
     let artistHTML = `
@@ -34,53 +36,58 @@ const drawArtists = async (targetObject) => {
           <i class="bi bi-three-dots d-none d-sm-block order-5"></i>
         </div>
       </div>
-    `;
+    `
 
-    // Inserimento del contenuto nell'elemento HTML con ID "artist-container"
-    const artistContainer = document.getElementById('artist-container');
-    if (artistContainer) {
-      artistContainer.innerHTML = artistHTML;
-    } else {
-      console.error('Elemento con id "artist-container" non trovato.');
-    }
+    //   // Inserimento del contenuto nell'elemento HTML con ID "artist-container"
+    //   const artistContainer = document.getElementById('artist-container')
+    //   if (artistContainer) {
+    //     artistContainer.innerHTML = artistHTML
+    //   } else {
+    //     console.error('Elemento con id "artist-container" non trovato.')
+    //   }
 
-    // Genero dinamicamente le tracce popolari
-    const tracklistUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}/top?limit=50`;
-    fetchTopTracks(tracklistUrl);
+    //   // Genero dinamicamente le tracce popolari
+    //   const tracklistUrl = `https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}/top?limit=50`
+    //   fetchTopTracks(tracklistUrl)
+    // } catch (error) {
+    //   console.error('Errore', error)
+    // }
+
+    document.getElementById('centralColumn').innerHTML = artistHTML
   } catch (error) {
-    console.error('Errore', error);
+    console.log(error)
   }
-};
 
-async function fetchTopTracks(tracklistUrl) {
-  try {
-    const artistSong = await fetchFunction(tracklistUrl);
+  // async function fetchTopTracks(tracklistUrl) {
+  //   try {
+  //     const artistSong = await fetchFunction(tracklistUrl)
 
-    // Aggiungo ogni traccia al nell'elemento HTML con ID "popular-tracks"
-    const popularTracksContainer = document.getElementById('popular-tracks');
+  //     // Aggiungo ogni traccia al nell'elemento HTML con ID "popular-tracks"
+  //     const popularTracksContainer = document.getElementById('popular-tracks')
 
-    // Generazione dell'HTML per ogni traccia
-    artistSong.data.slice(0, 5).forEach((track, index) => {
-      const trackHTML = `
-        <div class="col-12 text-white d-flex align-items-center p-3 mb-3">
-          <span class="me-3">${index + 1}</span>
-          <img src="${track.album.cover}" alt="${track.title}" class="rounded me-3 my-img" />
-          <div class="flex-grow-1">
-            <p class="m-0">${track.title}</p>
-            <span>${track.rank}</span>
-          </div>
-          <div class="d-flex align-items-center p-3 mb-3">
-            <i class="bi bi-three-dots-vertical d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">${(track.duration / 60).toFixed(2)}</span>
-          </div>
-        </div>
-      `;
-      popularTracksContainer.innerHTML += trackHTML;
-    });
-  } catch (error) {
-    console.error('Errore:', error);
-  }
+  //     // Generazione dell'HTML per ogni traccia
+  //     artistSong.data.slice(0, 5).forEach((track, index) => {
+  //       const trackHTML = `
+  //         <div class="col-12 text-white d-flex align-items-center p-3 mb-3">
+  //           <span class="me-3">${index + 1}</span>
+  //           <img src="${track.album.cover}" alt="${
+  //         track.title
+  //       }" class="rounded me-3 my-img" />
+  //           <div class="flex-grow-1">
+  //             <p class="m-0">${track.title}</p>
+  //             <span>${track.rank}</span>
+  //           </div>
+  //           <div class="d-flex align-items-center p-3 mb-3">
+  //             <i class="bi bi-three-dots-vertical d-block d-sm-none"></i>
+  //             <span class="d-none d-sm-block">${(track.duration / 60).toFixed(
+  //               2
+  //             )}</span>
+  //           </div>
+  //         </div>
+  //       `
+  //       popularTracksContainer.innerHTML += trackHTML
+  //     })
+  //   } catch (error) {
+  //     console.error('Errore:', error)
+  //   }
 }
-
-// Eseguo la funzione con un ID di esempio
-drawArtists('25');

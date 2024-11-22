@@ -1,6 +1,6 @@
 const drawPlaylist = (playListTarget) => {
   _W("drawPlaylist");
-  _W(JSON.stringify(playlistsMegaArray));
+  //_W(JSON.stringify(playlistsMegaArray));
 
   const playListDuration = playlistsMegaArray.reduce(
     (acc, track) => acc + track.duration,
@@ -228,13 +228,14 @@ const drawPlaylist = (playListTarget) => {
             </div>
             <!-- play -->
             <div
+              id="playPlaylistDiv-${playListTarget}"
               class="position-absolute"
               style="top: -20px; bottom: 5px; right: -10px"
             >
-              <button
+              <button id="playPlaylistButton-${playListTarget}"
                 class="d-inline-block rounded-circle p-3 border-0 bg-spotify"
               >
-                <svg
+                <svg  id="playPlaylistImage-${playListTarget}"
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
                   height="40"
@@ -255,9 +256,11 @@ const drawPlaylist = (playListTarget) => {
           <!-- play -->
           <div class="d-inline-block">
             <button
+              id="playPlaylistButtonDesktop-${playListTarget}"
               class="d-inline-block rounded-circle p-2 mb-2 border-0 bg-spotify mt-0"
             >
               <svg
+                id="playPlaylistImageDeskstop-${playListTarget}"
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"

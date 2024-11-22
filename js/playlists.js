@@ -40,21 +40,18 @@ const playlistsArray = [
       "https://static.vecteezy.com/ti/vettori-gratis/p1/4804427-buon-natale-saluto-testo-sfondo-design-natale-pino-elemento-con-colorati-ornamenti-natalizi-per-feste-stagione-decorazione-in-sfondo-verde-illustrazione-vettoriale.jpg",
   },
   {
-    playlistName: "Sanremo playlist",
+    playlistName: "EpiPorn",
     playlistSpotify: false,
     playlistTracks: [
-      774808482, 3003875331, 1575123302, 16739710, 2268734907, 1628347282,
-      2438505425, 2274690477,
+      906616, 2837570, 3891545, 2095988287, 420712602, 68905292,
     ],
     playlistImg:
-      "https://www.rai.it/cropgd/800x400/dl/img/2024/08/19/1724072652011_sanremo-generico-2_slide.jpg",
+      "./assets/imgs/epiporn.png",
   },
   {
     playlistName: "Pippo playlist",
     playlistSpotify: false,
-    playlistTracks: [
-      2613255112, 486239682
-    ],
+    playlistTracks: [2613255112, 486239682],
     playlistImg:
       "https://static.nexilia.it/indiscreto/2014/08/pippo-franco-che-fico.jpg",
   },

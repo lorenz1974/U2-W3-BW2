@@ -1,11 +1,11 @@
 const drawQuery = (playListTarget) => {
-  _W('drawPlaylist')
-  _W(JSON.stringify(playlistsMegaArray))
+  _W("drawPlaylist");
+  _W(JSON.stringify(playlistsMegaArray));
 
   const playListDuration = playlistsMegaArray.reduce(
     (acc, track) => acc + track.duration,
     0
-  )
+  );
 
   let playlistHTML = `
           <section class="d-none d-md-block">
@@ -81,7 +81,7 @@ const drawQuery = (playListTarget) => {
             </div>
           </div>
         </section>
-              `
+              `;
 
   playlistHTML += `
               <section id="albumInfo">
@@ -92,7 +92,7 @@ const drawQuery = (playListTarget) => {
                           <!-- freccia torna in home -->
                           <!-- va aggiunto uno sfondo al div capire se è fattibile usare il tool di Stefano -->
                           <button class="border-0 bg-transparent d-md-none">
-                              <a class="text-light" href="centralColumn.html">
+                              <a class="text-light" href="index.html">
                                   <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       width="40"
@@ -139,7 +139,7 @@ const drawQuery = (playListTarget) => {
         </section >
   
         <section id="songList" class="container mt-4">
-        `
+        `;
 
   playlistHTML += `
                 <section id="icone" class="container mb-3">
@@ -342,7 +342,7 @@ const drawQuery = (playListTarget) => {
           </div>
           <hr class="mt-1" />
         </section>
-          `
+          `;
 
   playlistsMegaArray.forEach((track, index) => {
     trackHTML = `
@@ -364,7 +364,7 @@ const drawQuery = (playListTarget) => {
   
                   <div class="col-3 text-end d-none d-md-block">
                       <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString(
-                        'it-IT'
+                        "it-IT"
                       )}</p>
                   </div>
   
@@ -388,13 +388,13 @@ const drawQuery = (playListTarget) => {
                       </svg>
                   </div>
                   </div>
-                  `
-    playlistHTML += trackHTML
-  })
+                  `;
+    playlistHTML += trackHTML;
+  });
 
   playlistHTML += `
               </section>
-              `
+              `;
 
-  document.getElementById('centralColumn').innerHTML = playlistHTML
-}
+  document.getElementById("centralColumn").innerHTML = playlistHTML;
+};

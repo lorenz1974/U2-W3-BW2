@@ -191,7 +191,9 @@ const drawPlaylistCards = async () => {
 //
 
 document.addEventListener('DOMContentLoaded', () => {
+
   setTimeout(async () => {
+
     const searchButton = document.getElementById('searchMobile')
     const formSearch = document.getElementById('formSearch')
     const closeButton = document.getElementById('closeButton')
@@ -202,6 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
       formSearch.style.display = 'flex'
       playListsSearch.style.display = 'block'
       ultraBigSection.style.display = 'none'
+
+        const articoli = document.querySelectorAll('.articolo');
+      
+        articoli.forEach((articolo, index) => {
+          setTimeout(() => {
+            articolo.classList.add('visible');
+          }, index * 200);
+            articolo.classList.remove('visible');
+        });
     })
 
     closeButton.addEventListener('click', function () {

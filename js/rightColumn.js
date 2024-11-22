@@ -31,14 +31,14 @@ setTimeout(() => {
     const introduction = document.getElementById("introduction")
 
   openButton.addEventListener("click", function () {
-    finestra.style.display = "block"
     introduction.style.display = "none"
+    finestra.style.display = "block"
   })
 
   closeButton.addEventListener("click", function () {
     finestra.style.display = "none"
-    introduction.style.display = "flex"
     serchFriends.style.display = "none"
+    introduction.style.display = "flex"
   })
 
   aggiungiAmici.addEventListener("click", function () {

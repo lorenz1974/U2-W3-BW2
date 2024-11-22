@@ -95,7 +95,7 @@ const drawPlaylist = (playListTarget) => {
                         <!-- freccia torna in home -->
                         <!-- va aggiunto uno sfondo al div capire se è fattibile usare il tool di Stefano -->
                         <button class="border-0 bg-transparent d-md-none">
-                            <a class="text-light" href="centralColumn.html">
+                            <a class="text-light" href="index.html">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="40"
@@ -126,11 +126,13 @@ const drawPlaylist = (playListTarget) => {
                             <h1 id="albumName" class="pb-2 pb-md-5">${playListname}</h1>
                             <img
                                 id="artistPic"
-                                src="${playlistsMegaArray[0].contributors[0]
-      .picture_small
-    }"
-                                alt="${playlistsMegaArray[0].contributors[0].name
-    }"
+                                src="${
+                                  playlistsMegaArray[0].contributors[0]
+                                    .picture_small
+                                }"
+                                alt="${
+                                  playlistsMegaArray[0].contributors[0].name
+                                }"
                                 class="img-fluid rounded-circle d-inline-block me-2"
                                 style="width: 30px"
                             />
@@ -369,22 +371,24 @@ const drawPlaylist = (playListTarget) => {
                 <div
                     class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
                 >
-                    <p id="songNameList" class="mb-0 fw-bold">${track.title_short
-      }</p>
-                    <p id="artistNameList-${track.artist.id}" class="fs-7">${track.artist.name
-      }</p>
+                    <p id="songNameList" class="mb-0 fw-bold">${
+                      track.title_short
+                    }</p>
+                    <p id="artistNameList-${track.artist.id}" class="fs-7">${
+      track.artist.name
+    }</p>
                 </div>
 
                 <div class="col-3 text-end d-none d-md-block">
                     <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString(
-        "it-IT"
-      )}</p>
+                      "it-IT"
+                    )}</p>
                 </div>
 
                 <div class="col col-2 text-end mb-0 d-none d-md-block">
                     <p id="songDurationList" class="mb-0 mt-2">${formatDuration(
-        track.duration
-      )}</p>
+                      track.duration
+                    )}</p>
                 </div>
                 <div class="col col-2 text-end mb-0 mt-2 d-md-none">
                     <svg

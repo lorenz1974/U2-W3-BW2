@@ -10,90 +10,49 @@ const restriveTrackInfo = async (trackId) => {
   currentTrackData = await fetchFunction(apiBaseUrl + "track/" + trackId);
   // Rimuove una sbrodolata di roba che non serve a nulla
   currentTrackData.available_countries = undefined;
-  _D(2, currentTrackData, `trackId: ${trackId}`);
+  _D(2, currentTrackData, `restriveTrackInfo - trackId: ${trackId}`);
 
-  trackId !== 99710032
-    ? (currentTrack = new Audio(currentTrackData.preview))
-    : null;
-
-  // Se la tracck che sto per riprodurre è diversa da quella che sto già riproducendo
-  // Aggiorno i dati della traccia nel player
-  document.getElementById("mobileTrackTitle").innerHTML =
-    currentTrackData.title;
-  document.getElementById("desktopTrackTitle").innerHTML =
-    currentTrackData.title;
-  document.getElementById("desktopTrackArtist").innerHTML =
-    currentTrackData.artist.name;
-  document.getElementById("desktopTrackImage").src =
-    currentTrackData.album.cover_medium;
-
-  document.getElementById("songTitleHome").innerHTML = currentTrackData.title;
-
-  // Modifica l'album nella home page
-  document.getElementById("albumHome").innerHTML = currentTrackData.album.title;
-  document.getElementById("songTitleHome").innerHTML = currentTrackData.title;
-  document.getElementById("artistHome").innerHTML =
-    currentTrackData.artist.name;
-  document.getElementById("imgSongHome").src =
-    currentTrackData.album.cover_medium;
 };
 
-// Manda in funzione il player con le informazioni della traccia passata come parametro
-// Se le informazioni della traccia ono già presenti nell'aray globale, non le recupera di nuovo
-const playFunction = () => {
-  _D(1, `playFunction - trackId: ${currentTrackData.id}`);
+// Manda in play o in pausa la traccia corrente
+const playFunction = async () => {
 
   if (isPlaying) {
     // Controlli desktop
-    document.getElementById("playControl").classList.remove("d-none");
-    document.getElementById("pauseControl").classList.add("d-none");
+    document.getElementById("playControl").classList.remove("d-none"); // Nasconde il pulsante play
+    document.getElementById("pauseControl").classList.add("d-none"); // Mostra il pulsante pausa
     // Controlli mobile
-    document.getElementById("mobilePlayControl").classList.remove("d-none");
-    document.getElementById("mobilePauseControl").classList.add("d-none");
-    // Controlli card
-    document
-      .getElementById("buttonPlaySongCardHome")
-      .classList.remove("btn-danger");
-    document
-      .getElementById("buttonPlaySongCardHome")
-      .classList.add("btn-spotify");
-    document.getElementById("buttonPlaySongCardHome").innerHTML = "Play";
-    isPlaying = false;
-    _D(1, `isPlaying : ${isPlaying}`);
+    document.getElementById("mobilePlayControl").classList.remove("d-none"); // Nasconde il pulsante play
+    document.getElementById("mobilePauseControl").classList.add("d-none"); // Mostra il pulsante pausa
 
     currentTrack.pause();
-  } else {
-    // Controlli desktop
-    document.getElementById("playControl").classList.add("d-none");
-    document.getElementById("pauseControl").classList.remove("d-none");
-    // Controlli mobile
-    document.getElementById("mobilePlayControl").classList.add("d-none");
-    document.getElementById("mobilePauseControl").classList.remove("d-none");
-    // Controlli card
-    document
-      .getElementById("buttonPlaySongCardHome")
-      .classList.remove("btn-spotify");
-    document
-      .getElementById("buttonPlaySongCardHome")
-      .classList.add("btn-danger");
-    document.getElementById("buttonPlaySongCardHome").innerHTML = "Stop";
-    isPlaying = true;
-    _D(1, `isPlaying : ${isPlaying}`);
 
-    lastTrackId = currentTrackData.id;
+  } else {
+
+    // Controlli desktop
+    document.getElementById("pauseControl").classList.remove("d-none"); // Mostra il pulsante pausa
+    document.getElementById("playControl").classList.add("d-none"); // Nasconde il pulsante play
+    // Controlli mobile
+    document.getElementById("mobilePauseControl").classList.remove("d-none"); // Mostra il pulsante pausa
+    document.getElementById("mobilePlayControl").classList.add("d-none"); // Nasconde il pulsante play
+
     // Lancio la traccia
     currentTrack.play();
   }
 };
 
+
 //Aggiorno i dati del player leggendo i dati della traccia corrente
 const updatePlayerBar = () => {
   _D(1, `updatePlayerBar`);
 
-  const currentTime = currentTrack.currentTime;
   const duration = currentTrack.duration;
-  _D(3, `currentTime: ${currentTime}`);
+  // Se mon è valorizzato esco (può succedere perché la funzione comincia l'aggiornamento della progress bar prima che la traccia sia pronta)
+  if (isNaN(duration)) { return }
+
+  const currentTime = currentTrack.currentTime;
   _D(3, `duration: ${duration}`);
+  _D(3, `currentTime: ${currentTime}`);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -111,15 +70,163 @@ const updatePlayerBar = () => {
   _D(2, `progress: ${progress}`);
 };
 
-const playItAgainSam = async (trackId) => {
-  try {
-    await restriveTrackInfo(trackId);
+// Aggiorna le info della traccia corrente sul player
+const updatePlayerInfo = () => {
+  //Aggiorna l'immagine dell'album della traccia corrente
+  document.getElementById('desktopTrackImage').src = currentTrackData.album.cover_medium;
+  document.getElementById('desktopTrackTitle').innerHTML = currentTrackData.title
+  document.getElementById('desktopTrackArtist').innerHTML = currentTrackData.artist.name
+  // Aggiorna il titolo sul mobile
+  document.getElementById('mobileTrackTitle').innerHTML = currentTrackData.title
+}
+
+
+//Funzione principale del player
+const playItAgainSam = async () => {
+  _W(`playItAgainSam - trackId - ${trackId}`);
+  _W(`playItAgainSam - lastTrackId - ${lastTrackId}`);
+
+  //Se sto suonando metto in pausa
+  if (isPlaying) {
+    _W('Sto suonando, metto in pausa');
+    currentTrack.pause();
+    // Chiamo la funzione che aggiorna i controlli
     playFunction();
-    updatePlayerBar();
-  } catch (error) {
-    console.error("Errore durante l'esecuzione delle funzioni:", error);
+    // Setto la variabile che controlla se la traccia è in play
+    isPlaying = false;
+
+  } else { // Se non sto suonando...
+    _W('Non sto suonando, metto in play');
+    // Verifico se è fornito un trackId
+    if (trackId === lastTrackId) {
+      _W('trackId uguale a lastTrackId');
+      // Se il trackId è fornito ed è uguale al lastTrackId (cioè la traccia che sto già suonando)
+      // se è vero allora l'utante ha semplicemente ridato play alla traccia corrente
+      playFunction();
+      updatePlayerBar();
+      // Setto la variabile che controlla se la traccia è in play
+      isPlaying = true;
+    }
+    // Se il trackId è fornito ma è diverso dal lastTrackId ovvero
+    // e' arrivata una richiesta di cambio traccia quindi devo recuperare le informazioni della nuova traccia
+    // e poi mandarla in play
+    else if (trackId !== lastTrackId) {
+      _W('trackId diverso da lastTrackId');
+      try {
+        await restriveTrackInfo(trackId)
+        // _W(3, currentTrackData, 'playItAgainSam - CurrentTrackData');
+        currentTrack = new Audio(currentTrackData.preview);
+        currentTrack.preload = "auto";
+        currentTrack.load();
+        await playFunction();
+        updatePlayerInfo();
+        updatePlayerBar()
+        lastTrackId = trackId;
+        isPlaying = true;
+      }
+      catch (error) {
+        console.error("Errore durante il fetch della traccia:", error);
+      }
+
+    }
+
+    // Aggiungo l'evento che scatena l'aggiornamento della progress bar
+    // DOPOOOOOOOOO Aver definito la currentTrack
+    currentTrack.addEventListener("timeupdate", () => {
+      updatePlayerBar();
+    });
+
+    // Evento sullo Repeat
+    const repeatControl = document.getElementById("repeatControl");
+    repeatControl.addEventListener("click", () => {
+      if (repeatControl.classList.contains("active")) {
+        repeatControl.classList.remove("active");
+        repeatStatus = false;
+        _D(1, `repeatStatus: ${repeatControl}`);
+
+        currentTrack.loop = false;
+      } else {
+        repeatControl.classList.add("active");
+        repeatStatus = true;
+        _D(1, `repeatStatus: ${repeatControl}`);
+
+        currentTrack.loop = true;
+      }
+    });
   }
 };
+
+
+// Setta le variabili trackId, nextTrackId e lastTrackId al momento in cui viene chiamato il play di una plylist
+const setPreviousNextControl = () => {
+  _W(`setPreviousNextControl - megaArrayIndex: ${megaArrayIndex}`);
+
+  if (megaArrayIndex === 0) {
+    nextTrackId = playlistsMegaArray[megaArrayIndex + 1].id;
+    previousTrackId = playlistsMegaArray[playlistsMegaArray.length - 1].id;
+  } else {
+    nextTrackId = playlistsMegaArray[megaArrayIndex + 1].id;
+    previousTrackId = playlistsMegaArray[megaArrayIndex].id;
+  }
+
+  _W(`setPreviousNextControl - nextTrackId: ${nextTrackId}`);
+  _W(`setPreviousNextControl - previousTrackId: ${previousTrackId}`);
+
+  // Assegna i controlli ai tasti next e previous
+  // previousControl
+  document.getElementById('previusControl').addEventListener('click', () => {
+    if (megaArrayIndex === 0) {
+      megaArrayIndex = playlistsMegaArray.length - 1;
+    }
+    else {
+      megaArrayIndex--;
+    }
+    // Setto il nuovo ID della traccia
+    trackId = previousTrackId;
+    // Setto i controlli next e previous
+    setPreviousNextControl()
+    // Metto in pausa la traccia corrente
+    currentTrack.pause();
+    // Resetto la traccia corrente
+    currentTrack = null
+    // Lancio la nuova traccia
+    playItAgainSam()
+  })
+
+  // nextControl
+  document.getElementById('nextControl').addEventListener('click', () => {
+    if (megaArrayIndex === playlistsMegaArray.length - 1) {
+      megaArrayIndex = 0;
+    }
+    else {
+      megaArrayIndex++;
+    }
+    // Setto il nuovo ID della traccia
+    trackId = previousTrackId;
+    // Setto i controlli next e previous
+    setPreviousNextControl()
+    // Metto in pausa la traccia corrente
+    currentTrack.pause();
+    // Resetto la traccia corrente
+    currentTrack = null
+    // Lancio la nuova traccia
+    playItAgainSam()
+  })
+
+}
+
+
+// Esegue la randomizzazione delle playlist
+const shufflePlayList = () => {
+  for (let i = playlistsMegaArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [playlistsMegaArray[i], playlistsMegaArray[j]] = [playlistsMegaArray[j], playlistsMegaArray[i]];
+  }
+  setPlayListToPlay();
+};
+
+
+
 //
 // ***********************************************************************
 //
@@ -129,14 +236,17 @@ const playItAgainSam = async (trackId) => {
 //
 
 const apiBaseUrl = "https://striveschool-api.herokuapp.com/api/deezer/";
-const autoPlay = false;
+
 
 let currentTrackData; // Inizializza la variabile che conterrà i dati della traccia corrente recuperati tramite il fetching dell'api
 let shuffleStatus = false;
 let repeatStatus = false;
-let isPlaying = true;
-let currentTrack = new Audio("./test/player.mp3");
+let isPlaying = false;
+let currentTrack;
+let trackId = 64309686;
 let lastTrackId = 0;
+
+let megaArrayIndex = 0;
 
 // https://striveschool-api.herokuapp.com/api/deezer/album/75621062
 // https://striveschool-api.herokuapp.com/api/deezer/artist/412
@@ -151,10 +261,9 @@ let lastTrackId = 0;
 // ***********************************************************************
 //
 
-//document.addEventListener('DOMContentLoaded', () => {
 
 setTimeout(async () => {
-  // COntrollo del volume
+  // Controllo del volume
   const volumeControl = document.getElementById("volumeControl");
   volumeControl.addEventListener("input", () => {
     const volumeValue = volumeControl.value;
@@ -206,23 +315,6 @@ setTimeout(async () => {
     }
   });
 
-  // Evento sullo Repeat
-  const repeatControl = document.getElementById("repeatControl");
-  repeatControl.addEventListener("click", () => {
-    if (repeatControl.classList.contains("active")) {
-      repeatControl.classList.remove("active");
-      repeatStatus = false;
-      _D(1, `repeatStatus: ${repeatControl}`);
-
-      currentTrack.loop = false;
-    } else {
-      repeatControl.classList.add("active");
-      repeatStatus = true;
-      _D(1, `repeatStatus: ${repeatControl}`);
-
-      currentTrack.loop = true;
-    }
-  });
 
   // Evento sul PLAY
   [
@@ -231,14 +323,12 @@ setTimeout(async () => {
     "buttonPlaySongCardHome",
   ].forEach((element) => {
     document.getElementById(element).addEventListener("click", async () => {
-      await playFunction(99710032);
+      playItAgainSam();
     });
   });
 
   // Aggiunge il controllo sulla progress bar
-  const playerControlProgressBar = document.getElementById(
-    "playerControlProgressBar"
-  );
+  const playerControlProgressBar = document.getElementById('playerControlProgressBar');
   playerControlProgressBar.addEventListener("click", (e) => {
     _D(2, `e.offsetX: ${e.offsetX}`);
     currentTrack.currentTime =
@@ -246,13 +336,17 @@ setTimeout(async () => {
       (e.offsetX / playerControlProgressBar.clientWidth);
   });
 
-  // Evento scatenato dall'aggiornamento del controllo audio
-  currentTrack.addEventListener("timeupdate", () => {
-    updatePlayerBar();
-  });
 
-  // Al caricamento della pagina popolo il player con la prima traccia ma non la lancio
-  await playItAgainSam(99710032);
-}, 500);
 
-//});
+  // Selezione un brano a caso dalle playlist per popolare il player
+  let rndPlayList = playlistsArray[Math.floor(Math.random() * playlistsArray.length)].playlistTracks;
+  trackId = rndPlayList[Math.floor(Math.random() * rndPlayList.length)];
+
+  try {
+    await restriveTrackInfo(trackId);
+    updatePlayerInfo();
+  } catch (error) {
+    console.error(error);
+  }
+
+}, 1500);

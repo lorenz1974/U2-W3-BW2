@@ -271,14 +271,39 @@ document.addEventListener('DOMContentLoaded', async () => {
         case 'playPlaylistImage':
           {
             _W('Manda in play la playlist: ' + targetObject)
-            megaArrayIndex = 0
+            if (currentTrack && !currentTrack.paused) {
+              currentTrack.pause()
+            }
+            isPlaying = false
+            playlistIndex = 0
             setPreviousNextControl()
-            trackId = playlistsMegaArray[megaArrayIndex].id
+            trackId = playlistsMegaArray[playlistIndex].id
             playItAgainSam()
             break
           }
 
+        // Controlli del player
+        case 'nextControl': {
+          setPreviousNextControl()
+          playlistIndex < playlistsMegaArray.length ? playlistIndex++ : playlistIndex = 0
+          currentTrack.pause()
+          currentTrack = null
+          trackId = nextTrackId
+          isPlaying = false
+          playItAgainSam()
+          break
+        }
 
+        case 'previousControl': {
+          setPreviousNextControl()
+          playlistIndex === 0 ? playlistIndex = playlistsMegaArray.length - 1 : playlistIndex--
+          currentTrack.pause()
+          currentTrack = null
+          trackId = previousTrackId
+          isPlaying = false
+          playItAgainSam()
+          break
+        }
 
 
         default: {

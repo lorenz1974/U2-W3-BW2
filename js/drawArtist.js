@@ -4,11 +4,11 @@ const drawArtist = async (targetObject) => {
     // Chiamata API per recuperare i dati dell'artista
     const artistData = await fetchFunction(
       `https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}`
-    );
+    )
     const artistTracksData = await fetchFunction(
       `https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}/top?limit=50`
-    );
-    _D(1, artistTracksData);
+    )
+    _D(1, artistTracksData)
 
     let artistHTML = `
     <section class="d-none d-md-block">
@@ -84,12 +84,12 @@ const drawArtist = async (targetObject) => {
       </div>
     </div>
   </section>
-        `;
+        `
 
     artistHTML += `
       <div
         class="position-relative"
-        style="height: 400px; background-image: url(${artistData.picture_xl}); background-size: cover; background-position: center 30%;"
+        style="min-height: 400px; background-image: url(${artistData.picture_xl}); background-size: cover; background-position: center 30%; "
       >
       
         <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
@@ -147,9 +147,9 @@ const drawArtist = async (targetObject) => {
             </div>
       </div>
       
-    `;
-    const tracksData = artistTracksData.data;
-    const loopNumber = Math.min(5, tracksData.length);
+    `
+    const tracksData = artistTracksData.data
+    const loopNumber = Math.min(5, tracksData.length)
     for (let i = 0; i < loopNumber; i++) {
       trackHTML = `
             <div class="row g-0 ms-2 me-2 mb-0">
@@ -170,7 +170,7 @@ const drawArtist = async (targetObject) => {
 
                 <div class="col-3 text-end d-none d-md-block">
                     <p id="playedCounter" class="mb-0 mt-2">
-                      ${tracksData[i].id.toLocaleString("it-IT")}
+                      ${tracksData[i].id.toLocaleString('it-IT')}
                     </p>
                 </div>
 
@@ -194,8 +194,8 @@ const drawArtist = async (targetObject) => {
                     </svg>
                 </div>
                 </div>
-                `;
-      artistHTML += trackHTML;
+                `
+      artistHTML += trackHTML
     }
 
     //   // Inserimento del contenuto nell'elemento HTML con ID "artist-container"
@@ -213,9 +213,9 @@ const drawArtist = async (targetObject) => {
     //   console.error('Errore', error)
     // }
 
-    document.getElementById("centralColumn").innerHTML = artistHTML;
+    document.getElementById('centralColumn').innerHTML = artistHTML
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 
   // async function fetchTopTracks(tracklistUrl) {
@@ -250,4 +250,4 @@ const drawArtist = async (targetObject) => {
   //   } catch (error) {
   //     console.error('Errore:', error)
   //   }
-};
+}

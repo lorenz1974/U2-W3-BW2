@@ -27,13 +27,15 @@ const populateMyLibrary = async () => {
   }
 }
 
-const pupulateMyQuery = async () => {
+const populateMyQuery = async () => {
   // Targhettizzo l'informazione inserita nel form per la ricerca
   const queryInput = document.getElementById('query')
   const encodedQuery = encodeURIComponent(queryInput.value) // codifico la query per includerla nell'URL
   try {
     fetchArray = await fetchFunction(SEARCH_URL + encodedQuery)
     playlistsMegaArray = fetchArray.data
+    searchInput = queryInput.value
+    queryInput.value = ''
   } catch (error) {
     _W(error)
   }
@@ -270,12 +272,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     e.preventDefault()
 
     try {
-      await pupulateMyQuery()
-      drawPlaylist()
+      await populateMyQuery()
+      drawQuery(searchInput)
     } catch (error) {
       _W(error)
     }
 
     //   ed a ricerca avvenuta con successo resetto il campo di ricerca
   })
+
+  // formSearch.addEventListener('submit', async (e) => {
+  //   e.preventDefault()
+
+  //   try {
+  //     await populateMyQuery()
+  //     drawQuery(searchInput)
+  //   } catch (error) {
+  //     _W(error)
+  //   }
+
+  //   ed a ricerca avvenuta con successo resetto il campo di ricerca
+  // })
 })

@@ -153,29 +153,30 @@ const drawArtist = async (targetObject) => {
     for (let i = 0; i < loopNumber; i++) {
       trackHTML = `
             <div class="row g-0 ms-2 me-2 mb-0">
-                <div class="col col-1 d-none d-md-block">
-                    <p id="songNumber" class="mt-2 mb-0">${i + 1}</p>
+                <div class="d-flex justify-content-end col col-1 d-none d-md-block">
+                    <p id="songNumber" class="text-end mb-0 pe-3">${i + 1}</p>
                 </div>
 
                 <div
-                    class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
+                    class="col col-10 col-md-6 d-flex align-content-center justify-content-start"
                 >
+                <img class="h-50 pe-3" src="${
+                  tracksData[i].album.cover_small
+                }" alt="album-mini-cover">
                     <p id="songNameList" class="mb-0 fw-bold">${
                       tracksData[i].title_short
                     }</p>
-                    <p id="artistNameList" class="fs-7">${
-                      tracksData[i].artist.name
-                    }</p>
+
                 </div>
 
                 <div class="col-3 text-end d-none d-md-block">
-                    <p id="playedCounter" class="mb-0 mt-2">
+                    <p id="playedCounter" class="mb-0 ">
                       ${tracksData[i].id.toLocaleString('it-IT')}
                     </p>
                 </div>
 
                 <div class="col col-2 text-end mb-0 d-none d-md-block">
-                    <p id="songDurationList" class="mb-0 mt-2">
+                    <p id="songDurationList" class="mb-0 ">
                     ${formatDuration(tracksData[i].duration)}
                     </p>
                 </div>

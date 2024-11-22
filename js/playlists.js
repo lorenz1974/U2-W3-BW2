@@ -46,7 +46,7 @@ const playlistsArray = [
       906616, 2837570, 3891545, 2095988287, 420712602, 68905292,
     ],
     playlistImg:
-      "./assets/imgs/epipop.png",
+      "./assets/imgs/epiporn.png",
   },
   {
     playlistName: "Pippo playlist",

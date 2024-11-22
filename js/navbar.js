@@ -10,7 +10,7 @@ const restriveTrackInfo = async (trackId) => {
   currentTrackData = await fetchFunction(apiBaseUrl + "track/" + trackId);
   // Rimuove una sbrodolata di roba che non serve a nulla
   currentTrackData.available_countries = undefined;
-  _D(2, currentTrackData, `restriveTrackInfo - trackId: ${trackId}`);
+  //_D(2, currentTrackData, `restriveTrackInfo - trackId: ${trackId}`);
 
 };
 
@@ -37,6 +37,7 @@ const playFunction = async () => {
     document.getElementById("mobilePlayControl").classList.add("d-none"); // Nasconde il pulsante play
 
     // Lancio la traccia
+    currentTrack.volume = volumeValue;
     currentTrack.play();
   }
 };
@@ -44,7 +45,7 @@ const playFunction = async () => {
 
 //Aggiorno i dati del player leggendo i dati della traccia corrente
 const updatePlayerBar = async () => {
-  _D(1, `updatePlayerBar`);
+  //_D(1, `updatePlayerBar`);
 
   const duration = currentTrack.duration;
   // Se mon è valorizzato esco (può succedere perché la funzione comincia l'aggiornamento della progress bar prima che la traccia sia pronta)
@@ -161,20 +162,39 @@ const playItAgainSam = async () => {
 const setPreviousNextControl = () => {
   _W(`setPreviousNextControl - megaArrayIndex: ${megaArrayIndex}`);
 
+  let nextTrackId = 0
+  let previousTrackId = 0
+  let nextTrackTitle = ''
+  let previousTrackTitle = ''
+  let playListLength = playlistsMegaArray.length
+
   if (megaArrayIndex === 0) {
     nextTrackId = playlistsMegaArray[megaArrayIndex + 1].id;
-    previousTrackId = playlistsMegaArray[playlistsMegaArray.length - 1].id;
-  } else {
+    nextTrackTitle = playlistsMegaArray[megaArrayIndex + 1].title_short;
+
+    previousTrackId = playlistsMegaArray[playListLength - 1].id;
+    previousTrackTitle = playlistsMegaArray[playListLength - 1].title_short;
+
+  }
+  else {
     nextTrackId = playlistsMegaArray[megaArrayIndex + 1].id;
-    previousTrackId = playlistsMegaArray[megaArrayIndex].id;
+    previousTrackId = playlistsMegaArray[megaArrayIndex - 1].id;
+
+    nextTrackTitle = playlistsMegaArray[megaArrayIndex + 1].title_short;
+    previousTrackTitle = playlistsMegaArray[megaArrayIndex - 1].title_short;
   }
 
-  _W(`setPreviousNextControl - nextTrackId: ${nextTrackId}`);
-  _W(`setPreviousNextControl - previousTrackId: ${previousTrackId}`);
+  _W(`setPreviousNextControl - nextTrackId: ${nextTrackId} - ${nextTrackTitle}`);
+  _W(`setPreviousNextControl - previousTrackId: ${previousTrackId} - ${previousTrackTitle}`);
+
+  // Rimuovo i controlli precedentemente assegnati
+  document.getElementById('previousControl').removeEventListener('click', () => { });
+  document.getElementById('nextControl').removeEventListener('click', () => { });
+
 
   // Assegna i controlli ai tasti next e previous
   // previousControl
-  document.getElementById('previusControl').addEventListener('click', () => {
+  document.getElementById('previousControl').addEventListener('click', () => {
     if (megaArrayIndex === 0) {
       megaArrayIndex = playlistsMegaArray.length - 1;
     }
@@ -187,6 +207,7 @@ const setPreviousNextControl = () => {
     setPreviousNextControl()
     // Metto in pausa la traccia corrente
     currentTrack.pause();
+    isPlaying = false;
     // Resetto la traccia corrente
     currentTrack = null
     // Lancio la nuova traccia
@@ -202,11 +223,12 @@ const setPreviousNextControl = () => {
       megaArrayIndex++;
     }
     // Setto il nuovo ID della traccia
-    trackId = previousTrackId;
+    trackId = nextTrackId;
     // Setto i controlli next e previous
     setPreviousNextControl()
     // Metto in pausa la traccia corrente
     currentTrack.pause();
+    isPlaying = false;
     // Resetto la traccia corrente
     currentTrack = null
     // Lancio la nuova traccia
@@ -245,6 +267,7 @@ let isPlaying = false;
 let currentTrack;
 let trackId = 64309686;
 let lastTrackId = 0;
+let volumeValue = 0.5;
 
 let megaArrayIndex = 0;
 
@@ -266,7 +289,7 @@ setTimeout(async () => {
   // Controllo del volume
   const volumeControl = document.getElementById("volumeControl");
   volumeControl.addEventListener("input", () => {
-    const volumeValue = volumeControl.value;
+    volumeValue = volumeControl.value;
     const volume0 = document.getElementById("volume-0");
     const volume25 = document.getElementById("volume-25");
     const volume50 = document.getElementById("volume-50");
@@ -345,6 +368,13 @@ setTimeout(async () => {
   try {
     await restriveTrackInfo(trackId);
     updatePlayerInfo();
+
+    // Aggiorno i dati del brano nella home
+    document.getElementById('imgSongHome').src = currentTrackData.album.cover_medium;
+    document.getElementById('albumHome').innerHTML = currentTrackData.album.title;
+    document.getElementById('songTitleHome').innerHTML = currentTrackData.title_short;
+    document.getElementById('artistHome').innerHTML = currentTrackData.artist.name;
+
   } catch (error) {
     console.error(error);
   }

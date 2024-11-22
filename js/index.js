@@ -271,8 +271,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         case 'playPlaylistImage':
           {
             _W('Manda in play la playlist: ' + targetObject)
+            megaArrayIndex = 0
             setPreviousNextControl()
-            trackId = playlistsMegaArray[0].id
+            trackId = playlistsMegaArray[megaArrayIndex].id
             playItAgainSam()
             break
           }

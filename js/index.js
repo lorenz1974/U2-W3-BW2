@@ -55,9 +55,9 @@ const drawPlaylistsLinks = () => {
       playListsLiHTML += `
             <li>
                 <p id="playList-${playlist.playlistName.replace(
-                  ' ',
-                  ''
-                )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
+        ' ',
+        ''
+      )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
                     ${playlist.playlistName}
                 </p>
             </li>
@@ -259,6 +259,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             _W(error)
           }
         }
+
+        case 'playPlaylistButtonDesktop':
+        case 'playPlaylistImageDeskstop':
+        case 'playPlaylistDiv':
+        case 'playPlaylistButton':
+        case 'playPlaylistImage':
+          {
+            _W('Manda in play la playlist: ' + targetObject)
+            setPreviousNextControl()
+            trackId = playlistsMegaArray[0].id
+            playItAgainSam()
+            break
+          }
+
+
+
 
         default: {
           break

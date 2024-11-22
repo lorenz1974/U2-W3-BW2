@@ -79,7 +79,7 @@ const drawOurLibrary = (albumsArray) => {
                 style="width: 70px; height: 70px; object-fit: cover;"
               />
               <div>
-                <h5 id="albumTitle-${album.id}" class="card-title fs-6 mb-0" >${album.artist.name}</h5>
+                <h5 id="artistName-${album.artist.id}" class="card-title fs-6 mb-0" >${album.artist.name}</h5>
                 <p id="albumText-${album.id}" class="card-text text-muted fs-7 mt-1" style="font-size: 13px;">${album.title}</p>
               </div>
             </div>

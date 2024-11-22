@@ -74,10 +74,10 @@ const updatePlayerBar = async () => {
 const updatePlayerInfo = () => {
   //Aggiorna l'immagine dell'album della traccia corrente
   document.getElementById('desktopTrackImage').src = currentTrackData.album.cover_medium;
-  document.getElementById('desktopTrackTitle').innerHTML = currentTrackData.title
+  document.getElementById('desktopTrackTitle').innerHTML = currentTrackData.title_short
   document.getElementById('desktopTrackArtist').innerHTML = currentTrackData.artist.name
   // Aggiorna il titolo sul mobile
-  document.getElementById('mobileTrackTitle').innerHTML = currentTrackData.title
+  document.getElementById('mobileTrackTitle').innerHTML = currentTrackData.title_short
 }
 
 

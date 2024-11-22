@@ -4,6 +4,8 @@ const drawAlbum = async (targetObject) => {
       `https://striveschool-api.herokuapp.com/api/deezer/album/${targetObject}`
     )
 
+    let playListTarget = albumData.id
+
     let albumHTML = `
         <section class="d-none d-md-block">
         <!-- barra con bottoni e utente -->
@@ -107,45 +109,40 @@ const drawAlbum = async (targetObject) => {
                             </a>
                         </button>
                         <!-- copertina -->
-                        <img id="albumCover" src="${
-                          albumData.cover_medium
-                        }" alt="" />
+                        <img id="albumCover" src="${albumData.cover_medium
+      }" alt="" />
                     </div>
                     <div class="col-12 col-md-7 p-md-4 pb-md-0">
                         <!-- info album -->
                         <div class="ps-4 ps-md-0">
                             <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">ALBUM</p>
-                            <h1 id="albumName" class="pb-2 pb-md-5">${
-                              albumData.title
-                            }</h1>
+                            <h1 id="albumName" class="pb-2 pb-md-5">${albumData.title
+      }</h1>
                             <img
                                 id="artistPic"
-                                src="${
-                                  albumData.contributors[0].picture_medium
-                                }"
+                                src="${albumData.contributors[0].picture_medium
+      }"
                                 alt=""
                                 class="img-fluid rounded-circle d-inline-block me-2"
                                 style="width: 30px"
                             />
-                            <h6 id="artistName-${
-                              albumData.contributors[0].id
-                            }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
+                            <h6 id="artistName-${albumData.contributors[0].id
+      }" class="d-inline-block mb-3 mb-md-4 mt-md-5">
                                 ${albumData.contributors[0].name}
                             </h6>
                             <p class="fw-semibold mb-4">
                                 Anno di uscita:
                                 <span id="albumYear" class="fw-semibold">${albumData.release_date.slice(
-                                  0,
-                                  4
-                                )}</span> ·
+        0,
+        4
+      )}</span> ·
                                 <span class="d-none d-md-inline-block" id="numberOfSongs"
-                                > Numero tracce: ${
-                                  albumData.nb_tracks
-                                } · </span>
+                                > Numero tracce: ${albumData.nb_tracks
+      } · </span>
                                 <span class="d-none d-md-inline-block" id="duration"
                                 > Durata: ${formatDuration(
-                                  albumData.duration
-                                )} Minuti</span>
+        albumData.duration
+      )} Minuti</span>
                             </p>
                         </div>
                     </div>
@@ -228,13 +225,14 @@ const drawAlbum = async (targetObject) => {
             </div>
             <!-- play -->
             <div
+              id="playPlaylistDiv-${playListTarget}"
               class="position-absolute"
               style="top: -20px; bottom: 5px; right: -10px"
             >
-              <button
+              <button id="playPlaylistButton-${playListTarget}"
                 class="d-inline-block rounded-circle p-3 border-0 bg-success"
               >
-                <svg
+                <svg id="playPlaylistImage-${playListTarget}"
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
                   height="40"
@@ -255,9 +253,11 @@ const drawAlbum = async (targetObject) => {
           <!-- play -->
           <div class="d-inline-block">
             <button
+              id="playPlaylistButtonDesktop-${playListTarget}"
               class="d-inline-block rounded-circle p-2 mb-2 border-0 bg-spotify mt-0"
             >
               <svg
+                id="playPlaylistImageDeskstop-${playListTarget}"
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"
@@ -358,7 +358,11 @@ const drawAlbum = async (targetObject) => {
       </section>
         `
 
+    playlistsMegaArray = []
     albumData.tracks.data.forEach((track, index) => {
+      // Popola playlistMegaArray come se fosse una playlist
+      // in modo da poter essere riutilizzato dal player
+      playlistsMegaArray.push(track)
       trackHTML = `
             <div class="row g-0 ms-2 me-2 mb-0">
                 <div class="col col-1 d-none d-md-block">
@@ -368,22 +372,21 @@ const drawAlbum = async (targetObject) => {
                 <div
                     class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
                 >
-                    <p id="songNameList" class="mb-0 fw-bold">${
-                      track.title_short
-                    }</p>
+                    <p id="songNameList" class="mb-0 fw-bold">${track.title_short
+        }</p>
                     <p id="artistNameList" class="fs-7">${track.artist.name}</p>
                 </div>
 
                 <div class="col-3 text-end d-none d-md-block">
                     <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString(
-                      'it-IT'
-                    )}</p>
+          'it-IT'
+        )}</p>
                 </div>
 
                 <div class="col col-2 text-end mb-0 d-none d-md-block">
                     <p id="songDurationList" class="mb-0 mt-2">${formatDuration(
-                      track.duration
-                    )}</p>
+          track.duration
+        )}</p>
                 </div>
                 <div class="col col-2 text-end mb-0 mt-2 d-md-none">
                     <svg

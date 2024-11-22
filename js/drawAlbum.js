@@ -2,7 +2,7 @@ const drawAlbum = async (targetObject) => {
   try {
     const albumData = await fetchFunction(
       `https://striveschool-api.herokuapp.com/api/deezer/album/${targetObject}`
-    )
+    );
 
     let albumHTML = `
         <section class="d-none d-md-block">
@@ -78,7 +78,7 @@ const drawAlbum = async (targetObject) => {
           </div>
         </div>
       </section>
-            `
+            `;
 
     albumHTML += `
             <section id="albumInfo">
@@ -89,7 +89,7 @@ const drawAlbum = async (targetObject) => {
                         <!-- freccia torna in home -->
                         <!-- va aggiunto uno sfondo al div capire se è fattibile usare il tool di Stefano -->
                         <button class="border-0 bg-transparent d-md-none">
-                            <a class="text-light" href="centralColumn.html">
+                            <a class="text-light" href="index.html">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="40"
@@ -153,7 +153,7 @@ const drawAlbum = async (targetObject) => {
       </section >
 
       <section id="songList" class="container mt-4">
-      `
+      `;
 
     albumHTML += `
               <section id="icone" class="container mb-3">
@@ -356,7 +356,7 @@ const drawAlbum = async (targetObject) => {
         </div>
         <hr class="mt-1" />
       </section>
-        `
+        `;
 
     albumData.tracks.data.forEach((track, index) => {
       trackHTML = `
@@ -376,7 +376,7 @@ const drawAlbum = async (targetObject) => {
 
                 <div class="col-3 text-end d-none d-md-block">
                     <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString(
-                      'it-IT'
+                      "it-IT"
                     )}</p>
                 </div>
 
@@ -400,16 +400,16 @@ const drawAlbum = async (targetObject) => {
                     </svg>
                 </div>
                 </div>
-                `
-      albumHTML += trackHTML
-    })
+                `;
+      albumHTML += trackHTML;
+    });
 
     albumHTML += `
             </section>
-            `
+            `;
 
-    document.getElementById('centralColumn').innerHTML = albumHTML
+    document.getElementById("centralColumn").innerHTML = albumHTML;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};

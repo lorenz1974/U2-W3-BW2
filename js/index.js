@@ -69,9 +69,9 @@ const drawPlaylistsLinks = () => {
       playListsLiHTML += `
             <li>
                 <p id="playList-${playlist.playlistName.replace(
-                  " ",
-                  ""
-                )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
+        " ",
+        ""
+      )}" class="btn p-0 me-2 text-body-secondary fw-normal text-truncate">
                     ${playlist.playlistName}
                 </p>
             </li>
@@ -197,32 +197,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       _D(1, `targetObject is: ${targetObject}`);
 
       switch (targetType) {
-        case "playPlayList":
-        case "playListPauseControl":
-        case "playListPlayControl": {
-          //playPlayList(targetObject)
-          document
-            .querySelectorAll('i[id*="playListPauseControl"]')
-            .forEach((element) => {
-              element.classList.add("d-none");
-            });
-
-          document
-            .querySelectorAll('i[id*="playListPlayControl"]')
-            .forEach((element) => {
-              element.classList.remove("d-none");
-            });
-
-          document
-            .getElementById("playListPauseControl-" + targetObject)
-            .classList.toggle("d-none");
-          document
-            .getElementById("playListPlayControl-" + targetObject)
-            .classList.toggle("d-none");
-
-          _W("Manda in play la playlist: " + targetObject);
-          break;
-        }
+        case 'playPlayList':
+        case 'playListPauseControl':
+        case 'playListPlayControl':
+          {
+            // ----------------------  PLAYLISTS  ----------------------
+            _W('Manda in play la playlist: ' + targetObject)
+            drawPlaylist(targetObject)
+            break
+          }
 
         case "playList": {
           const tracksPlaylistArray = playlistsArray.filter(
@@ -276,18 +259,47 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         }
 
-        case "playPlaylistButtonDesktop":
-        case "playPlaylistImageDeskstop":
-        case "playPlaylistDiv":
-        case "playPlaylistButton":
-        case "playPlaylistImage": {
-          _W("Manda in play la playlist: " + targetObject);
-          megaArrayIndex = 0;
-          setPreviousNextControl();
-          trackId = playlistsMegaArray[megaArrayIndex].id;
-          playItAgainSam();
-          break;
+        case 'playPlaylistButtonDesktop':
+        case 'playPlaylistImageDeskstop':
+        case 'playPlaylistDiv':
+        case 'playPlaylistButton':
+        case 'playPlaylistImage':
+          {
+            _W('Manda in play la playlist: ' + targetObject)
+            if (currentTrack && !currentTrack.paused) {
+              currentTrack.pause()
+            }
+            isPlaying = false
+            playlistIndex = 0
+            setPreviousNextControl()
+            trackId = playlistsMegaArray[playlistIndex].id
+            playItAgainSam()
+            break
+          }
+
+        // Controlli del player
+        case 'nextControl': {
+          setPreviousNextControl()
+          playlistIndex < playlistsMegaArray.length ? playlistIndex++ : playlistIndex = 0
+          currentTrack.pause()
+          currentTrack = null
+          trackId = nextTrackId
+          isPlaying = false
+          playItAgainSam()
+          break
         }
+
+        case 'previousControl': {
+          setPreviousNextControl()
+          playlistIndex === 0 ? playlistIndex = playlistsMegaArray.length - 1 : playlistIndex--
+          currentTrack.pause()
+          currentTrack = null
+          trackId = previousTrackId
+          isPlaying = false
+          playItAgainSam()
+          break
+        }
+
 
         default: {
           break;

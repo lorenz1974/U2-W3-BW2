@@ -81,7 +81,7 @@ const drawPlaylistCards = async () => {
               </div>
               <div class="col-8">
                 <div class="card-body">
-                  <p class="mb-1 text-secondary">Playlist</p>
+                  <p class="mb-1 text-light opacity-75">Playlist</p>
                   <h2 id="playList-${playlist.playlistName.replace(' ', '')}"
 
                   class="card-title fs-1">
@@ -132,13 +132,13 @@ const drawPlaylistCards = async () => {
                   <!-- BRANI E PLAY -->
                   <div>
                     <div class="d-inline-block">
-                      <p class="p-0 m-0 me-2 text-nowrap">${
+                      <p class="p-0 m-0 me-2 fs-7 text-light opacity-75 text-nowrap">${
                         playlist.playlistTracks.length
                       } brani</p>
                     </div>
 
                     <button
-                      class="d-inline-block rounded-circle ps-3 pe-3 pt-2 pb-2 border-0"
+                      class="d-inline-block rounded-circle px-3 py-2 border-0"
 
                       id="playPlayListPlay-${playlist.playlistName.replace(
                         ' ',

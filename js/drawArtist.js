@@ -4,9 +4,11 @@ const drawArtist = async (targetObject) => {
     // Chiamata API per recuperare i dati dell'artista
     const artistData = await fetchFunction(
       `https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}`
-    )
-    const artistTracksData = await fetchFunction(artistData.tracklist)
-    // HTML dinamico per l'artista
+    );
+    const artistTracksData = await fetchFunction(
+      `https://striveschool-api.herokuapp.com/api/deezer/artist/${targetObject}/top?limit=50`
+    );
+    _D(1, artistTracksData);
 
     let artistHTML = `
     <section class="d-none d-md-block">
@@ -82,7 +84,7 @@ const drawArtist = async (targetObject) => {
       </div>
     </div>
   </section>
-        `
+        `;
 
     artistHTML += `
       <div
@@ -137,58 +139,64 @@ const drawArtist = async (targetObject) => {
               <path
                 d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
               />
-             </svg>
-        </div>
+             </svg> 
+            
+             </div>
+             <div>
+              <h3 class="mb-4 mt-4 fs-4">Popolari</h3>
+            </div>
       </div>
-    `
+      
+    `;
+    const tracksData = artistTracksData.data;
+    const loopNumber = Math.min(5, tracksData.length);
+    for (let i = 0; i < loopNumber; i++) {
+      trackHTML = `
+            <div class="row g-0 ms-2 me-2 mb-0">
+                <div class="col col-1 d-none d-md-block">
+                    <p id="songNumber" class="mt-2 mb-0">${i + 1}</p>
+                </div>
 
-    // for (let i = 0; i < 6; i++) {
-    //   trackHTML = `
-    //         <div class="row g-0 ms-2 me-2 mb-0">
-    //             <div class="col col-1 d-none d-md-block">
-    //                 <p id="songNumber" class="mt-2 mb-0">${i + 1}</p>
-    //             </div>
+                <div
+                    class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
+                >
+                    <p id="songNameList" class="mb-0 fw-bold">${
+                      tracksData[i].title_short
+                    }</p>
+                    <p id="artistNameList" class="fs-7">${
+                      tracksData[i].artist.name
+                    }</p>
+                </div>
 
-    //             <div
-    //                 class="col col-10 col-md-6 d-flex flex-column align-content-center justify-content-center"
-    //             >
-    //                 <p id="songNameList" class="mb-0 fw-bold">${
-    //                   artistTracksData[i].title_short
-    //                 }</p>
-    //                 <p id="artistNameList" class="fs-7">${
-    //                   artistTracksData[i].artist.name
-    //                 }</p>
-    //             </div>
+                <div class="col-3 text-end d-none d-md-block">
+                    <p id="playedCounter" class="mb-0 mt-2">
+                      ${tracksData[i].id.toLocaleString("it-IT")}
+                    </p>
+                </div>
 
-    //             <div class="col-3 text-end d-none d-md-block">
-    //                 <p id="playedCounter" class="mb-0 mt-2">${artistTracksData[
-    //                   i
-    //                 ].id.toLocaleString('it-IT')}</p>
-    //             </div>
-
-    //             <div class="col col-2 text-end mb-0 d-none d-md-block">
-    //                 <p id="songDurationList" class="mb-0 mt-2">${formatDuration(
-    //                   artistTracksData[i].duration
-    //                 )}</p>
-    //             </div>
-    //             <div class="col col-2 text-end mb-0 mt-2 d-md-none">
-    //                 <svg
-    //                 xmlns="http://www.w3.org/2000/svg"
-    //                 width="20"
-    //                 height="20"
-    //                 fill="currentColor"
-    //                 class="bi bi-three-dots-vertical d-inline-block"
-    //                 viewBox="0 0 16 16"
-    //                 >
-    //                 <path
-    //                     d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"
-    //                 />
-    //                 </svg>
-    //             </div>
-    //             </div>
-    //             `
-    // }
-    // artistHTML += trackHTML
+                <div class="col col-2 text-end mb-0 d-none d-md-block">
+                    <p id="songDurationList" class="mb-0 mt-2">
+                    ${formatDuration(tracksData[i].duration)}
+                    </p>
+                </div>
+                <div class="col col-2 text-end mb-0 mt-2 d-md-none">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-three-dots-vertical d-inline-block"
+                    viewBox="0 0 16 16"
+                    >
+                    <path
+                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"
+                    />
+                    </svg>
+                </div>
+                </div>
+                `;
+      artistHTML += trackHTML;
+    }
 
     //   // Inserimento del contenuto nell'elemento HTML con ID "artist-container"
     //   const artistContainer = document.getElementById('artist-container')
@@ -205,9 +213,9 @@ const drawArtist = async (targetObject) => {
     //   console.error('Errore', error)
     // }
 
-    document.getElementById('centralColumn').innerHTML = artistHTML
+    document.getElementById("centralColumn").innerHTML = artistHTML;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
   // async function fetchTopTracks(tracklistUrl) {
@@ -242,4 +250,4 @@ const drawArtist = async (targetObject) => {
   //   } catch (error) {
   //     console.error('Errore:', error)
   //   }
-}
+};

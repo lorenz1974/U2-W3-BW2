@@ -1,6 +1,6 @@
 const drawPlaylist = (playListTarget) => {
   _W("drawPlaylist");
-  _W(JSON.stringify(playlistsMegaArray));
+  //_W(JSON.stringify(playlistsMegaArray));
 
   const playListDuration = playlistsMegaArray.reduce(
     (acc, track) => acc + track.duration,

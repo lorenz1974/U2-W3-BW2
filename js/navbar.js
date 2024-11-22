@@ -43,7 +43,7 @@ const playFunction = async () => {
 
 
 //Aggiorno i dati del player leggendo i dati della traccia corrente
-const updatePlayerBar = () => {
+const updatePlayerBar = async () => {
   _D(1, `updatePlayerBar`);
 
   const duration = currentTrack.duration;
@@ -51,8 +51,8 @@ const updatePlayerBar = () => {
   if (isNaN(duration)) { return }
 
   const currentTime = currentTrack.currentTime;
-  _D(3, `duration: ${duration}`);
-  _D(3, `currentTime: ${currentTime}`);
+  //_D(3, `duration: ${duration}`);
+  //_D(3, `currentTime: ${currentTime}`);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -67,7 +67,7 @@ const updatePlayerBar = () => {
 
   const progress = (currentTime / duration) * 100;
   document.getElementById("progressBarPercent").style.width = `${progress}%`;
-  _D(2, `progress: ${progress}`);
+  //_D(2, `progress: ${progress}`);
 };
 
 // Aggiorna le info della traccia corrente sul player
@@ -120,7 +120,7 @@ const playItAgainSam = async () => {
         currentTrack.load();
         await playFunction();
         updatePlayerInfo();
-        updatePlayerBar()
+        await updatePlayerBar()
         lastTrackId = trackId;
         isPlaying = true;
       }

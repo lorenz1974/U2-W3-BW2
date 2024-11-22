@@ -9,7 +9,11 @@ const populateMyPlaylist = async (list) => {
 
   for (const id of list) {
     try {
-      playlistsMegaArray.push(await fetchFunction(TRACK_URL + id))
+      trackInfo = await fetchFunction(TRACK_URL + id)
+      // Non tutte le tracce hanno la preview e quindi va in errore il player
+      // Così le escludiamo a priori
+      trackInfo.preview.length > 0 ? playlistsMegaArray.push(trackInfo) : null
+      // playlistsMegaArray.push(await fetchFunction(TRACK_URL + id))
     } catch (error) {
       _W(error)
     }

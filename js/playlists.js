@@ -46,7 +46,7 @@ const playlistsArray = [
       906616, 2837570, 3891545, 2095988287, 420712602, 68905292,
     ],
     playlistImg:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzRBByi3xv2bZU9I9HqYKxBvH9oT743D7-hg&s",
+      "./assets/imgs/epipop.png",
   },
   {
     playlistName: "Pippo playlist",

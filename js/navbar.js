@@ -368,6 +368,13 @@ setTimeout(async () => {
   try {
     await restriveTrackInfo(trackId);
     updatePlayerInfo();
+
+    // Aggiorno i dati del brano nella home
+    document.getElementById('imgSongHome').src = currentTrackData.album.cover_medium;
+    document.getElementById('albumHome').innerHTML = currentTrackData.album.title;
+    document.getElementById('songTitleHome').innerHTML = currentTrackData.title_short;
+    document.getElementById('artistHome').innerHTML = currentTrackData.artist.name;
+
   } catch (error) {
     console.error(error);
   }

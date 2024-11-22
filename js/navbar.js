@@ -160,7 +160,7 @@ const playItAgainSam = async () => {
 
 // Setta le variabili trackId, nextTrackId e lastTrackId al momento in cui viene chiamato il play di una plylist
 const setPreviousNextControl = () => {
-  _W(`setPreviousNextControl - megaArrayIndex: ${megaArrayIndex}`);
+  _W(`setPreviousNextControl - playlistIndex: ${playlistIndex}`);
 
   let nextTrackId = 0
   let previousTrackId = 0
@@ -168,20 +168,20 @@ const setPreviousNextControl = () => {
   let previousTrackTitle = ''
   let playListLength = playlistsMegaArray.length
 
-  if (megaArrayIndex === 0) {
-    nextTrackId = playlistsMegaArray[megaArrayIndex + 1].id;
-    nextTrackTitle = playlistsMegaArray[megaArrayIndex + 1].title_short;
+  if (playlistIndex === 0) {
+    nextTrackId = playlistsMegaArray[playlistIndex + 1].id;
+    nextTrackTitle = playlistsMegaArray[playlistIndex + 1].title_short;
 
     previousTrackId = playlistsMegaArray[playListLength - 1].id;
     previousTrackTitle = playlistsMegaArray[playListLength - 1].title_short;
 
   }
   else {
-    nextTrackId = playlistsMegaArray[megaArrayIndex + 1].id;
-    previousTrackId = playlistsMegaArray[megaArrayIndex - 1].id;
+    nextTrackId = playlistsMegaArray[playlistIndex + 1].id;
+    previousTrackId = playlistsMegaArray[playlistIndex - 1].id;
 
-    nextTrackTitle = playlistsMegaArray[megaArrayIndex + 1].title_short;
-    previousTrackTitle = playlistsMegaArray[megaArrayIndex - 1].title_short;
+    nextTrackTitle = playlistsMegaArray[playlistIndex + 1].title_short;
+    previousTrackTitle = playlistsMegaArray[playlistIndex - 1].title_short;
   }
 
   _W(`setPreviousNextControl - nextTrackId: ${nextTrackId} - ${nextTrackTitle}`);
@@ -195,11 +195,11 @@ const setPreviousNextControl = () => {
   // Assegna i controlli ai tasti next e previous
   // previousControl
   document.getElementById('previousControl').addEventListener('click', () => {
-    if (megaArrayIndex === 0) {
-      megaArrayIndex = playlistsMegaArray.length - 1;
+    if (playlistIndex === 0) {
+      playlistIndex = playlistsMegaArray.length - 1;
     }
     else {
-      megaArrayIndex--;
+      playlistIndex--;
     }
     // Setto il nuovo ID della traccia
     trackId = previousTrackId;
@@ -216,11 +216,11 @@ const setPreviousNextControl = () => {
 
   // nextControl
   document.getElementById('nextControl').addEventListener('click', () => {
-    if (megaArrayIndex === playlistsMegaArray.length - 1) {
-      megaArrayIndex = 0;
+    if (playlistIndex === playlistsMegaArray.length - 1) {
+      playlistIndex = 0;
     }
     else {
-      megaArrayIndex++;
+      playlistIndex++;
     }
     // Setto il nuovo ID della traccia
     trackId = nextTrackId;
@@ -269,7 +269,7 @@ let trackId = 64309686;
 let lastTrackId = 0;
 let volumeValue = 0.5;
 
-let megaArrayIndex = 0;
+let playlistIndex = 0;
 
 // https://striveschool-api.herokuapp.com/api/deezer/album/75621062
 // https://striveschool-api.herokuapp.com/api/deezer/artist/412

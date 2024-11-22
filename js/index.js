@@ -188,30 +188,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       switch (targetType) {
         case 'playPlayList':
         case 'playListPauseControl':
-        case 'playListPlayControl': {
-          //playPlayList(targetObject)
-          document
-            .querySelectorAll('i[id*="playListPauseControl"]')
-            .forEach((element) => {
-              element.classList.add('d-none')
-            })
-
-          document
-            .querySelectorAll('i[id*="playListPlayControl"]')
-            .forEach((element) => {
-              element.classList.remove('d-none')
-            })
-
-          document
-            .getElementById('playListPauseControl-' + targetObject)
-            .classList.toggle('d-none')
-          document
-            .getElementById('playListPlayControl-' + targetObject)
-            .classList.toggle('d-none')
-
-          _W('Manda in play la playlist: ' + targetObject)
-          break
-        }
+        case 'playListPlayControl':
+          {
+            // ----------------------  PLAYLISTS  ----------------------
+            _W('Manda in play la playlist: ' + targetObject)
+            drawPlaylist(targetObject)
+            break
+          }
 
         case 'playList': {
           const tracksPlaylistArray = playlistsArray.filter(

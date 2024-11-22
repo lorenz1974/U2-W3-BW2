@@ -1,94 +1,102 @@
-#playListsSearch{
-    display: none;
+#playListsSearch {
+  display: none;
 }
 
-#formSearch{
-    display: none;
+#formSearch {
+  display: none;
 }
 
-#sectionBigDiv h3{
-    padding-left: 0.5em;
-    padding-top: 1em;
-    padding-bottom: 0.5em;
+#sectionBigDiv h3 {
+  padding-left: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
 }
 
-.album{
-    margin: 0.5em;
-    border: solid 1px #4b4b4b3b;
-    padding: 1em;
-    background-color: #4b4b4b3b;
-    border-radius: 20px;
-    border: solid 1px #1c0e0e;
-    width: 30%;
+.album {
+  margin: 0.5em;
+  border: solid 1px #4b4b4b3b;
+  padding: 1em;
+  background-color: #4b4b4b3b;
+  border-radius: 20px;
+  border: solid 1px #1c0e0e;
+  width: 30%;
 }
 
-.album:hover{
-    transition: all 2s; 
-    width: 50%;
+.album:hover {
+  transition: all 2s;
+  width: 50%;
 }
 
-.album h5{
-    font-size: medium;
-    padding-top: 1em;
+.album h5 {
+  font-size: medium;
+  padding-top: 1em;
 }
 
-.album p{
-    font-size: smaller;
-    padding-top: 1em;
+.album p {
+  font-size: smaller;
+  padding-top: 1em;
 }
 
-.album img{
-    border-radius: 10px;
+.album img {
+  border-radius: 10px;
 }
 
-#serchMusic{
-    text-align: center;
-    margin: 1em;
+#serchMusic {
+  text-align: center;
+  margin: 1em;
 }
 
-#serchMusic input{
-    width: 0%;
-    padding: 0.5em;
-}
-
-.articolo {
-    margin: 10px;
-    overflow: hidden;
-    margin: 1em;
-    border-radius: 10px;
-    width: 50%;
-}
-
-.articolo p{
-    margin: 0;
-    padding-top: 0.5em;
-    padding-left: 0.5em;
-    font-size: x-large;
-    text-shadow: 0 2px black;
-}
-
-.articolo img{
-    height: 5em;
-    border-radius: 10px;
-    transform: translatey(0%);
-    transform: rotate(32deg);
-    box-shadow: #000000 -9px 12px 1.4em;
-    position: relative;
-    left: 77%;
-}
-
-.animationImg:hover{
-    transition: all 1S;
-    transform: translatey(-30%);
+#serchMusic input {
+  width: 0%;
+  padding: 0.5em;
 }
 
 .articolo {
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+  margin: 10px;
+  overflow: hidden;
+  margin: 1em;
+  border-radius: 10px;
+  width: 50%;
 }
-  
+
+.articolo p {
+  margin: 0;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  font-size: x-large;
+  text-shadow: 0 2px black;
+}
+
+.articolo img {
+  height: 5em;
+  border-radius: 10px;
+  transform: translatey(0%);
+  transform: rotate(32deg);
+  box-shadow: #000000 -9px 12px 1.4em;
+  position: relative;
+  left: 77%;
+}
+
+.animationImg:hover {
+  transition: all 1s;
+  transform: translatey(-30%);
+}
+
+.articolo {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
 .articolo.visible {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  cursor: pointer;
 }

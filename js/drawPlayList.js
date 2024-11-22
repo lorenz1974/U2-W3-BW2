@@ -1,14 +1,14 @@
 const drawPlaylist = (playListTarget) => {
-  _W('drawPlaylist')
-  _W(JSON.stringify(playlistsMegaArray))
+  _W("drawPlaylist");
+  _W(JSON.stringify(playlistsMegaArray));
 
   const playListDuration = playlistsMegaArray.reduce(
     (acc, track) => acc + track.duration,
     0
-  )
+  );
   const playListname = playlistsArray.filter(
-    (playlist) => playlist.playlistName.replace(' ', '') === playListTarget
-  )[0].playlistName
+    (playlist) => playlist.playlistName.replace(" ", "") === playListTarget
+  )[0].playlistName;
 
   let playlistHTML = `
         <section class="d-none d-md-block">
@@ -84,7 +84,7 @@ const drawPlaylist = (playListTarget) => {
           </div>
         </div>
       </section>
-            `
+            `;
 
   playlistHTML += `
             <section id="albumInfo">
@@ -122,7 +122,7 @@ const drawPlaylist = (playListTarget) => {
                     <div class="col-12 col-md-7 p-md-4 pb-md-0">
                         <!-- info album -->
                         <div class="ps-4 ps-md-0">
-                            <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">Play List</p>
+                            <p class="fw-semibold d-none d-md-block mb-1 fs-6 mt-2">Playlist</p>
                             <h1 id="albumName" class="pb-2 pb-md-5">${playListname}</h1>
                             <img
                                 id="artistPic"
@@ -153,7 +153,7 @@ const drawPlaylist = (playListTarget) => {
       </section >
 
       <section id="songList" class="container mt-4">
-      `
+      `;
 
   playlistHTML += `
               <section id="icone" class="container mb-3">
@@ -356,7 +356,7 @@ const drawPlaylist = (playListTarget) => {
         </div>
         <hr class="mt-1" />
       </section>
-        `
+        `;
 
   playlistsMegaArray.forEach((track, index) => {
     trackHTML = `
@@ -378,7 +378,7 @@ const drawPlaylist = (playListTarget) => {
 
                 <div class="col-3 text-end d-none d-md-block">
                     <p id="playedCounter" class="mb-0 mt-2">${track.id.toLocaleString(
-                      'it-IT'
+                      "it-IT"
                     )}</p>
                 </div>
 
@@ -402,13 +402,13 @@ const drawPlaylist = (playListTarget) => {
                     </svg>
                 </div>
                 </div>
-                `
-    playlistHTML += trackHTML
-  })
+                `;
+    playlistHTML += trackHTML;
+  });
 
   playlistHTML += `
             </section>
-            `
+            `;
 
-  document.getElementById('centralColumn').innerHTML = playlistHTML
-}
+  document.getElementById("centralColumn").innerHTML = playlistHTML;
+};

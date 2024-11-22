@@ -17,6 +17,8 @@
     border: solid 1px #4b4b4b3b;
     padding: 1em;
     background-color: #4b4b4b3b;
+    border-radius: 20px;
+    border: solid 1px #1c0e0e;
 }
 
 .album h5{
@@ -27,6 +29,10 @@
 .album p{
     font-size: smaller;
     padding-top: 1em;
+}
+
+.album img{
+    border-radius: 10px;
 }
 
 #serchMusic{
